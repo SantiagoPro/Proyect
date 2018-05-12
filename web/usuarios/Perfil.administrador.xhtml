@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./../WEB-INF/template/administrador.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <ui:define name="link">
+        <link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/css/perfil.css"/>
+    </ui:define>
+    <ui:define name="title">
+        Perfil
+    </ui:define>
+    <ui:define name="Contenido">
+        <div class="row  d-flex justify-content-center">
+            <div class="card-deck" >
+                <div class="card" >
+                    <img class="card-img-top" src="#{request.contextPath}/resources/img/LOGO.png" alt="Foto de perfil"/>	
+                    <div class="btn ">
+                        <div>
+                            <input type="file" name="file" id="file" class="inputfile "/>
+                            <label for="file">Cambiar</label>	
+                        </div>
+                    </div>
+                </div>
+                <div class="card text-center" value="">
+                    <div class="card-header">
+                        <h4 class="card-title"> 
+                            <h:outputText value=""/>
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><strong>A </strong></li>
+                            <li class="list-group-item"><strong> B</strong> </li>
+                            <li class="list-group-item" id="Nacimiento" ><strong>C </strong> </li>
+                            <li class="list-group-item" id="Correo" ><strong> D</strong> </li>
+                            <li class="list-group-item" id="Telefono" ><strong>E </strong> </li>
+                            <li class="list-group-item" id="Sangre" ><strong>F </strong> </li>
+                            <h:commandButton class="btn btn-success mt-3" value="Editar"> </h:commandButton>							
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>

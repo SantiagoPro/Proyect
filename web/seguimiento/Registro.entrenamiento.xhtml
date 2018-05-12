@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./../WEB-INF/template/entrenador.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <ui:define name="title">
+        Entrenamientos
+    </ui:define>
+    <ui:define name="Contenido">
+        <h2  class="text-center alert-danger" style="background-color: #f22; color: black">
+           PAGINA EN DESARROLLO
+        </h2>
+        <div class="row d-flex justify-content-center">
+            <div class="col-10">
+                <h:form class="p-5 form-row" style="border-radius: 5px;">
+                    <div class="form-group col-md-4 col-xs-12">
+                        <h:outputLabel value="Deportista" for="nombre" />
+                        <h:inputText class="form-control" id="nombre" title="" required="true" maxlength="15" />
+                    </div>   
+                    <div class="form-group col-md-10 col-xs-12">
+                        <h:outputLabel value="Descripcion del entrenamiento" for="nombre" />
+                        <input type="text" class="form-control" id="nombre" value="" title="" required="true" maxlength="100"/>
+                    </div>
+                    <div class="form-group col-md-4 col-xs-12">
+                        <label  for="type">Tipo de Entrenamiento</label>
+                        <select name="type" class="form-control" required="true">
+                            <option value="" >---------</option>
+                            <option value="" >Movimiento</option>
+                            <option value="" >Musculo</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4 col-xs-12">
+                        <label  for="type">Musculo</label>
+                        <select disabled="" name="type" class="form-control" required="true">
+                            <option value="" >---------</option>
+                            <option value="" >Cuadriceps</option>
+                            <option value="" >Pectoral</option>
+                            <option value="" >Triceps</option>
+                            <option value="" >Espalda</option>
+                            <option value="" >Biceps</option>
+                            <option value="" >Hombro</option>
+                        </select>
+                    </div >
+                    <div class="form-group col-md-4 col-xs-12">
+                        <label  for="type">Movimiento</label>
+                        <select name="type" class="form-control" required="true">
+                            <option value="" >---------</option>
+                            <option value="" >Arranque</option>
+                            <option value="" >Envion</option>
+                        </select>
+                    </div >
+                    <div class="form-group col-md-3 col-xs-12">
+                        <label  for="usuario"> Fecha Inicio</label>
+                        <input type="date" class="form-control" placeholder="" id="age" required="true" pattern="[0-9]"/>
+                    </div>
+                    <div class="form-group col-md-3 col-xs-12">
+                        <label  for="usuario"> Fecha Fin</label>
+                        <input type="date" class="form-control" placeholder="" id="age" required="true" pattern="[0-9]"/>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="form-group d-flex justify-content-center">
+                            <button type="submit" id="registro" class="mt-4 mr-2 btn btn-success"> Registrar </button>
+                            <button type="submit" class="mt-4 ml-2 btn btn-danger"> Cancelar </button>
+                        </div>
+                    </div>
+                </h:form>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>

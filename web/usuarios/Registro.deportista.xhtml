@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="./../WEB-INF/template/entrenador.xhtml">
+    <ui:define name="title">
+        Registro de Deportista
+    </ui:define>
+    <ui:define name="Contenido">
+            <div class="row d-flex justify-content-center">
+                <div class="col-10">
+                    <h:form class="p-5 form-row" style="border-radius: 5px;">
+                        <div class="form-group col-md-6 col-xs-12">
+                            <h:outputLabel value="Nombre" for="nombre" />
+                            <h:inputText class="form-control" id="nombre" value="" title="" required="true" requiredMessage=""/>
+                        </div>   
+                        <div class="form-group col-md-6 col-xs-12">
+                            <label > Apellido</label>
+                            <input type="text" class="form-control" placeholder="Digite los Apellidos" id="Lname" minlength="4" maxlength="25" required="true" pattern="[a-zA-Z]{4,25}"/>
+                        </div>
+                        <div class="form-group col-md-3 col-xs-12">
+                            <label  for="type">Tipo de documento</label>
+                            <select name="type" class="form-control" required="true">
+                                <option value="" >---------</option>
+                                <option value="" >C.C</option>
+                                <option value="" >T.I</option>
+                            </select>
+                        </div >
+                        <div class="form-group col-md-4 col-xs-12">
+                            <label>Numero de Documento</label>
+                            <input type="text" class="form-control" id="Document" minlength="8" maxlength="13" required="true" pattern="[0-9]{8,13}"/>
+                        </div>
+                        <div class="form-group col-md-3 col-xs-12">
+                            <label  for="usuario"> Fecha de nacimiento</label>
+                            <input type="date" class="form-control" placeholder="Mes/Dia/Año" id="age" minlength="6
+                                   " maxlength="10" required="true" pattern="[0-9]"/>
+                        </div>
+                        <div class="form-group col-md-4 col-xs-12"> 
+                            <label  for="usuario"> Telefono </label>
+                            <input type="int" class="form-control" placeholder="Telefono Celular o Fijo" id="phone" minlength="7" maxlength="12" required="true"/>
+                        </div>
+                        <div class="form-group col-md-3 col-xs-12">
+                            <label  for="usuario"> Sexo</label>
+                            <select name="Usuario" class="form-control" required="true">
+                                <option value="sex" >---------</option>
+                                <option value="sex" >Masculino</option>
+                                <option value="sex" >Femenino</option>
+                            </select>
+                        </div>
+                        <div class="form-group ml-2 col-md-2 col-xs-12"> 
+                            <label > Tipo de sangre</label>
+                            <select name="Usuario" class="form-control" required="true">
+                                <option value="RH" >---------</option>
+                                <option value="RH" >O+</option>
+                                <option value="RH" >O-</option>
+                                <option value="RH" >A+</option>
+                                <option value="RH" >A-</option>
+                                <option value="RH" >B+</option>
+                                <option value="RH" >B-</option>
+                                <option value="RH" >AB+</option>
+                                <option value="RH" >AB-</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6 col-xs-12">
+                            <label  for="usuario"> Dirrección de domicilio</label>
+                            <input type="text" class="form-control" placeholder="Digite direccion de domicilio" id="dom" minlength="10" maxlength="30" required="true"/>
+                        </div>
+                        <div class="form-group col-md-6 col-xs-12">
+                            <label  for="usuario"> Email</label>
+                            <input type="adress" class="form-control" placeholder="Ejemplo@gmail.com" id="mail" minlength="" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" maxlength="30" required="true"/>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group d-flex justify-content-center">
+                                <button type="submit" id="registro" class="mt-4 mr-2 btn btn-success"> Registrar </button>
+                                <button type="submit" class="mt-4 ml-2 btn btn-danger"> Cancelar </button>
+                            </div>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+    </ui:define>
+</ui:composition>
