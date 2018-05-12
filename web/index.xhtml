@@ -1,7 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
-    <link rel="stylesheet" href="resources/css/pag_inicio.css"/>
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+    <link rel="stylesheet" href="resources/css/index.css"/>
     <link rel="stylesheet" href="resources/css/bootstrap.css"/>
     <link rel="stylesheet" href="resources/css/formValidation.min.css"/>
     <link rel="icon" href="resources/img/LOGO.png"/>
@@ -9,7 +10,7 @@
         <div class="container">
             <div class="row mt-5">
                 <div class="col">
-                    <h2 class="text-center titulo">Bienvenido al sistema</h2>
+                    <h2 class="text-center titulo"> Bienvenido al sistema </h2>
                     <hr/>
                 </div>
             </div>
@@ -20,17 +21,15 @@
                     <h:form>
                         <div class="form-group">
                             <label for="user"><strong> Usuario </strong> </label>
-                            <input type="text" class="form-control"
-                                   placeholder="Documento" id="documento"
-                                   maxlength="13" required="true" 
-                                   pattern="(?=.*\d).[0-9a-zA-Z]{8,13}"/>
+                            <h:inputText class="form-control"
+                                         id="usuario" value="#{sessionController.idUsuario}"
+                                     a:required="required"/>
                         </div>
                         <div class="form-group">
                             <label for="pass"><strong> Contraseña </strong> </label>
-                            <input type="password" id="pass" placeholder="*************"
-                                   required="true" minlength="8" maxlength="50" 
-                                   pattern="(?=.*\d).[0-9a-zA-Z]{8,50}" class="form-control"
-                                   value=""/>
+                            <h:inputSecret id="pass"
+                                   required="true" class="form-control"
+                                   value="#{sessionController.clave}"/>
                         </div>
                         <div class="checkbox">
                             <label>
@@ -39,9 +38,9 @@
                         </div>
                         <br/>
                         <div>
-                            <h:commandButton class="btn btn-danger btn-block" type="submit"
-                                             value="Ingresar">
-                            </h:commandButton>
+                            <h:commandButton class="btn btn-danger btn-block"
+                                             action="#{sessionController.iniciarSesion()}"
+                                             value="Ingresar"/>
                         </div>
                         <hr/>
                         <div class="text-center">
