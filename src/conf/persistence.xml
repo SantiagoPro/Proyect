@@ -3,6 +3,7 @@
   <persistence-unit name="ridPU" transaction-type="JTA">
     <jta-data-source>java:app/proyectoRID</jta-data-source>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <validation-mode>NONE</validation-mode>
     <properties/>
   </persistence-unit>
 </persistence>
