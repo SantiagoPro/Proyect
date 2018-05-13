@@ -19,63 +19,65 @@
         <title><ui:insert name="title">Nueva Pagina</ui:insert></title>
     </h:head>
     <h:body>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-danger fixed-top" id="mainNav">
-            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav navbar-sidenav" id="menu">
-                    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Perfil">
-                        <a class="nav-link" href="Perfil.deportista.xhtml">
-                            <i class="fa fa- fa-id-badge"></i>
-                            <span class="nav-link-text">Perfil</span>
-                        </a>
-                    </li>
-                    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Entrenamiento">
-                        <a class="nav-link" href="Entrenamiento.deportista.xhtml">
-                            <i class="fa fa-fw fa-shirtsinbulk"></i>
-                            <span class="nav-link-text">Entrenamiento</span>
-                        </a>
-                    </li>
-                    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Horario">
-                        <a class="nav-link" href="Horarios.deportista.xhtml">
-                            <i class="fa fa-fw fa-hourglass-2"></i>
-                            <span class="nav-link-text">Horario</span>
-                        </a>
-                    </li>
-                    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Salir">
-                        <a class="nav-link" href="../index.xhtml">
-                            <i class="fa fa-fw fa-sign-out"></i>
-                            <span class="nav-link-text">Salir</span>
-                        </a>
-                    </li>  
-                </ul> 
-                <ul class="navbar-nav sidenav-toggler">
-                    <li class="nav-item">
-                        <a class="nav-link text-center" id="sidenavToggler">
-                            <i class="fa fa-superpowers fa-spin"></i>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-        <div class="content-wrapper">
-            <div class="container-fluid">     
-                <div class="row">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item">
-                            <a href="Principal.deportista.xhtml">Inicio</a>
+        <h:form>    
+            <nav class="navbar navbar-expand-lg navbar-dark bg-danger fixed-top" id="mainNav">
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav navbar-sidenav" id="menu">
+                        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Perfil">
+                            <a class="nav-link" href="#{request.contextPath}/usuarios/Perfil.deportista.xhtml">
+                                <i class="fa fa- fa-id-badge"></i>
+                                <span class="nav-link-text">Perfil</span>
+                            </a>
                         </li>
-                        <li class="breadcrumb-item active">
-                            <ui:insert name="pag"></ui:insert>
+                        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Entrenamiento">
+                            <a class="nav-link" href="#{request.contextPath}/seguimiento/Entrenamiento.deportista.xhtml">
+                                <i class="fa fa-fw fa-shirtsinbulk"></i>
+                                <span class="nav-link-text">Entrenamiento</span>
+                            </a>
                         </li>
-                    </ol>
-                    <div class="container-fluid">
-                        <ui:insert name="Contenido"></ui:insert>                    
+                        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Horario">
+                            <a class="nav-link" href="#{request.contextPath}/seguimiento/Horario.deportista.xhtml">
+                                <i class="fa fa-fw fa-hourglass-2"></i>
+                                <span class="nav-link-text">Horario</span>
+                            </a>
+                        </li>
+                        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Salir">
+                            <a class="nav-link" href="#{request.contextPath}/index.xhtml">
+                                <i class="fa fa-fw fa-sign-out"></i>
+                                <span class="nav-link-text">Salir</span>
+                            </a>
+                        </li>  
+                    </ul> 
+                    <ul class="navbar-nav sidenav-toggler">
+                        <li class="nav-item">
+                            <a class="nav-link text-center" id="sidenavToggler">
+                                <i class="fa fa-superpowers fa-spin"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <div class="content-wrapper">
+                <div class="container-fluid">     
+                    <div class="row">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="#{request.contextPath}/usuarios/Principal.deportista.xhtml">Inicio</a>
+                            </li>
+                            <li class="breadcrumb-item active">
+                                <ui:insert name="pag"></ui:insert>
+                            </li>
+                        </ol>
+                        <div class="container-fluid">
+                            <ui:insert name="Contenido"></ui:insert>                    
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </h:form>
         <ui:insert name="script"></ui:insert>
         <script src="#{request.contextPath}/resources/js/jquery.min.js"></script>
         <script src="#{request.contextPath}/resources/js/popper.min.js"></script>

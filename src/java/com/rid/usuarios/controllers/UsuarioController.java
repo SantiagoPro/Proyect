@@ -25,9 +25,6 @@ import javax.ejb.EJB;
 @SessionScoped
 public class UsuarioController implements Serializable {
 
-    /**
-     * Creates a new instance of UsuarioController
-     */
     @EJB
     private UsuarioFacadeLocal ufl;
     
@@ -181,6 +178,9 @@ public class UsuarioController implements Serializable {
         this.estado = estado;
     }
     
+    public void iniciarSesion(){
+        
+    }
     
     
     public List<Usuario> getUsuario(){

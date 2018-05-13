@@ -26,7 +26,7 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav navbar-sidenav" id="menu">
                     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Perfil">
-                        <a class="nav-link" href="Perfil.administrador.xhtml">
+                            <a class="nav-link" href="#{request.contextPath}/usuarios/Perfil.administrador.xhtml">
                             <i class="fa fa- fa-id-badge"></i>
                             <span class="nav-link-text">Perfil</span>
                         </a>
@@ -37,12 +37,12 @@
                             <span class="nav-link-text">Entrenadores</span>
                         </a>
                         <ul class=" collapse" id="Menu">
-                            <li><a class="nav-link" href="Registro.entrenador.xhtml">Registrar</a></li>
-                            <li><a class="nav-link" href="Eliminar.entrenador.xhtml">Deshabilitar</a></li>
+                            <li><a class="nav-link" href="#{request.contextPath}/usuarios/Registro.entrenador.xhtml">Registrar</a></li>
+                            <li><a class="nav-link" href="#{request.contextPath}/usuarios/Eliminar.entrenador.xhtml">Deshabilitar</a></li>
                         </ul>
                     </li>
                     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Salir">
-                        <a class="nav-link" href="../index.xhtml">
+                        <a class="nav-link" href="#{request.contextPath}/index.xhtml">
                             <i class="fa fa-fw fa-sign-out"></i>
                             <span class="nav-link-text">Salir</span>
                         </a>
@@ -62,7 +62,7 @@
                 <div class="row">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="Principal.administrador.xhtml">Inicio</a>
+                            <a href="#{request.contextPath}/usuarios/Principal.administrador.xhtml">Inicio</a>
                         </li>
                         <li class="breadcrumb-item active">
                             <ui:insert name="pag"></ui:insert>

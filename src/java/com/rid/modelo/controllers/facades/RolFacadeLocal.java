@@ -27,6 +27,8 @@ public interface RolFacadeLocal {
     List<Rol> findAll();
 
     List<Rol> findRange(int[] range);
+    
+    Rol findByIdRol(Integer idRol);
 
     int count();
     
