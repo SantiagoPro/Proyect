@@ -5,52 +5,40 @@
  */
 package com.rid.usuarios.controllers;
 
-import com.rid.modelo.entities.Usuario;
 import com.rid.modelo.entities.TipoDocumento;
 import com.rid.modelo.controllers.facades.TipoDocumentoFacadeLocal;
-import com.rid.modelo.controllers.facades.UsuarioFacadeLocal;
 import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
-import java.sql.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.view.ViewScoped;
 
 /**
  *
  * @author Santiago
  */
 @Named(value = "documentoController")
-@SessionScoped
-public class DocumentoController implements Serializable {
+@ViewScoped
+public class DocumentoController implements Serializable{
 
-    /**
-     * Creates a new instance of UsuarioController
-     */
-    @EJB
-    private UsuarioFacadeLocal ufl;
-    
     @EJB
     private TipoDocumentoFacadeLocal tdfl;
-
-    private List<TipoDocumento> tipoDocumento;
-  
-            
+    
+    private List<TipoDocumento> tiposDocumentos;
+    /**
+     * Creates a new instance of TipoDocumentoController
+     */
     public DocumentoController() {
     }
     
     @PostConstruct
     public void init(){
-    
+        tiposDocumentos = tdfl.findAll();
     }
     
-        public List<TipoDocumento> getTipoDocumento(){
-    
-        if (tipoDocumento == null || tipoDocumento.isEmpty()) {
-            tipoDocumento = tdfl.findAll();
-        }
-        return tipoDocumento;
+    public List<TipoDocumento> getTiposDocumentos(){
+        return tiposDocumentos;
     }
-
+    
 }

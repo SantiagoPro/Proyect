@@ -3,81 +3,115 @@
 <ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
                 template="./../WEB-INF/template/entrenador.xhtml">
     <ui:define name="title">
         Registro de Deportista
     </ui:define>
     <ui:define name="Contenido">
-            <div class="row d-flex justify-content-center">
-                <div class="col-10">
-                    <h:form class="p-5 form-row" style="border-radius: 5px;">
-                        <div class="form-group col-md-6 col-xs-12">
-                            <h:outputLabel value="Nombre" for="nombre" />
-                            <h:inputText class="form-control" id="nombre" value="" title="" required="true" requiredMessage=""/>
-                        </div>   
-                        <div class="form-group col-md-6 col-xs-12">
-                            <label > Apellido</label>
-                            <input type="text" class="form-control" placeholder="Digite los Apellidos" id="Lname" minlength="4" maxlength="25" required="true" pattern="[a-zA-Z]{4,25}"/>
+        <div class="row d-flex justify-content-center">
+            <div class="col-10">
+                <h:form a:data-parsley-validate="true" class="p-5 form-row" 
+                        prependId="false">
+                    <div class="form-group">
+                        <label class="control-label col-md-6 col-sm-3 col-xs-12" for="nombres">Nombres <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <h:inputText id="nombres" a:type="text" value="#{usuarioController.usuarioSeleccionado.nombre}"
+                                         a:required="required" class="form-control col-md-7 col-xs-12"/>
                         </div>
-                        <div class="form-group col-md-3 col-xs-12">
-                            <label  for="type">Tipo de documento</label>
-                            <select name="type" class="form-control" required="true">
-                                <option value="" >---------</option>
-                                <option value="" >C.C</option>
-                                <option value="" >T.I</option>
-                            </select>
-                        </div >
-                        <div class="form-group col-md-4 col-xs-12">
-                            <label>Numero de Documento</label>
-                            <input type="text" class="form-control" id="Document" minlength="8" maxlength="13" required="true" pattern="[0-9]{8,13}"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="apellido"> Apellidos <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <h:inputText id="apellido" value="#{usuarioController.usuarioSeleccionado.apellido}"
+                                         a:type="text" a:required="required" class="form-control col-md-7 col-xs-12"/>
                         </div>
-                        <div class="form-group col-md-3 col-xs-12">
-                            <label  for="usuario"> Fecha de nacimiento</label>
-                            <input type="date" class="form-control" placeholder="Mes/Dia/Año" id="age" minlength="6
-                                   " maxlength="10" required="true" pattern="[0-9]"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="documento"> Documento <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <h:inputText id="documento" value="#{usuarioController.usuarioSeleccionado.idUsuarios}"
+                                         a:type="text" a:required="required" class="form-control col-md-7 col-xs-12"/>
                         </div>
-                        <div class="form-group col-md-4 col-xs-12"> 
-                            <label  for="usuario"> Telefono </label>
-                            <input type="int" class="form-control" placeholder="Telefono Celular o Fijo" id="phone" minlength="7" maxlength="12" required="true"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tipoDocumento">Tipo de documento <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <h:selectOneMenu id="tipoDocumento" value="#{usuarioController.usuarioSeleccionado.idTipoDocumento.sigla}"
+                                             class="form-control col-md-7 col-xs-12">
+                                <f:selectItem itemValue="" itemLabel="Seleccione un tipo de documento"/>
+                                <f:selectItems value="#{documentoController.tiposDocumentos}" var="td" itemLabel="#{td.nombre}"/>
+                            </h:selectOneMenu>
                         </div>
-                        <div class="form-group col-md-3 col-xs-12">
-                            <label  for="usuario"> Sexo</label>
-                            <select name="Usuario" class="form-control" required="true">
-                                <option value="sex" >---------</option>
-                                <option value="sex" >Masculino</option>
-                                <option value="sex" >Femenino</option>
-                            </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="correo">Correo <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <h:inputText id="correo" a:type="email" value="#{usuarioController.usuarioSeleccionado.mail}"
+                                         a:required="required" class="form-control col-md-7 col-xs-12"/>
                         </div>
-                        <div class="form-group ml-2 col-md-2 col-xs-12"> 
-                            <label > Tipo de sangre</label>
-                            <select name="Usuario" class="form-control" required="true">
-                                <option value="RH" >---------</option>
-                                <option value="RH" >O+</option>
-                                <option value="RH" >O-</option>
-                                <option value="RH" >A+</option>
-                                <option value="RH" >A-</option>
-                                <option value="RH" >B+</option>
-                                <option value="RH" >B-</option>
-                                <option value="RH" >AB+</option>
-                                <option value="RH" >AB-</option>
-                            </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="correo">Fecha de nacimiento <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <h:inputText id="fechaNac" a:type="Date" value="#{usuarioController.usuarioSeleccionado.fechaNacimiento}"
+                                         a:required="required" class="form-control col-md-7 col-xs-12"/>
                         </div>
-                        <div class="form-group col-md-6 col-xs-12">
-                            <label  for="usuario"> Dirrección de domicilio</label>
-                            <input type="text" class="form-control" placeholder="Digite direccion de domicilio" id="dom" minlength="10" maxlength="30" required="true"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="correo">Telefono <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <h:inputText id="telefono" a:type="email" value="#{usuarioController.usuarioSeleccionado.telefono}"
+                                         a:required="required" class="form-control col-md-7 col-xs-12"/>
                         </div>
-                        <div class="form-group col-md-6 col-xs-12">
-                            <label  for="usuario"> Email</label>
-                            <input type="adress" class="form-control" placeholder="Ejemplo@gmail.com" id="mail" minlength="" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" maxlength="30" required="true"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="correo">Seguro Medico <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <h:inputText id="seguro" value="#{usuarioController.usuarioSeleccionado.seguroMedico}"
+                                         a:required="required" class="form-control col-md-7 col-xs-12"/>
                         </div>
-                        <div class="col-12">
-                            <div class="form-group d-flex justify-content-center">
-                                <button type="submit" id="registro" class="mt-4 mr-2 btn btn-success"> Registrar </button>
-                                <button type="submit" class="mt-4 ml-2 btn btn-danger"> Cancelar </button>
-                            </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="genero">Sexo <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <h:selectOneRadio id="genero" value="#{usuarioController.usuarioSeleccionado.sexo}">
+                                <f:selectItem itemLabel="Femenino" itemValue="F"/>
+                                <f:selectItem itemLabel="Masculino" itemValue="M"/>
+                            </h:selectOneRadio>
                         </div>
-                    </h:form>
-                </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-5 col-sm-3 col-xs-12 c" for="genero">RH <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <h:selectOneRadio id="genero" value="#{usuarioController.usuarioSeleccionado.rh}">
+                                <f:selectItem itemLabel="O+" itemValue="O+"/>
+                                <f:selectItem itemLabel="O-" itemValue="O-"/>
+                                <f:selectItem itemLabel="A+" itemValue="A+"/>
+                                <f:selectItem itemLabel="A-" itemValue="A-"/>
+                                <f:selectItem itemLabel="B+" itemValue="B+"/>
+                                <f:selectItem itemLabel="B-" itemValue="B-"/>
+                                <f:selectItem itemLabel="AB+" itemValue="AB+"/>
+                                <f:selectItem itemLabel="AB-" itemValue="AB-"/>
+                            </h:selectOneRadio>
+                        </div>
+                    </div>
+                    <div class="ln_solid"></div>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <h:commandButton actionListener="#{usuarioController.editarDeportista()}" 
+                                     class="btn btn-success" value="Editar"/>
+                </h:form>
             </div>
+        </div>
     </ui:define>
 </ui:composition>

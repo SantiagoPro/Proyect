@@ -11,8 +11,8 @@
     </ui:define>
     <ui:define name="Contenido">
         <div class="row  d-flex justify-content-center">
-            <div class="card-deck" style="max-height: 30rem;">
-                <div class="card" style="width:17rem;">
+            <div class="card-deck" >
+                <div class="card" >
                     <img class="card-img-top" src="#{request.contextPath}/resources/img/LOGO.png" alt="Foto de perfil"/>	
                     <div class="btn ">
                         <div>
@@ -21,19 +21,22 @@
                         </div>
                     </div>
                 </div>
-                <div class="card text-center">
+                <div class="card text-center" value="">
                     <div class="card-header">
-                        <h4 class="card-title"> </h4>
+                        <h4 class="card-title"> 
+                            <h:outputText value=""/>
+                        </h4>
                     </div>
                     <div class="card-body">
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item"><strong> </strong> </li>
-                            <li class="list-group-item"><strong> </strong> </li>
-                            <li class="list-group-item" id="Nacimiento" ><strong> </strong> </li>
-                            <li class="list-group-item" id="Correo" ><strong> </strong> </li>
-                            <li class="list-group-item" id="Telefono" ><strong> </strong> </li>
-                            <li class="list-group-item" id="Sangre" ><strong> </strong> </li>
-                            <h:commandButton class="btn btn-success mt-3" value="Editar" > </h:commandButton>							
+                            <li class="list-group-item"><strong> #{usuarioController.usuarioSeleccionado.nombre} #{usuarioController.usuarioSeleccionado.apellido} </strong> </li>
+                            <li class="list-group-item"><strong> #{usuarioController.usuarioSeleccionado.fechaNacimiento} </strong> </li>
+                            <li class="list-group-item" id="Nacimiento" ><strong> #{usuarioController.usuarioSeleccionado.fechaNacimiento} </strong> </li>
+                            <li class="list-group-item" id="Correo" ><strong> #{usuarioController.usuarioSeleccionado.mail} </strong> </li>
+                            <li class="list-group-item" id="Telefono" ><strong> #{usuarioController.usuarioSeleccionado.telefono} </strong> </li>
+                            <li class="list-group-item" id="Sangre" ><strong> </strong> #{usuarioController.usuarioSeleccionado.rh} </li>
+                            <li class="list-group-item" id="Seguro" ><strong> </strong> #{usuarioController.usuarioSeleccionado.seguroMedico} </li>
+                            <h:commandButton class="btn btn-success mt-3" action="#{usuarioController.editarEntrenador}" value="Editar" > </h:commandButton>							
                         </ul>
                     </div>
                 </div>

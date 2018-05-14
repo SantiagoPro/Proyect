@@ -71,7 +71,7 @@ body.sidenav-toggled .navbar-sidenav .nav-link {
     padding: 0;
   }
   .navbar-sidenav > .nav-item > .nav-link {
-    padding: 30px 15px;
+    padding: 25px 10px;
   }
   /*botton-menu*/
   #mainNav.fixed-top .sidenav-toggler {

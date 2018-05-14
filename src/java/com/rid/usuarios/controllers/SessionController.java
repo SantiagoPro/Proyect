@@ -13,8 +13,6 @@ import java.io.IOException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.context.ExternalContext;
@@ -107,7 +105,7 @@ public class SessionController implements Serializable {
             user = null;
             ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
             ec.invalidateSession();
-            ec.redirect(ec.getRequestContextPath() + "index.xhtml");
+            ec.redirect(ec.getRequestContextPath() + "/index.xhtml");
         } catch (IOException iOException) {
         }
     }
