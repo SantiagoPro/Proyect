@@ -1,0 +1,28 @@
+body{
+	background-image: url(../img/push-up.jpg); 
+	background-size: 100% 100%;
+	left: 0;
+	right: 0;
+	position: absolute;
+	background-color: #000;
+	background-position: center;
+	background-size: cover;
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+}
+h1{
+	color:#9cd6ca;
+	font-family: anders;
+	font-size: 2.5em;
+}
+label{
+	color:#fff;
+}
+hr{
+	background-color: #9cd6ca;
+}
+form{
+background: #005C97;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to bottom, #363795, #005C97);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to bottom, #363795, #005C97); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}

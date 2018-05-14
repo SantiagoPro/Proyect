@@ -1,0 +1,38 @@
+public void guardar_imagen_BD(Connection con, String archivo){
+
+        File imagen = null;
+        PreparedStatement preparado = null;
+        FileInputStream fis = null;
+        String nombre_archivo=null;
+
+try {
+
+        imagen =  new File(archivo);
+
+        if(imagen.getName().substring(0, imagen.getName().length()-4).length()<=2){//si tiene el nombre dos caracteres o menos se le inventa uno automatico
+                nombre_archivo="auto"+Math.random();}//se genera un rombre aleatorio
+        else   { nombre_archivo=imagen.getName().substring(0, imagen.getName().length()-4);}//se mantiene el nombre real
+
+        fis = new FileInputStream(imagen);
+        preparado = con.prepareStatement("INSERT INTO control_de_estudio.fotos VALUES (?,?)");
+        preparado.setString(1, nombre_archivo);
+        preparado.setBinaryStream(2, fis,(int)imagen.length());
+        preparado.executeUpdate();
+
+    } catch (SQLException ex) {
+        Logger.getLogger(imagenes.class.getName()).log(Level.SEVERE, null, ex);
+    } catch (FileNotFoundException ex) {
+        Logger.getLogger(imagenes.class.getName()).log(Level.SEVERE, null, ex);
+    }finally{
+        try {
+             con.close();
+             fis.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(imagenes.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(imagenes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
+    }

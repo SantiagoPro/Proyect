@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:atr="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <link rel="stylesheet" href="#{request.contextPath}/resources/css/font-awesome.css"/>
+    <link rel="stylesheet" href="#{request.contextPath}/resources/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="#{request.contextPath}/resources/css/iconos.css"/>
+    <link rel="stylesheet" href="#{request.contextPath}/resources/css/contraseña.css"/>
+    <link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/css/sweetalert.min.css"/>
+    <link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/css/animate.css"/>
+    <link rel="icon" href="#{request.contextPath}/resources/img/LOGO.png"/>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <title>Recuperar contraseña</title>
+    <h:body class="login">
+        <div class="container">
+            <div class="row mt-5">
+                <div class="col">
+                    <h1 class="text-center page-header">Cambio de contraseña</h1>
+                    <hr/>	
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row mt-3 justify-content-md-center">
+                <div class="col-md-6 shadow well">
+                    <h:form>
+                        <div class="form-group">
+                            <label for="correo"> <strong>Usuario</strong> </label>
+                            <input id="Doc" name="Doc" class="form-control" type="text" placeholder="Documento" required="" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="password"> <strong>Contraseña Nueva</strong> </label>
+                            <input id="clave1" name="clave1" class="form-control" type="password" placeholder="Ingrese la nueva contraseña" required="" minlength="8" maxlength="50" pattern="[0-9a-zA-Z]{8,50}"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="password"> <strong>Repita la contraseña</strong> </label>
+                            <input id="clave2" name="clave2" class="form-control" type="password" placeholder="Ingrese la contrasena nuevamente" required="" minlength="8" maxlength="50" pattern="[0-9a-zA-Z]{8,50}"/>
+                        </div>
+                        <br/>
+                        <button id="recuperar" type="button" href="" class="btn btn-success" onclick="verificarclave()">Confirmar</button>
+                        <button id="" type="button" class="btn btn-info" ><a href="index.xhtml" style="text-decoration: none; color: white">Volver</a></button>
+                    </h:form>			
+                </div>
+            </div>
+        </div>
+        <script src="#{request.contextPath}/resources/js/jquery.min.js"></script>
+        <script src="#{request.contextPath}/resources/js/popper.min.js"></script>
+        <script src="#{request.contextPath}/resources/js/tether.min.js"></script>
+        <script src="#{request.contextPath}/resources/js/bootstrap.min.js"></script>
+        <script src="#{request.contextPath}/resources/js/contraseña.js"></script>
+        <script src="#{request.contextPath}/resources/js/sweetalert.min.js" ></script>
+    </h:body>
+</html>
