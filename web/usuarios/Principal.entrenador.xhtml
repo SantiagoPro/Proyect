@@ -25,7 +25,7 @@
         <h:dataTable class="table table-sm table-light table-hover" id="tabla"
                      value="#{usuarioController.usuario}" var="u"   >
             <h:column>
-                <f:facet name="header"> <i class="fa fa-fw fa-address-card"></i> Documento</f:facet>
+                <f:facet name="header" > <i class="fa fa-fw fa-address-card"></i> Documento</f:facet>
                 <h:outputText value="#{u.idUsuarios}"/>
             </h:column>
             <h:column>
@@ -34,8 +34,8 @@
             </h:column>
             <h:column>
                 <f:facet name="header"> <i class="fa fa-fw fa-user-o"></i> Nombre</f:facet>
-                <h:outputText value="#{u.nombre}"/>
-                <h:outputText value="#{u.apellido}"/>
+                <h:outputText value=" #{u.nombre} "/>
+                <h:outputText value=" #{u.apellido} "/>
             </h:column>
             <h:column>
                 <f:facet name="header"> <i class="fa fa-fw fa-tint"></i> RH </f:facet>
@@ -56,7 +56,7 @@
                                class="btn btn-info"
                                a:data-toggle="modal" a:data-target="#modalBloquear">
                     <f:ajax render=":contentModalBloquear"/>
-                    <i class="fa fa-bed"></i>
+                    <i class="fa #{usuarioController.getClassBloqueUsuario(u)}"></i>
                 </h:commandLink>
                 <h:commandLink actionListener="#{usuarioController.seleccionarUsuario(u)}" 
                                class="btn btn-danger"
