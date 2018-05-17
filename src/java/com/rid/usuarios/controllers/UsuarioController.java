@@ -134,7 +134,6 @@ public class UsuarioController implements Serializable {
         }
     }
 
-    /*
     public String bloquearODesbloquear() {
         try {
             System.out.println("Vamo a editá el usualio:");
@@ -157,8 +156,8 @@ public class UsuarioController implements Serializable {
         return "listar.xhtml?faces-redirect=true";
     }
 
-    public String getClassBloqueUsuario(Usuario u) {
-        return ((u.getEstado()) ? "fa-hotel" : ((u.getEstado() == 1) ? "fa-lock" : "fa-unlock"));
+    public String getClassBloqueUsuario(Usuario u){
+        return ((u.getEstado() == null) ? "fa-hotel": ((u.getEstado() == 1) ? "fa-lock": "fa-unlock"));
     }
-*/
+
 }

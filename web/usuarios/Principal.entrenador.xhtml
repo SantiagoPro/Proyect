@@ -56,7 +56,7 @@
                                class="btn btn-info"
                                a:data-toggle="modal" a:data-target="#modalBloquear">
                     <f:ajax render=":contentModalBloquear"/>
-                    <i class="fa #{usuarioController.getClassBloqueUsuario(u)}"></i>
+                    <i class="fa #{usuarioController.selecionarUsuario(u)}"></i>
                 </h:commandLink>
                 <h:commandLink actionListener="#{usuarioController.seleccionarUsuario(u)}" 
                                class="btn btn-danger"
