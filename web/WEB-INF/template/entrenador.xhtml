@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <link href="#{request.contextPath}/resources/css/bootstrap.css" rel="stylesheet"/>
+        <link href="#{request.contextPath}/resources/css/font-awesome.css" rel="stylesheet"/>
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/bootstrap.css"/>
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/iconos.css"/>
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/paginas.css"/>
+        <link rel="icon" type="image/png" href="#{request.contextPath}/resources/img/LOGO.png"/>
+        <link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/css/sweetalert.min.css"/>
+        <link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/css/animate.css"/>
+        <meta charset="UTF-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>       
+        <ui:insert name="link"></ui:insert>
+        <title><ui:insert name="title"></ui:insert></title>
+    </h:head>
+    <h:body class="fixed-nav" id="page-top">
+        <h:form prependId="false">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-danger fixed-top" id="mainNav">
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" 
+                        data-target="#navbarResponsive" aria-controls="navbarResponsive" 
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav navbar-sidenav" id="menu">
+                        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Perfil">
+                            <a class="nav-link" href="#{request.contextPath}/usuarios/Perfil.entrenador.xhtml">
+                                <i class="fa fa- fa-id-badge"></i>
+                                <span class="nav-link-text">Perfil</span>
+                            </a>
+                        </li>
+                        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Chequeo">
+                            <a class="nav-link" href="#{request.contextPath}/seguimiento/Registro.chequeo.xhtml">
+                                <i class="fa fa-fw fa-heartbeat"></i>
+                                <span class="nav-link-text">Chequeo</span>
+                            </a>
+                        </li>
+                        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Entrenamientos">
+                            <a class="nav-link" href="#{request.contextPath}/seguimiento/Registro.entrenamiento.xhtml">
+                                <i class="fa fa-fw fa-shirtsinbulk"></i>
+                                <span class="nav-link-text">Entrenamientos</span>
+                            </a>
+                        </li>
+                        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Horario">
+                            <a class="nav-link" href="#{request.contextPath}/seguimiento/Horario.entrenador.xhtml">
+                                <i class="fa fa-fw fa-hourglass-2"></i>
+                                <span class="nav-link-text">Horario</span>
+                            </a>
+                        </li>
+                        <li id="cuatro"  class="nav-item" data-toggle="tooltip" data-placement="right" title="Trainers">
+                            <a class="nav-link nav-link-collapse " data-toggle="collapse" href="#Menu" data-parent="">
+                                <i class="fa fa-fw fa-male"></i>
+                                <span class="nav-link-text">Deportistas</span>
+                            </a>
+                            <ul class=" collapse" id="Menu">
+                                <li><a class="nav-link" href="#{request.contextPath}/usuarios/Registro.deportista.xhtml">Registrar</a></li>
+                                <li><a class="nav-link" href="#{request.contextPath}/usuarios/Eliminar.deportista.xhtml">Eliminar</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Salir">
+                            <h:commandLink class="nav-link" action="#{sessionController.cerrarSesion()}">
+                                <i class="fa fa-fw fa-sign-out"></i>
+                                <span class="nav-link-text">Salir</span>
+                            </h:commandLink>
+                        </li>          
+                    </ul> 
+                    <ul class="navbar-nav sidenav-toggler">
+                        <li class="nav-item">
+                            <a class="nav-link text-center" id="sidenavToggler">
+                                <i class="fa fa-superpowers fa-spin"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <div class="content-wrapper">
+                <div class="container-fluid">     
+                    <div class="row">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="#{request.contextPath}/usuarios/Principal.entrenador.xhtml">Inicio</a>
+                            </li>
+                            <li class="breadcrumb-item active">
+                                <ui:insert name="pag"></ui:insert>
+                            </li>
+                        </ol>
+                        <div class="container-fluid">
+                            <ui:insert name="Contenido"></ui:insert>                    
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </h:form>
+        <script src="#{request.contextPath}/resources/js/jquery.min.js"></script>
+        <script src="#{request.contextPath}/resources/js/popper.min.js"></script>
+        <script src="#{request.contextPath}/resources/js/tether.min.js"></script>
+        <script src="#{request.contextPath}/resources/js/bootstrap.min.js"></script>
+        <script src="#{request.contextPath}/resources/js/bootstrap.bundle.min.js"></script>
+        <script src="#{request.contextPath}/resources/js/jquery.easing.js"></script>
+        <script src="#{request.contextPath}/resources/js/scripts.js"></script>
+        <script src="#{request.contextPath}/resources/js/sweetalert.min.js" ></script>
+        <ui:insert name="script"></ui:insert>
+    </h:body>
+</html>

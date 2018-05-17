@@ -1,0 +1,24 @@
+.inputfile {
+  width: 0.1px;
+  height: 0.1px;
+  overflow: hidden;
+  position: absolute;
+}
+.inputfile + label {
+  font-size: 1.25em;
+  font-weight: 700;
+  color: white;
+  display: inline-block;
+  background-color: #667db6;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #667db6, #0082c8, #0082c8, #667db6);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #667db6, #0082c8, #0082c8, #667db6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */;
+  border-radius: 5px
+}
+.inputfile:focus + label,
+.inputfile + label:hover {
+  background-color: #667db6;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #667db6, #0082c8, #0082c8, #667db6);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #667db6, #0082c8, #0082c8, #667db6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */;
+  opacity: 0.8;
+  border-radius: 5px;
+}
