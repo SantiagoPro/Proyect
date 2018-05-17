@@ -83,7 +83,7 @@ public class Usuario implements Serializable {
     private String clave;
     @Basic(optional = false)
     @Column(name = "estado")
-    private short estado;
+    private Short estado;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "usuario")
     private Deportista deportista;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "usuario")
@@ -104,7 +104,7 @@ public class Usuario implements Serializable {
         this.idUsuarios = idUsuarios;
     }
 
-    public Usuario(Long idUsuarios, String nombre, String apellido, String sexo, Date fechaNacimiento, String seguroMedico, String rh, String mail, String telefono, String direccion, String clave, short estado) {
+    public Usuario(Long idUsuarios, String nombre, String apellido, String sexo, Date fechaNacimiento, String seguroMedico, String rh, String mail, String telefono, String direccion, String clave, Short estado) {
         this.idUsuarios = idUsuarios;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -207,11 +207,11 @@ public class Usuario implements Serializable {
         this.clave = clave;
     }
 
-    public short getEstado() {
+    public Short getEstado() {
         return estado;
     }
 
-    public void setEstado(short estado) {
+    public void setEstado(Short estado) {
         this.estado = estado;
     }
 

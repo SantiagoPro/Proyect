@@ -94,9 +94,21 @@ public class SessionController implements Serializable {
         System.out.println("Clave " + clave);
         user = ufl.findByIduClv(idUsuario, clave);
         if (user != null) {
+            System.out.println("pasa user " + user);
             if (user.getEstado() == 1) {
+                System.out.println("pasa estado " + user.getEstado());
                 if (user.getIdRol() != null) {
-                    return "/usuarios/Principal.deportista.xhtml?faces-redirect=true";
+                    System.out.println("pasa rol " + getIdRol());
+                    if (user.getIdRol().equals(0)) {
+                        System.out.println("pasa");
+                        return "/usuarios/Principal.deportista.xhtml?faces-redirect=true";
+                    } else if (user.getIdRol().equals(1)) {
+                        System.out.println("pasa");
+                        return "/usuarios/Principal.entrenador.xhtml?faces-redirect=true";
+                    } else if (user.getIdRol().equals(2)) {
+                        System.out.println("pasa");
+                        return "/usuarios/Principal.administrador.xhtml?faces-redirect=true";
+                    }
                 } else {
                     MessagesUtil.info(null, "No se pudo iniciar sesion. El usuario no tiene rol definido", "", false);
                 }
@@ -130,6 +142,7 @@ public class SessionController implements Serializable {
             }
         }
     }
+
     public void validarRolDeportistas(Integer roles) throws IOException {
         if (sessionStart()) {
             if (rol.getIdRol() != roles.intValue()) {
@@ -140,6 +153,7 @@ public class SessionController implements Serializable {
             }
         }
     }
+
     public void validarRolAdministrador(Integer roles) throws IOException {
         if (sessionStart()) {
             if (rol.getIdRol() != roles.intValue()) {
