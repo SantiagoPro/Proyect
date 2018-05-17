@@ -29,23 +29,13 @@
                 <h:outputText value="#{u.idUsuarios}"/>
             </h:column>
             <h:column>
-                <f:facet name="header"> <i class="fa fa-fw fa-address-card-o"></i> Tipo Documento</f:facet>
-                <h:outputText value="#{u.idTipoDocumento.sigla}"/>
-            </h:column>
-            <h:column>
                 <f:facet name="header"> <i class="fa fa-fw fa-user-o"></i> Nombres</f:facet>
-                <h:outputText value="#{u.nombre}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header"> <i class="fa fa-fw fa-user"></i> Apellidos</f:facet>
+                <h:outputText value="#{u.nombre} "/>
                 <h:outputText value="#{u.apellido}"/>
-            </h:column> 
+            </h:column>
             <h:column>
                 <f:facet name="header"> <i class="fa fa-fw fa-tint"></i> Tipo de sangre</f:facet>
                 <h:outputText value="#{u.rh}"/>
-            </h:column> 
-            <h:column>
-                <f:facet name="header"> <i class="fa fa-fw fa-calculator"></i> Categoria</f:facet>
             </h:column> 
             <h:column>
                 <f:facet name="header"><i class="fa fa-fw fa-cog"></i>Modificar</f:facet>

@@ -30,17 +30,14 @@
                     </div>
                     <div class="card-body">
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item"><strong> </strong> </li>
-                            <li class="list-group-item"><strong> </strong> </li>
-                            <li class="list-group-item" id="Nacimiento" ><strong> </strong> </li>
-                            <li class="list-group-item" id="Correo" ><strong> </strong> </li>
-                            <li class="list-group-item" id="Telefono" ><strong> </strong> </li>
-                            <li class="list-group-item" id="Sangre" ><strong> </strong> </li>
-                            <li class="list-group-item" id="Sangre" ><strong> </strong> </li>
-                            <li class="list-group-item" id="Sangre" ><strong> </strong> </li>
-                            <li class="list-group-item" id="Sangre" ><strong> </strong> </li>
-                            <li class="list-group-item" id="Sangre" ><strong> </strong> </li>
-                            <h:commandButton class="btn btn-success mt-3" value="Editar"> </h:commandButton>							
+                            <li class="list-group-item"><strong> #{usuarioController.usuarioSeleccionado.nombre} #{usuarioController.usuarioSeleccionado.apellido} </strong> </li>
+                            <li class="list-group-item"><strong> #{usuarioController.usuarioSeleccionado.fechaNacimiento} </strong> </li>
+                            <li class="list-group-item" id="Nacimiento" ><strong> #{usuarioController.usuarioSeleccionado.fechaNacimiento} </strong> </li>
+                            <li class="list-group-item" id="Correo" ><strong> #{usuarioController.usuarioSeleccionado.mail} </strong> </li>
+                            <li class="list-group-item" id="Telefono" ><strong> #{usuarioController.usuarioSeleccionado.telefono} </strong> </li>
+                            <li class="list-group-item" id="Sangre" ><strong> </strong> #{usuarioController.usuarioSeleccionado.rh} </li>
+                            <li class="list-group-item" id="Seguro" ><strong> </strong> #{usuarioController.usuarioSeleccionado.seguroMedico} </li>
+                            <h:commandButton class="btn btn-success mt-3" action="#{usuarioController.editarDeportista()}" value="Editar" > </h:commandButton>							
                         </ul>
                     </div>
                 </div>
