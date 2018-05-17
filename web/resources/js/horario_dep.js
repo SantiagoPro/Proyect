@@ -117,10 +117,8 @@ $(document).ready(function() {
           },
           {
             title: 'WorkOut-Salitre',
-            start: '2017-11-14T08:00',
-          },
-          {
-          }
+            start: '2017-11-14T08:00'
+          }          
           ]
-        })
+        });
 });

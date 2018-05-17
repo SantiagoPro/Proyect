@@ -93,7 +93,6 @@ public class UsuarioController implements Serializable {
         this.tipoDocumentoList = tipoDocumentoList;
     }
 
-    
     public String getNombre() {
         return nombre;
     }
@@ -194,10 +193,6 @@ public class UsuarioController implements Serializable {
         return usuarioSeleccionado;
     }
     
-    public void iniciarSesion(){
-        
-    }
-    
     public List<Usuario> getUsuario(){
     
         if (usuario == null || usuario.isEmpty()) {
@@ -211,7 +206,11 @@ public class UsuarioController implements Serializable {
         return tipoDocumento;
     }
     
-    public String registrarNuevoDeportista() {
+    public void seleccionarUsuario(Usuario u) {
+        usuarioSeleccionado = u;
+    }
+    
+    public String registrarUsuario() {
         try {
             ufl.create(nuevoUsuario);
             MessagesUtil.info(null, "Registro exitoso", "Se ha registrado correctamente el nuevo usuario.", true);
@@ -222,22 +221,7 @@ public class UsuarioController implements Serializable {
         return "";
     }
     
-    public String registrarNuevoEntrenador() {
-        try {
-            ufl.create(nuevoUsuario);
-            MessagesUtil.info(null, "Registro exitoso", "Se ha registrado correctamente el nuevo usuario.", true);
-            return "/usuarios/Principal.administrador.xhtml?faces-redirect=true";
-        } catch (Exception e) {
-            MessagesUtil.error(null, "Error al registrar el Entrenador.", e.getMessage(), false);
-        }
-        return "";
-    }
-    
-    public void seleccionarUsuario(Usuario u) {
-        usuarioSeleccionado = u;
-    }
-    
-    public String eliminarDeportista() {
+    public String eliminarUsuario() {
         try {
             ufl.remove(usuarioSeleccionado);
             usuario = null;
@@ -248,40 +232,13 @@ public class UsuarioController implements Serializable {
         usuarioSeleccionado = null;
         return "/usuarios/Principal.entrenador.xhtml?faces-redirect=true";
     }
-    
-    public String eliminarEntrenador() {
-        try {
-            ufl.remove(usuarioSeleccionado);
-            usuario = null;
-            MessagesUtil.info(null, "Eliminación exitosa", "Se ha eliminado correctamente el Entrenador.", false);
-        } catch (Exception e) {
-            MessagesUtil.error(null, "Error al eliminar el usuario.", e.getMessage(), false);
-        }
-        usuarioSeleccionado = null;
-        return "/usuarios/Principal.administrador.xhtml?faces-redirect=true";
-    }
 
-    public String editarDeportista() {
+    public void editarUsuario() {
         try {
             ufl.edit(usuarioSeleccionado);
             usuario = null;
-            MessagesUtil.info(null, "Modificación exitosa", "Se ha editado correctamente.", false);
         } catch (Exception e) {
             MessagesUtil.error(null, "Error al editar el usuario.", e.getMessage(), false);
         }
-        usuarioSeleccionado = null;
-        return "/usuarios/Principal.entrenador.xhtml?faces-redirect=true";
     }
-    public String editarEntrenador() {
-        try {
-            ufl.edit(usuarioSeleccionado);
-            usuario = null;
-            MessagesUtil.info(null, "Modificación exitosa", "Se ha editado correctamente.", false);
-        } catch (Exception e) {
-            MessagesUtil.error(null, "Error al editar el usuario.", e.getMessage(), false);
-        }
-        usuarioSeleccionado = null;
-        return "/usuarios/Principal.administrador.xhtml?faces-redirect=true";
-    }
-    
 }

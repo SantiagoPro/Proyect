@@ -2,7 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <f:metadata  rendered="preRenderView" listener="#{sessionController.validarRol(1)}"></f:metadata>
     <h:head>
         <link href="#{request.contextPath}/resources/css/bootstrap.css" rel="stylesheet"/>
         <link href="#{request.contextPath}/resources/css/font-awesome.css" rel="stylesheet"/>
@@ -52,7 +54,7 @@
                                 <span class="nav-link-text">Horario</span>
                             </a>
                         </li>
-                        <li id="cuatro"  class="nav-item" data-toggle="tooltip" data-placement="right" title="Trainers">
+                        <li id="cuatro"  class="nav-item" data-toggle="tooltip" data-placement="right" title="Entrenadores">
                             <a class="nav-link nav-link-collapse " data-toggle="collapse" href="#Menu" data-parent="">
                                 <i class="fa fa-fw fa-male"></i>
                                 <span class="nav-link-text">Deportistas</span>
