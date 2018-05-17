@@ -5,7 +5,23 @@
     <ui:define name="title">
         Horario
     </ui:define>
+    <ui:define name="link">
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/fullcalendar.css"/>
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/fullcalendar.print.css" media='print'/>
+    </ui:define>
+    <ui:define name="script">
+        <script src="#{request.contextPath}/resources/js/fullcalendar.js"></script>
+        <script src="#{request.contextPath}/resources/js/jquery_calendar.js"></script>
+        <script src="#{request.contextPath}/resources/js/jquery_ui.min.js"></script>
+        <script src="#{request.contextPath}/resources/js/moment.js"></script>
+        <script src="#{request.contextPath}/resources/js/horario_ent.js"></script>
+        <script src="#{request.contextPath}/resources/js/es.js"></script>
+    </ui:define>
     <ui:define name="Contenido">
-        
+        <div class="right_col" role="main">
+            <div class="">
+                <div id='calendar'></div>
+            </div>
+        </div>
     </ui:define>
 </ui:composition>
