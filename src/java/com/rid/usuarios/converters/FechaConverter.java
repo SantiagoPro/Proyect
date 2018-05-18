@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.rid.torneos.converters;
+package com.rid.usuarios.converters;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
