@@ -99,13 +99,13 @@ public class SessionController implements Serializable {
                 System.out.println("pasa estado " + user.getEstado());
                 if (user.getIdRol() != null) {
                     System.out.println("pasa rol " + getIdRol());
-                    if (user.getIdRol().equals(0)) {
+                    if (user.getIdRol().getIdRol() == 0) {
                         System.out.println("pasa");
                         return "/usuarios/Principal.deportista.xhtml?faces-redirect=true";
-                    } else if (user.getIdRol().equals(1)) {
+                    } else if (user.getIdRol().getIdRol() == 1) {
                         System.out.println("pasa");
                         return "/usuarios/Principal.entrenador.xhtml?faces-redirect=true";
-                    } else if (user.getIdRol().equals(2)) {
+                    } else if (user.getIdRol().getIdRol() == 2) {
                         System.out.println("pasa");
                         return "/usuarios/Principal.administrador.xhtml?faces-redirect=true";
                     }
@@ -136,7 +136,7 @@ public class SessionController implements Serializable {
         if (sessionStart()) {
             if (rol.getIdRol() != roles.intValue()) {
                 ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-                ec.redirect(ec.getRequestContextPath());
+                ec.redirect(ec.getRequestContextPath() + "");
             } else {
                 validarSesion();
             }
@@ -147,7 +147,7 @@ public class SessionController implements Serializable {
         if (sessionStart()) {
             if (rol.getIdRol() != roles.intValue()) {
                 ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-                ec.redirect(ec.getRequestContextPath());
+                ec.redirect(ec.getRequestContextPath() + "");
             } else {
                 validarSesion();
             }
@@ -158,7 +158,7 @@ public class SessionController implements Serializable {
         if (sessionStart()) {
             if (rol.getIdRol() != roles.intValue()) {
                 ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-                ec.redirect(ec.getRequestContextPath());
+                ec.redirect(ec.getRequestContextPath() + "");
             } else {
                 validarSesion();
             }

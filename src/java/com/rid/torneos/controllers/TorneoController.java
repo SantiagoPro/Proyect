@@ -82,6 +82,7 @@ public class TorneoController implements Serializable {
         try {
             Torneo t = new Torneo(null, nombre, fecha, lugar);
             tdl.create(t);
+            t = null;
             return "Nuevo.torneo.xhtml";
         } catch (Exception e) {
             e.printStackTrace();
