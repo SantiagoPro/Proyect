@@ -56,7 +56,7 @@
                                class="btn btn-info"
                                a:data-toggle="modal" a:data-target="#modalBloquear">
                     <f:ajax render=":contentModalBloquear"/>
-                    <i class="fa #{usuarioController.selecionarUsuario(u)}"></i>
+                    <i class="fa fa-user-o"></i>
                 </h:commandLink>
                 <h:commandLink actionListener="#{usuarioController.seleccionarUsuario(u)}" 
                                class="btn btn-danger"
@@ -81,7 +81,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <h:commandLink actionListener="#{usuarioController.eliminarDeportista()}" 
+                            <h:commandLink actionListener="#{usuarioController.eliminarUsuario()}" 
                                            class="btn btn-danger" value="Eliminar"/>
                         </div>
                     </div>
@@ -138,7 +138,7 @@
 
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                    <h:commandButton actionListener="#{usuarioController.editarDeportista()}" 
+                                    <h:commandButton actionListener="#{usuarioController.editarUsuario()}" 
                                                      class="btn btn-success" value="Editar"/>
                                 </div>
                             </div>
