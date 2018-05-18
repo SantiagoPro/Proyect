@@ -4,7 +4,7 @@
                 template="/WEB-INF/template/administrador.xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
-                xmlns:a="http://xmlns.jcp.org/jsf/passthroug">
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
     <ui:define name="link">
         <link rel="stylesheet" href="#{request.contextPath}/resources/css/jquery.dataTables.css"/>
         <link rel="stylesheet" href="#{request.contextPath}/resources/css/dataTables.bootstrap4.css"/>
@@ -25,21 +25,28 @@
         <h:dataTable class="table table-sm table-light table-hover" id="tabla"
                      value="#{usuarioController.usuario}" var="u"   >
             <h:column>
-                <f:facet name="header"> <i class="fa fa-fw fa-address-card"></i> Documento</f:facet>
+                <f:facet name="header" > <i class="fa fa-fw fa-address-card"></i> Documento</f:facet>
                 <h:outputText value="#{u.idUsuarios}"/>
             </h:column>
             <h:column>
-                <f:facet name="header"> <i class="fa fa-fw fa-user-o"></i> Nombres</f:facet>
-                <h:outputText value="#{u.nombre} "/>
-                <h:outputText value="#{u.apellido}"/>
+                <f:facet name="header"> <i class="fa fa-fw fa-address-card-o"></i> Tipo Documento</f:facet>
+                <h:outputText value="#{u.idTipoDocumento.sigla}"/>
             </h:column>
             <h:column>
-                <f:facet name="header"> <i class="fa fa-fw fa-tint"></i> Tipo de sangre</f:facet>
+                <f:facet name="header"> <i class="fa fa-fw fa-user-o"></i> Nombre</f:facet>
+                <h:outputText value=" #{u.nombre} "/>
+                <h:outputText value=" #{u.apellido} "/>
+            </h:column>
+            <h:column>
+                <f:facet name="header"> <i class="fa fa-fw fa-tint"></i> RH </f:facet>
                 <h:outputText value="#{u.rh}"/>
             </h:column> 
             <h:column>
+                <f:facet name="header"> <i class="fa fa-fw fa-calculator"></i> Categoria</f:facet>
+            </h:column> 
+            <h:column>
                 <f:facet name="header"><i class="fa fa-fw fa-cog"></i>Modificar</f:facet>
-                <h:commandLink actionListener="#{usuarioController.editarDeportista()}" 
+                <h:commandLink actionListener="#{usuarioController.seleccionarUsuario(u)}" 
                                class="btn btn-success"
                                a:data-toggle="modal" a:data-target="#modalEditar">
                     <f:ajax render=":contentModalEditar"/>
@@ -49,7 +56,7 @@
                                class="btn btn-info"
                                a:data-toggle="modal" a:data-target="#modalBloquear">
                     <f:ajax render=":contentModalBloquear"/>
-                    <i class="fa fa-bed"></i>
+                    <i class="fa fa-user-o"></i>
                 </h:commandLink>
                 <h:commandLink actionListener="#{usuarioController.seleccionarUsuario(u)}" 
                                class="btn btn-danger"
@@ -74,19 +81,20 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <h:commandLink actionListener="#{usuarioController.eliminarDeportista()}" 
+                            <h:commandLink actionListener="#{usuarioController.eliminarUsuario()}" 
                                            class="btn btn-danger" value="Eliminar"/>
                         </div>
                     </div>
                 </h:panelGroup>
             </div>
         </div>
+        <!-- Modal para actualizar -->
         <div id="modalEditar" class="modal fade" role="dialog">
             <div class="modal-dialog">
-                <!-- Modal para actualizar -->
-                <h:panelGroup id="contentModalEditar" layout="block">
-                    <h:form id="demo-form2" a:data-parsley-validate="true" class="form-horizontal form-control-success"
-                            prependId="false">
+                <h:form id="demo-form2" a:data-parsley-validate="true" class="form-horizontal form-control-success"
+                        prependId="false">
+                    <h:panelGroup id="contentModalEditar" layout="block">
+
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -96,22 +104,11 @@
                             </div>
                             <div class="modal-body">
                                 <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tipoDocumento">Tipo de documento <span class="required">*</span>
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <h:selectOneMenu id="tipoDocumento" value="#{usuarioController.usuarioSeleccionado.idTipoDocumento.sigla}"
-                                                         class="form-control col-md-7 col-xs-12">
-                                            <f:selectItem itemValue="" itemLabel="Seleccione un tipo de documento"/>
-                                            <f:selectItems value="#{documentoController.tiposDocumentos}" var="td" itemLabel="#{td.nombre}"/>
-                                        </h:selectOneMenu>
-                                    </div>
-                                </div>
-                                <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="documento">Documento <span class="required">*</span>
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <h:inputText id="documento" value="#{usuarioController.usuarioSeleccionado.idUsuarios}"
-                                                     a:type="number" a:required="required" class="form-control col-md-7 col-xs-12"/>
+                                                     a:type="number" class="form-control col-md-7 col-xs-12"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -138,26 +135,16 @@
                                                      a:required="required" class="form-control col-md-7 col-xs-12"/>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="genero">Género <span class="required">*</span>
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <h:selectOneRadio id="genero" value="#{usuarioController.usuarioSeleccionado.sexo}">
-                                            <f:selectItem itemLabel="Femenino" itemValue="F"/>
-                                            <f:selectItem itemLabel="Masculino" itemValue="M"/>
-                                        </h:selectOneRadio>
-                                    </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    <h:commandButton actionListener="#{usuarioController.editarUsuario()}" 
+                                                     class="btn btn-success" value="Editar"/>
                                 </div>
-                                <div class="ln_solid"></div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <h:commandButton actionListener="#{usuarioController.editarDeportista()}" 
-                                                 class="btn btn-success" value="Editar"/>
                             </div>
                         </div>
-                    </h:form>
-                </h:panelGroup>
+                    </h:panelGroup>
+                </h:form>
             </div>
         </div>
     </ui:define>

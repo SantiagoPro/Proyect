@@ -4,7 +4,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <f:metadata  rendered="preRenderView" listener="#{sessionController.validarRol(1)}"></f:metadata>
+    <f:metadata  rendered="preRenderView" listener="#{sessionController.validarRolEntrenador(1)}"></f:metadata>
     <h:head>
         <link href="#{request.contextPath}/resources/css/bootstrap.css" rel="stylesheet"/>
         <link href="#{request.contextPath}/resources/css/font-awesome.css" rel="stylesheet"/>
@@ -21,13 +21,13 @@
         <title><ui:insert name="title"></ui:insert></title>
     </h:head>
     <h:body class="fixed-nav" id="page-top">
-        <h:form prependId="false">
-            <nav class="navbar navbar-expand-lg navbar-dark bg-danger fixed-top" id="mainNav">
-                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" 
-                        data-target="#navbarResponsive" aria-controls="navbarResponsive" 
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-danger fixed-top" id="mainNav">
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" 
+                    data-target="#navbarResponsive" aria-controls="navbarResponsive" 
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <h:form prependId="false">
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav navbar-sidenav" id="menu">
                         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Perfil">
@@ -69,7 +69,7 @@
                                 <i class="fa fa-fw fa-sign-out"></i>
                                 <span class="nav-link-text">Salir</span>
                             </h:commandLink>
-                        </li>          
+                        </li>
                     </ul> 
                     <ul class="navbar-nav sidenav-toggler">
                         <li class="nav-item">
@@ -79,25 +79,25 @@
                         </li>
                     </ul>
                 </div>
-            </nav>
-            <div class="content-wrapper">
-                <div class="container-fluid">     
-                    <div class="row">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item">
-                                <a href="#{request.contextPath}/usuarios/Principal.entrenador.xhtml">Inicio</a>
-                            </li>
-                            <li class="breadcrumb-item active">
-                                <ui:insert name="pag"></ui:insert>
-                            </li>
-                        </ol>
-                        <div class="container-fluid">
-                            <ui:insert name="Contenido"></ui:insert>                    
-                        </div>
+            </h:form>
+        </nav>
+        <div class="content-wrapper">
+            <div class="container-fluid">     
+                <div class="row">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="#{request.contextPath}/usuarios/Principal.entrenador.xhtml">Inicio</a>
+                        </li>
+                        <li class="breadcrumb-item active">
+                            <ui:insert name="pag"></ui:insert>
+                        </li>
+                    </ol>
+                    <div class="container-fluid">
+                        <ui:insert name="Contenido"></ui:insert>                    
                     </div>
                 </div>
             </div>
-        </h:form>
+        </div>
         <script src="#{request.contextPath}/resources/js/jquery.min.js"></script>
         <script src="#{request.contextPath}/resources/js/popper.min.js"></script>
         <script src="#{request.contextPath}/resources/js/tether.min.js"></script>

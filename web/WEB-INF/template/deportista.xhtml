@@ -21,8 +21,8 @@
         <title><ui:insert name="title">Nueva Pagina</ui:insert></title>
     </h:head>
     <h:body class="fixed-nav" id="page-top">
-        <h:form prependId="false">    
-            <nav class="navbar navbar-expand-lg navbar-dark bg-danger fixed-top" id="mainNav">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-danger fixed-top" id="mainNav">
+            <h:form prependId="false">    
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -61,25 +61,25 @@
                         </li>
                     </ul>
                 </div>
-            </nav>
-            <div class="content-wrapper">
-                <div class="container-fluid">     
-                    <div class="row">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item">
-                                <a href="#{request.contextPath}/usuarios/Principal.deportista.xhtml">Inicio</a>
-                            </li>
-                            <li class="breadcrumb-item active">
-                                <ui:insert name="pag"></ui:insert>
-                            </li>
-                        </ol>
-                        <div class="container-fluid">
-                            <ui:insert name="Contenido"></ui:insert>                    
-                        </div>
+            </h:form>
+        </nav>
+        <div class="content-wrapper">
+            <div class="container-fluid">     
+                <div class="row">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="#{request.contextPath}/usuarios/Principal.deportista.xhtml">Inicio</a>
+                        </li>
+                        <li class="breadcrumb-item active">
+                            <ui:insert name="pag"></ui:insert>
+                        </li>
+                    </ol>
+                    <div class="container-fluid">
+                        <ui:insert name="Contenido"></ui:insert>                    
                     </div>
                 </div>
             </div>
-        </h:form>
+        </div>
         <ui:insert name="script"></ui:insert>
         <script src="#{request.contextPath}/resources/js/jquery.min.js"></script>
         <script src="#{request.contextPath}/resources/js/popper.min.js"></script>
