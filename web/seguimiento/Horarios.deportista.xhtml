@@ -11,11 +11,19 @@
     </ui:define>
     <ui:define name="script">
         <script src="#{request.contextPath}/resources/js/fullcalendar.js"></script>
-        <script src="#{request.contextPath}/resources/js/jquery_calendar.js"></script>
-        <script src="#{request.contextPath}/resources/js/jquery_ui.min.js"></script>
-        <script src="#{request.contextPath}/resources/js/moment.js"></script>
-        <script src="#{request.contextPath}/resources/js/horario_ent.js"></script>
+        <script src="#{request.contextPath}/resources/js/moment.min.js"></script>
         <script src="#{request.contextPath}/resources/js/es.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('#calendar').fullCalendar({
+                    theme: true,
+                    editable: false,
+                    events: "/CalendarProject/CalendarJsonServlet"
+                });
+
+            });
+        </script>
+
     </ui:define>
     <ui:define name="Contenido">
         <div class="right_col" role="main">

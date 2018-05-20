@@ -6,9 +6,24 @@
         Horario
     </ui:define>
     <ui:define name="link">
-        
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/fullcalendar.css"/>
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/fullcalendar.print.css" media='print'/>
     </ui:define>
     <ui:define name="script">
+        <script src="#{request.contextPath}/resources/js/fullcalendar.js"></script>
+        <script src="#{request.contextPath}/resources/js/moment.min.js"></script>
+        <script src="#{request.contextPath}/resources/js/es.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('#calendar').fullCalendar({
+                    theme: true,
+                    editable: false,
+                    events: "/CalendarProject/CalendarJsonServlet"
+                });
+
+            });
+        </script>
+
     </ui:define>
     <ui:define name="Contenido">
         <div class="right_col" role="main">

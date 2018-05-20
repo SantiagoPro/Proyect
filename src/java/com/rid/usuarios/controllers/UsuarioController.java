@@ -39,7 +39,6 @@ public class UsuarioController implements Serializable {
     private TipoDocumento tipoDocumentoList;
     private Usuario nuevoUsuario;
     private Usuario usuarioSeleccionado;
-    private Usuario user;
 
     public UsuarioController() {
     }
@@ -84,7 +83,7 @@ public class UsuarioController implements Serializable {
     public Usuario getUsuarioSeleccionado() {
         return usuarioSeleccionado;
     }
-
+    
     public List<Usuario> getUsuario() {
 
         if (usuario == null || usuario.isEmpty()) {

@@ -136,7 +136,7 @@ public class SessionController implements Serializable {
         if (sessionStart()) {
             if (rol.getIdRol() != roles.intValue()) {
                 ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-                ec.redirect(ec.getRequestContextPath() + "");
+                ec.redirect(ec.getRequestContextPath()+ "/usuarios/Principal.entrenador.xhtml");
             } else {
                 validarSesion();
             }
@@ -147,7 +147,7 @@ public class SessionController implements Serializable {
         if (sessionStart()) {
             if (rol.getIdRol() != roles.intValue()) {
                 ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-                ec.redirect(ec.getRequestContextPath() + "");
+                ec.redirect(ec.getRequestContextPath()+ "/usuarios/Principal.deportista.xhtml");
             } else {
                 validarSesion();
             }
@@ -158,7 +158,7 @@ public class SessionController implements Serializable {
         if (sessionStart()) {
             if (rol.getIdRol() != roles.intValue()) {
                 ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-                ec.redirect(ec.getRequestContextPath() + "");
+                ec.redirect(ec.getRequestContextPath() + "/usuarios/Principal.admanistrador.xhtml" );
             } else {
                 validarSesion();
             }

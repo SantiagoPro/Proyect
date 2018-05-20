@@ -26,85 +26,78 @@
                 <h:form id="demo-form2" a:data-parsley-validate="true" class="form-horizontal form-control-success"
                         prependId="false">
                     <h:panelGroup id="contentModalEditar" layout="block">
-
                         <div class="modal-content">
                             <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                                <h5 class="modal-title">Editar usuario:</h5>
+                                <h5 class="modal-title">Registrar Nuevo Torneo:</h5>
                             </div>
                             <div class="modal-body">
                                 <div class="form-group">
-                                    <h:outputLabel class="control-label col-md-6 col-sm-3 col-xs-12" for="nombre">Nombre</h:outputLabel>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <h:outputLabel class="control-label col-md-6 col-sm-3 col-xs-12" for="nombre">Troneo</h:outputLabel>
+                                    <div class="col-md-10 col-sm-8 col-xs-12">
                                         <h:inputText id="nombre" a:type="text" value="#{torneoController.nombre}" a:required="required" class="form-control col-md-7 col-xs-12"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <h:outputLabel class="control-label col-md-3 col-sm-3 col-xs-12" for="fecha">Fecha</h:outputLabel>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <h:inputText id="fecha" a:type="date" value="#{torneoController.fecha}" converter="fechaConverter" class="form-control col-md-7 col-xs-12"/>
-                                    </div>
-                                </div>
-                                <div class="form-group">
                                     <h:outputLabel class="control-label col-md-3 col-sm-3 col-xs-12" for="lugar">Lugar</h:outputLabel>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="col-md-10 col-sm-8 col-xs-12">
                                         <h:inputText id="lugar" value="#{torneoController.lugar}" a:type="text" a:required="required" class="form-control col-md-7 col-xs-12"/>
                                     </div>
                                 </div>
-                                <h:commandButton id="botonRegTorneo" type="submit" action="#{torneoController.registrarTorneo()}" class="btn btn-success" value="Registrar"/>
+                                <div class="form-group">
+                                    <h:outputLabel class="control-label col-md-3 col-sm-3 col-xs-12" for="fecha">Fecha</h:outputLabel>
+                                    <div class="col-md-10 col-sm-8 col-xs-12">
+                                        <h:inputText id="fecha" a:type="date" value="#{torneoController.fecha}" converter="fechaConverter" class="form-control col-md-7 col-xs-12"/>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger alert-light" data-dismiss="modal">Cancelar</button>
+                                <h:commandButton id="botonRegTorneo" type="submit" 
+                                                 class="btn btn-success alert-light" value="Registrar"
+                                                 action="#{torneoController.registrarTorneo()}" 
+                                                 />
                             </div>
                         </div>
                     </h:panelGroup>
                 </h:form>
             </div>
         </div>
-
-
-
-
+        <div class="form-control col-md-2">
+            <h:form>
+                <h:outputLabel> <strong> Nuevo Torneo </strong> </h:outputLabel>
+                <br/>
+                <h:commandLink actionListener="#{usuarioController.seleccionarUsuario(u)}" 
+                               class="btn btn-success alert-primary"
+                               a:data-toggle="modal" a:data-target="#modalRegistrar">
+                    <f:ajax render=":contentModalRegistrar"/>
+                    <i class="fa fa-plus"></i>
+                </h:commandLink>
+            </h:form>
+        </div>
         <br/>
         <h:dataTable class="table table-sm table-light table-hover" id="tabla" 
                      value="#{torneoController.torneo}" var="t">
             <h:column>
                 <f:facet name="header">
-                    <i class="fa fa-fw fa-address-card"/>
-                    ID
-                </f:facet>
-                <h:outputText value="#{t.idTorneo}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">
-                    <i class="fa fa-fw fa-address-card-o"/>
-                    Nombre
+                    <i class="fa fa-fw icon-trophy5"/>
+                    Torneo
                 </f:facet>
                 <h:outputText value="#{t.nombre}"/>
             </h:column>
             <h:column>
                 <f:facet name="header">
-                    <i class="fa fa-fw fa-user-o"/>
+                    <i class="fa fa-fw icon-calendar"/>
                     Fecha
                 </f:facet>
                 <h:outputText value="#{t.fecha}" a:type="date" converter="fechaConverter"/>
             </h:column>
             <h:column>
                 <f:facet name="header">
-                    <i class="fa fa-fw fa-user"/>
+                    <i class="fa fa-fw icon-location"/>
                     Lugar
                 </f:facet>
                 <h:outputText value="#{t.lugar}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Agregar
-                    <h:commandLink actionListener="#{usuarioController.seleccionarUsuario(u)}" 
-                                   class="btn btn-success"
-                                   a:data-toggle="modal" a:data-target="#modalRegistrar">
-                        <f:ajax render=":contentModalRegistrar"/>
-                        <i class="fa fa-plus"></i>
-                    </h:commandLink>
-                </f:facet>
-
             </h:column>
         </h:dataTable>
     </ui:define>
