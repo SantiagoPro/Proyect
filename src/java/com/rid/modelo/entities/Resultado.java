@@ -41,10 +41,10 @@ public class Resultado implements Serializable {
     private Integer idResultado;
     @Basic(optional = false)
     @Column(name = "peso_arranque")
-    private int pesoArranque;
+        private Integer pesoArranque;
     @Basic(optional = false)
     @Column(name = "peso_envion")
-    private int pesoEnvion;
+    private Integer pesoEnvion;
     @JoinColumn(name = "id_participacion", referencedColumnName = "id_participacion")
     @ManyToOne(optional = false)
     private Participacion idParticipacion;
@@ -70,19 +70,19 @@ public class Resultado implements Serializable {
         this.idResultado = idResultado;
     }
 
-    public int getPesoArranque() {
+    public Integer getPesoArranque() {
         return pesoArranque;
     }
 
-    public void setPesoArranque(int pesoArranque) {
+    public void setPesoArranque(Integer pesoArranque) {
         this.pesoArranque = pesoArranque;
     }
 
-    public int getPesoEnvion() {
+    public Integer getPesoEnvion() {
         return pesoEnvion;
     }
 
-    public void setPesoEnvion(int pesoEnvion) {
+    public void setPesoEnvion(Integer pesoEnvion) {
         this.pesoEnvion = pesoEnvion;
     }
 

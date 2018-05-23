@@ -34,8 +34,8 @@ public class ResultadosController implements Serializable{
     private List<Resultado> res;   
     
     private Integer idResultado;
-    private int pesoArranque;
-    private int pesoEnvion;
+    private Integer pesoArranque;
+    private Integer pesoEnvion;
     private Participacion idParticipacion;
     
     public ResultadosController() {
@@ -53,21 +53,23 @@ public class ResultadosController implements Serializable{
         this.idResultado = idResultado;
     }
 
-    public int getPesoArranque() {
+    public Integer getPesoArranque() {
         return pesoArranque;
     }
 
-    public void setPesoArranque(int pesoArranque) {
+    public void setPesoArranque(Integer pesoArranque) {
         this.pesoArranque = pesoArranque;
     }
 
-    public int getPesoEnvion() {
+    public Integer getPesoEnvion() {
         return pesoEnvion;
     }
 
-    public void setPesoEnvion(int pesoEnvion) {
+    public void setPesoEnvion(Integer pesoEnvion) {
         this.pesoEnvion = pesoEnvion;
     }
+
+    
 
     public Participacion getIdParticipacion() {
         return idParticipacion;
@@ -85,10 +87,18 @@ public class ResultadosController implements Serializable{
     }    
     
     public String registrarResultado(){
+        System.out.println("Id: " +idResultado);
+        System.out.println("id: " +pesoArranque);
+        System.out.println("id: " +pesoEnvion);
+        System.out.println("id: " +idParticipacion);
         try {
-            Resultado r = new Resultado(null, pesoArranque, pesoEnvion);
+            Resultado r = new Resultado(null);
+            r.setPesoArranque(pesoArranque);
+            r.setPesoEnvion(pesoEnvion);
             r.setIdParticipacion(idParticipacion);
-            rfl.create(resultado);
+            rfl.create(r);
+            r = null;
+            return "Registrar.resultados.xhtml";
         } catch (Exception e) {
             e.printStackTrace();
         }
