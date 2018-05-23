@@ -15,7 +15,7 @@
                 </div>
             </div>
         </div>
-        <div class="container">
+        <div class="container login-box">
             <div class="row mt-3 justify-content-md-center">
                 <div class="col-md-6 shadow well">
                     <h:form prependId="false">
@@ -31,20 +31,15 @@
                                            required="true" class="form-control"
                                            value="#{sessionController.clave}"/>
                         </div>
-                        <div class="checkbox">
-                            <label>
-                                <input class="mr-2" type="checkbox" value=""/> Recordarme 
-                            </label>
-                        </div>
                         <br/>
                         <div>
-                            <h:commandButton class="btn btn-danger btn-block"
+                            <h:commandButton class="btn btn-custom btn-block"
                                              action="#{sessionController.iniciarSesion()}"
                                              value="Ingresar"/>
                         </div>
                         <hr/>
                         <div class="text-center">
-                            <strong> Olvido la <h:commandLink  hreflang="recuperarClave.xhtml">Contraseña?</h:commandLink></strong>
+                            <strong> Olvido la <h:commandLink>Contraseña?</h:commandLink></strong>
                         </div>
                     </h:form>
                 </div>

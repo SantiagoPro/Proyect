@@ -1,5 +1,5 @@
 /*!
- * FullCalendar v3.9.0
+ * FullCalendar v4.0.0-alpha
  * Docs & License: https://fullcalendar.io/
  * (c) 2018 Adam Shaw
  */
@@ -503,6 +503,10 @@ be a descendant of the grid when it is being dragged.
 tr:first-child > td > .fc-day-grid-event {
   margin-top: 2px;
   /* a little bit more space before the first event */ }
+
+.fc-helper-skeleton tr:first-child > td > .fc-day-grid-event {
+  margin-top: 0;
+  /* except for helper skeleton */ }
 
 .fc-day-grid-event.fc-selected:after {
   content: "";

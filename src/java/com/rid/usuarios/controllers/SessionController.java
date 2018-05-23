@@ -131,23 +131,23 @@ public class SessionController implements Serializable {
             ec.redirect(ec.getRequestContextPath());
         }
     }
-
-    public void validarRolEntrenador(Integer roles) throws IOException {
+    
+    public void validarRolDeportistas(Integer roles) throws IOException {
         if (sessionStart()) {
             if (rol.getIdRol() != roles.intValue()) {
                 ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-                ec.redirect(ec.getRequestContextPath()+ "/usuarios/Principal.entrenador.xhtml");
+                ec.redirect(ec.getRequestContextPath()+ "/usuarios/Principal.deportista.xhtml");
             } else {
                 validarSesion();
             }
         }
     }
 
-    public void validarRolDeportistas(Integer roles) throws IOException {
+    public void validarRolEntrenador(Integer roles) throws IOException {
         if (sessionStart()) {
             if (rol.getIdRol() != roles.intValue()) {
                 ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-                ec.redirect(ec.getRequestContextPath()+ "/usuarios/Principal.deportista.xhtml");
+                ec.redirect(ec.getRequestContextPath()+ "/usuarios/Principal.entrenador.xhtml");
             } else {
                 validarSesion();
             }

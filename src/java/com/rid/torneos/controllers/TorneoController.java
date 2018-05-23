@@ -76,8 +76,8 @@ public class TorneoController implements Serializable {
     public String registrarTorneo(){
        
         System.out.println("nombre : " + nombre);
-        System.out.println("fecha : " +fecha);
-        System.out.println("lugar : " +lugar);
+        System.out.println("fecha : " + fecha);
+        System.out.println("lugar : " + lugar);
         
         try {
             Torneo t = new Torneo(null, nombre, fecha, lugar);
