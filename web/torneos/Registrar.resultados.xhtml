@@ -1,8 +1,18 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                template="./../WEB-INF/template/administrador.xhtml">
+                template="./../WEB-INF/template/administrador.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:define name="link">
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/jquery.dataTables.css"/>
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/dataTables.bootstrap4.css"/>
+    </ui:define>
+    <ui:define name="script">
+        <script src="#{request.contextPath}/resources/js/jquery.dataTables.js"></script>
+        <script src="#{request.contextPath}/resources/js/bootstrap.dataTables.js"></script>
+        <script src="#{request.contextPath}/resources/js/tabla.js"></script>
     </ui:define>
     <ui:define name="title">
         Resultados de Torneos
@@ -11,11 +21,92 @@
         Resultados
     </ui:define>
     <ui:define name="Contenido">
-        
-        
-        
-        
-        
+        <div id="modalRegistrar" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <h:form id="demo-form2" a:data-parsley-validate="true" class="form-horizontal form-control-success"
+                        prependId="false">
+                    <h:panelGroup id="contentModalEditar" layout="block">
+
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <h5 class="modal-title">Editar usuario:</h5>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <h:outputLabel class="control-label col-md-6 col-sm-3 col-xs-12" for="nombre">Id Participación</h:outputLabel>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <h:inputText id="nombre" a:type="text" value="#{resultadosController.idParticipacion}" a:required="required" class="form-control col-md-7 col-xs-12"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <h:outputLabel class="control-label col-md-3 col-sm-3 col-xs-12" for="fecha">Peso Arranque</h:outputLabel>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <h:inputText id="fecha" a:type="date" value="#{resultadosController.pesoArranque}" converter="fechaConverter" class="form-control col-md-7 col-xs-12"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <h:outputLabel class="control-label col-md-3 col-sm-3 col-xs-12" for="lugar">Peso Envion</h:outputLabel>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <h:inputText id="lugar" value="#{resultadosController.pesoEnvion}" a:type="text" a:required="required" class="form-control col-md-7 col-xs-12"/>
+                                    </div>
+                                </div>
+                                <h:commandButton id="botonRegTorneo" type="submit" action="#{torneoController.registrarTorneo()}" class="btn btn-success" value="Registrar"/>
+                            </div>
+                        </div>
+                    </h:panelGroup>
+                </h:form>
+            </div>
+        </div>
+
+
+
+
+        <br/>
+        <h:dataTable class="table table-sm table-light table-hover" id="tabla" 
+                     value="#{}" var="t">
+            <h:column>
+                <f:facet name="header">
+                    <i class="fa fa-fw fa-address-card"/>
+                    ID
+                </f:facet>
+                <h:outputText value="#{t.idTorneo}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <i class="fa fa-fw fa-address-card-o"/>
+                    Nombre
+                </f:facet>
+                <h:outputText value="#{t.nombre}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <i class="fa fa-fw fa-user-o"/>
+                    Fecha
+                </f:facet>
+                <h:outputText value="#{t.fecha}" a:type="date" converter="fechaConverter"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <i class="fa fa-fw fa-user"/>
+                    Lugar
+                </f:facet>
+                <h:outputText value="#{t.lugar}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Agregar
+                    <h:commandLink actionListener="#{usuarioController.seleccionarUsuario(u)}" 
+                                   class="btn btn-success"
+                                   a:data-toggle="modal" a:data-target="#modalRegistrar">
+                        <f:ajax render=":contentModalRegistrar"/>
+                        <i class="fa fa-plus"></i>
+                    </h:commandLink>
+                </f:facet>
+
+            </h:column>
+        </h:dataTable>
     </ui:define>
 
     <ui:define name="script">
