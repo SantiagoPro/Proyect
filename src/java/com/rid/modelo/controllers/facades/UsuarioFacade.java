@@ -8,6 +8,8 @@ package com.rid.modelo.controllers.facades;
 import com.rid.modelo.entities.Usuario;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 /**
@@ -20,6 +22,7 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
     public UsuarioFacade() {
         super(Usuario.class);
     }
+    private EntityManager em;
 
     @Override
     public Usuario findByIduClv(Long idUsuario, String clave) {
@@ -32,7 +35,7 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
         }
         return null;
     }
-    
+
     /*
     @Override
     public Usuario findByIduClv(Long idUsuario, String clave) {
@@ -49,6 +52,5 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
         }
         return null;
     }
-    */
-
+     */
 }
