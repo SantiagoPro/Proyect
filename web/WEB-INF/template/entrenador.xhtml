@@ -4,7 +4,9 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <f:metadata  rendered="preRenderView" listener="#{sessionController.validarRolEntrenador(1)}"></f:metadata>
+    <f:metadata>
+        <f:event type="preRenderView" listener="#{sessionController.validarRol(1)}"></f:event>
+    </f:metadata>
     <h:head>
         <link rel="stylesheet" href="#{request.contextPath}/resources/css/jquery-ui.css"/>
         <link rel="stylesheet" href="#{request.contextPath}/resources/css/jquery-ui.theme.css"/>|
@@ -14,7 +16,7 @@
         <link rel="stylesheet" href="#{request.contextPath}/resources/css/style.css"/>
         <link rel="stylesheet" href="#{request.contextPath}/resources/css/sweetalert.min.css"/>
         <link rel="stylesheet" href="#{request.contextPath}/resources/css/animate.css"/>
-        <link rel="icon" href="#{request.contextPath}/resources/images/LOGO.png"/>
+        <link rel="icon"       href="#{request.contextPath}/resources/images/LOGO.png"/>
         <meta charset="UTF-8"/>
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
         <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>       
@@ -54,16 +56,6 @@
                                 <i class="fa fa-fw fa-hourglass-2"></i>
                                 <span class="nav-link-text">Horario</span>
                             </a>
-                        </li>
-                        <li id="cuatro"  class="nav-item" data-toggle="tooltip" data-placement="right" title="Entrenadores">
-                            <a class="nav-link nav-link-collapse " data-toggle="collapse" href="#Menu" data-parent="">
-                                <i class="fa fa-fw fa-male"></i>
-                                <span class="nav-link-text">Deportistas</span>
-                            </a>
-                            <ul class=" collapse" id="Menu">
-                                <li><a class="nav-link" href="#{request.contextPath}/usuarios/Registro.deportista.xhtml">Registrar</a></li>
-                                <li><a class="nav-link" href="#{request.contextPath}/usuarios/Eliminar.deportista.xhtml">Eliminar</a></li>
-                            </ul>
                         </li>
                         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Salir">
                             <h:commandLink class="nav-link" action="#{sessionController.cerrarSesion()}">

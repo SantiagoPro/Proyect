@@ -26,8 +26,6 @@ public class TipoTrabajoConverter implements Converter<TipoTrabajo>{
     public TipoTrabajoConverter() {
         ttfl = CDI.current().select(TipoTrabajoFacadeLocal.class).get();
     }
-
-    
     
     @Override
     public TipoTrabajo getAsObject(FacesContext context, UIComponent component, String value) {

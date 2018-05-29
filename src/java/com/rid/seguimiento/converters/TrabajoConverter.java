@@ -25,8 +25,6 @@ public class TrabajoConverter implements Converter<Trabajo>{
     public TrabajoConverter() {
         tfl = CDI.current().select(TrabajoFacadeLocal.class).get();
     }
-
-    
     
     @Override
     public Trabajo getAsObject(FacesContext context, UIComponent component, String value) {

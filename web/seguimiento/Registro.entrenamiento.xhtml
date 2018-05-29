@@ -3,6 +3,7 @@
 <ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 template="./../WEB-INF/template/entrenador.xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:define name="title">
         Entrenamientos
@@ -16,14 +17,19 @@
                 <h:form class="p-5 form-row" style="border-radius: 5px;" prependId="false">
                     <div class="form-group col-md-4 col-xs-12">
                         <h:outputLabel value="Deportista" for="nombre" />
-                        <h:inputText class="form-control" id="nombre" title="" required="true" maxlength="15" />
+                        <h:selectOneMenu id="deportistas" class="form-control" required="true"
+                                         value="#{usuarioController.usuario}">
+                            <f:selectItem itemValue="" itemLabel="---------------"/>
+                            <f:selectItems value="#{usuarioController.usuario}" var="u" itemLabel="#{u.nombre } #{ u.apellido}"/>
+                            <f:ajax execute="@this" render="trabajo" immediate="true"/>
+                        </h:selectOneMenu>
                     </div>   
                     <div class="form-group col-md-10 col-xs-12">
                         <h:outputLabel value="Descripcion del entrenamiento" for="nombre" />
                         <input type="text" class="form-control" id="nombre" value="" title="" required="true" maxlength="100"/>
                     </div>
                     <div class="form-group col-md-4 col-xs-12">
-                        <label  for="type">Tipo de Entrenamiento</label>
+                        <label  for="type">Entrenamiento por</label>
                         <h:selectOneMenu id="tipoTrabajo" class="form-control" required="true"
                                          value="#{entrenamientoController.tipoTrabajo}">
                             <f:selectItem itemValue="" itemLabel="---------------"/>
@@ -32,20 +38,46 @@
                         </h:selectOneMenu>
                     </div>
                     <div class="form-group col-md-4 col-xs-12">
-                        <label  for="type">Musculo</label>
+                        <label  for="type">Numero de series</label>
+                        <h:selectOneMenu id="series" class="form-control" required="true"
+                                         value="#{entrenamientoController.tipoTrabajo}">
+                            <f:selectItem itemValue="" itemLabel="---------------"/>
+                            <f:selectItems value="#{tipoTrabajoController.tiposTrabajo}"  var="tt" itemLabel="#{tt.nombre}"/>
+                            <f:ajax execute="@this" render="trabajo" immediate="true"/>
+                        </h:selectOneMenu>
+                    </div>
+                    <div class="form-group col-md-4 col-xs-12">
+                        <label  for="type">Numero de repeticiones</label>
+                        <h:selectOneMenu id="repeticiones" class="form-control" required="true"
+                                         value="#{entrenamientoController.tipoTrabajo}">
+                            <f:selectItem itemValue="" itemLabel="---------------"/>
+                            <f:selectItems value="#{tipoTrabajoController.tiposTrabajo}"  var="tt" itemLabel="#{tt.nombre}"/>
+                            <f:ajax execute="@this" render="trabajo" immediate="true"/>
+                        </h:selectOneMenu>
+                    </div>
+                    <div class="form-group col-md-4 col-xs-12">
+                        <label  for="type">Entrenamiento para</label>
                         <h:selectOneMenu id="trabajo" class="form-control" required="true"
                                          value="#{entrenamientoController.trabajo}">
                             <f:selectItem itemValue="" itemLabel="---------------"/>
                             <f:selectItems value="#{entrenamientoController.tipoTrabajo.trabajoList}"  var="t" itemLabel="#{t.nombre}"/>
                         </h:selectOneMenu>
                     </div>
-                    <div class="form-group col-md-3 col-xs-12">
-                        <label  for="usuario"> Fecha Inicio</label>
-                        <input type="date" class="form-control" placeholder="" id="age" required="true" pattern="[0-9]"/>
+                    <div class="form-group col-md-4 col-xs-12">
+                        <label  for="type">Tipo de Entrenamiento</label>
+                        <h:selectOneMenu id="entrenamiento" class="form-control" required="true"
+                                         value="#{tipoEntrenamientoController.tiposEntrenamiento}">
+                            <f:selectItem itemValue="" itemLabel="---------------"/>
+                            <f:selectItems value="#{tipoEntrenamientoController.tiposEntrenamiento}"  var="te" itemLabel="#{te.nombre}"/>
+                        </h:selectOneMenu>
                     </div>
                     <div class="form-group col-md-3 col-xs-12">
-                        <label  for="usuario"> Fecha Fin</label>
-                        <input type="date" class="form-control" placeholder="" id="age" required="true" pattern="[0-9]"/>
+                        <h:outputLabel  for="fechaInicio"> Fecha Inico</h:outputLabel>
+                        <h:inputText id="FechaInicio" a:type="date" converter="fechaConverter" class="form-control"/>
+                    </div>
+                    <div class="form-group col-md-3 col-xs-12">
+                        <h:outputLabel  for="fechaFin"> Fecha Fin</h:outputLabel>
+                        <h:inputText id="FechaFin" a:type="date" converter="fechaConverter" class="form-control"/>
                     </div>
 
                     <div class="col-12">

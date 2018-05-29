@@ -5,6 +5,9 @@
  */
 package com.rid.seguimiento.controllers;
 
+import com.rid.modelo.entities.Entrenamiento;
+import com.rid.modelo.entities.PorcentajeCarga;
+import com.rid.modelo.entities.TipoEntrenamiento;
 import com.rid.modelo.entities.TipoTrabajo;
 import com.rid.modelo.entities.Trabajo;
 import java.io.Serializable;
@@ -21,6 +24,10 @@ public class EntrenamientoController implements Serializable{
 
     private TipoTrabajo tipoTrabajo;
     private Trabajo trabajo;
+    private Entrenamiento entrenamiento;
+    private PorcentajeCarga porcentajeCargar;
+    private TipoEntrenamiento tipoEntrenamiento;
+    
     /**
      * Creates a new instance of EntrenamientoController
      */
@@ -42,4 +49,29 @@ public class EntrenamientoController implements Serializable{
     public void setTrabajo(Trabajo trabajo) {
         this.trabajo = trabajo;
     }
+
+    public Entrenamiento getEntrenamiento() {
+        return entrenamiento;
+    }
+
+    public void setEntrenamiento(Entrenamiento entrenamiento) {
+        this.entrenamiento = entrenamiento;
+    }
+
+    public PorcentajeCarga getPorcentajeCargar() {
+        return porcentajeCargar;
+    }
+
+    public void setPorcentajeCargar(PorcentajeCarga porcentajeCargar) {
+        this.porcentajeCargar = porcentajeCargar;
+    }
+
+    public TipoEntrenamiento getTipoEntrenamiento() {
+        return tipoEntrenamiento;
+    }
+
+    public void setTipoEntrenamiento(TipoEntrenamiento tipoEntrenamiento) {
+        this.tipoEntrenamiento = tipoEntrenamiento;
+    }
+    
 }
