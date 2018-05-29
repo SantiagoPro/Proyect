@@ -1,5 +1,5 @@
 body{
-  background-image: url(../img/709.jpg);
+  background-image: url(../images/709.jpg);
   background-size: 100% 100%;
   left: 0;
   right: 0;
@@ -31,4 +31,20 @@ hr{
   padding: 30px;
   color: #000;
   border-radius: 5px;
+}
+.btn-custom {
+  border-radius: 2px;
+  margin-top: 8px;
+  background:#ff5252;
+  border-color: rgba(48, 46, 45, 1);
+  color: white;
+}
+.btn-custom:hover{
+  -webkit-transition: all 500ms ease;
+  -moz-transition: all 500ms ease;
+  -ms-transition: all 500ms ease;
+  -o-transition: all 500ms ease;
+  transition: all 500ms ease;
+  background: rgba(48, 46, 45, 1);
+  color:#ff5252;
 }

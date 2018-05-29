@@ -57,13 +57,8 @@ public class Participacion implements Serializable {
     public Participacion() {
     }
 
-    public Participacion(Integer idParticipacion) {
-        this.idParticipacion = idParticipacion;
-    }
-
-    public Participacion(Integer idParticipacion, String puesto) {
-        this.idParticipacion = idParticipacion;
-        this.puesto = puesto;
+    public Participacion(Object object, int pesoArranque, int pesoEnvion) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public Integer getIdParticipacion() {
@@ -130,6 +125,10 @@ public class Participacion implements Serializable {
     @Override
     public String toString() {
         return "com.rid.modelo.entities.Participacion[ idParticipacion=" + idParticipacion + " ]";
+    }
+
+    public void setIdParticipacion(Participacion idParticipacion) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

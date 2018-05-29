@@ -23,7 +23,7 @@
     <ui:define name="Contenido" > 
         <!--Tabla Usuarios-->
         <h:dataTable class="table table-sm table-light table-hover" id="tabla"
-                     value="#{usuarioController.usuario}" var="u"   >
+                     value="#{usuarioController.usuario}" var="u">
             <h:column>
                 <f:facet name="header" > <i class="fa fa-fw fa-address-card"></i> Documento</f:facet>
                 <h:outputText value="#{u.idUsuarios}"/>
@@ -97,16 +97,13 @@
 
                         <div class="modal-content">
                             <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
                                 <h5 class="modal-title">Editar usuario:</h5>
                             </div>
                             <div class="modal-body">
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="documento">Documento <span class="required">*</span>
                                     </label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="col-md-12 col-md-12 col-xs-12">
                                         <h:inputText id="documento" value="#{usuarioController.usuarioSeleccionado.idUsuarios}"
                                                      a:type="number" class="form-control col-md-7 col-xs-12"/>
                                     </div>
@@ -114,7 +111,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nombres">Nombres <span class="required">*</span>
                                     </label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="col-md-12 col-md-12 col-xs-12">
                                         <h:inputText id="nombres" a:type="text" value="#{usuarioController.usuarioSeleccionado.nombre}"
                                                      a:required="required" class="form-control col-md-7 col-xs-12"/>
                                     </div>
@@ -122,7 +119,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="primerApellido"> Apellidos <span class="required">*</span>
                                     </label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="col-md-12 col-md-12 col-xs-12">
                                         <h:inputText id="primerApellido" value="#{usuarioController.usuarioSeleccionado.apellido}"
                                                      a:type="text" a:required="required" class="form-control col-md-7 col-xs-12"/>
                                     </div>
@@ -130,16 +127,15 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="correo">Correo <span class="required">*</span>
                                     </label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="col-md-12 col-md-12 col-xs-12">
                                         <h:inputText id="correo" a:type="email" value="#{usuarioController.usuarioSeleccionado.mail}"
                                                      a:required="required" class="form-control col-md-7 col-xs-12"/>
                                     </div>
                                 </div>
-
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-danger alert-light" data-dismiss="modal">Cancelar</button>
                                     <h:commandButton actionListener="#{usuarioController.editarUsuario()}" 
-                                                     class="btn btn-success" value="Editar"/>
+                                                     class="btn btn-success alert-light" value="Editar"/>
                                 </div>
                             </div>
                         </div>

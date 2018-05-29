@@ -17,6 +17,7 @@ body.sidenav-toggled .navbar-sidenav .nav-link {
   background-color: white;
   min-height: 100vh;
   background-size: 100% 100%;
+  padding-top: 49px;
   left: 0;
   right: 0;
   position: absolute;
@@ -34,7 +35,7 @@ body.sidenav-toggled .navbar-sidenav .nav-link {
 }
 @media (min-width: 992px) {
   .bg-danger{
-    padding: 0px;
+    padding: 28px;
   }
   /*posicion-contenido*/
   .content-wrapper {  
@@ -71,13 +72,14 @@ body.sidenav-toggled .navbar-sidenav .nav-link {
     padding: 0;
   }
   .navbar-sidenav > .nav-item > .nav-link {
-    padding: 25px 10px;
+    padding: 25px 15px;
   }
   /*botton-menu*/
   #mainNav.fixed-top .sidenav-toggler {
     display: flex; 
     position: absolute;
-    top: 0;
+    margin-top:  25px;
+    top:0;
     left: 0;
     display: flex;
     overflow-x: hidden;

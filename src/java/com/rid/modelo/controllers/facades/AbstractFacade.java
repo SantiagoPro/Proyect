@@ -14,9 +14,12 @@ import javax.persistence.PersistenceContext;
  * @author karen
  */
 public abstract class AbstractFacade<T> {
-    
+
     @PersistenceContext(unitName = "ridPU")
     private EntityManager em;
+
+    public void refreshJPA() {
+    }
 
     protected EntityManager getEntityManager() {
         return em;
@@ -41,10 +44,12 @@ public abstract class AbstractFacade<T> {
     }
 
     public T find(Object id) {
+        getEntityManager().getEntityManagerFactory().getCache().evictAll();
         return getEntityManager().find(entityClass, id);
     }
 
     public List<T> findAll() {
+        getEntityManager().getEntityManagerFactory().getCache().evictAll();
         javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
         cq.select(cq.from(entityClass));
         return getEntityManager().createQuery(cq).getResultList();
@@ -66,5 +71,5 @@ public abstract class AbstractFacade<T> {
         javax.persistence.Query q = getEntityManager().createQuery(cq);
         return ((Long) q.getSingleResult()).intValue();
     }
-    
+
 }

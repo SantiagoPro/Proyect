@@ -4,16 +4,19 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <f:metadata  rendered="preRenderView" listener="#{sessionController.validarRolEntrenador(1)}"></f:metadata>
+    <f:metadata>
+        <f:event type="preRenderView" listener="#{sessionController.validarRol(1)}"></f:event>
+    </f:metadata>
     <h:head>
-        <link href="#{request.contextPath}/resources/css/bootstrap.css" rel="stylesheet"/>
-        <link href="#{request.contextPath}/resources/css/font-awesome.css" rel="stylesheet"/>
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/jquery-ui.css"/>
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/jquery-ui.theme.css"/>|
         <link rel="stylesheet" href="#{request.contextPath}/resources/css/bootstrap.css"/>
-        <link rel="stylesheet" href="#{request.contextPath}/resources/css/iconos.css"/>
         <link rel="stylesheet" href="#{request.contextPath}/resources/css/paginas.css"/>
-        <link rel="icon" type="image/png" href="#{request.contextPath}/resources/img/LOGO.png"/>
-        <link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/css/sweetalert.min.css"/>
-        <link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/css/animate.css"/>
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/font-awesome.css" />
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/style.css"/>
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/sweetalert.min.css"/>
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/animate.css"/>
+        <link rel="icon"       href="#{request.contextPath}/resources/images/LOGO.png"/>
         <meta charset="UTF-8"/>
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
         <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>       
@@ -22,12 +25,12 @@
     </h:head>
     <h:body class="fixed-nav" id="page-top">
         <nav class="navbar navbar-expand-lg navbar-dark bg-danger fixed-top" id="mainNav">
-            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" 
-                    data-target="#navbarResponsive" aria-controls="navbarResponsive" 
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
             <h:form prependId="false">
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" 
+                        data-target="#navbarResponsive" aria-controls="navbarResponsive" 
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav navbar-sidenav" id="menu">
                         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Perfil">
@@ -44,7 +47,7 @@
                         </li>
                         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Entrenamientos">
                             <a class="nav-link" href="#{request.contextPath}/seguimiento/Registro.entrenamiento.xhtml">
-                                <i class="fa fa-fw fa-shirtsinbulk"></i>
+                                <i class="fa fa-fw fa-shield"></i>
                                 <span class="nav-link-text">Entrenamientos</span>
                             </a>
                         </li>
@@ -54,19 +57,9 @@
                                 <span class="nav-link-text">Horario</span>
                             </a>
                         </li>
-                        <li id="cuatro"  class="nav-item" data-toggle="tooltip" data-placement="right" title="Entrenadores">
-                            <a class="nav-link nav-link-collapse " data-toggle="collapse" href="#Menu" data-parent="">
-                                <i class="fa fa-fw fa-male"></i>
-                                <span class="nav-link-text">Deportistas</span>
-                            </a>
-                            <ul class=" collapse" id="Menu">
-                                <li><a class="nav-link" href="#{request.contextPath}/usuarios/Registro.deportista.xhtml">Registrar</a></li>
-                                <li><a class="nav-link" href="#{request.contextPath}/usuarios/Eliminar.deportista.xhtml">Eliminar</a></li>
-                            </ul>
-                        </li>
                         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Salir">
                             <h:commandLink class="nav-link" action="#{sessionController.cerrarSesion()}">
-                                <i class="fa fa-fw fa-sign-out"></i>
+                                <i class="fa fa-fw fa-power-off"></i>
                                 <span class="nav-link-text">Salir</span>
                             </h:commandLink>
                         </li>
@@ -98,14 +91,16 @@
                 </div>
             </div>
         </div>
-        <script src="#{request.contextPath}/resources/js/jquery.min.js"></script>
+        <script src="#{request.contextPath}/resources/js/jquery.js"></script>
         <script src="#{request.contextPath}/resources/js/popper.min.js"></script>
         <script src="#{request.contextPath}/resources/js/tether.min.js"></script>
         <script src="#{request.contextPath}/resources/js/bootstrap.min.js"></script>
         <script src="#{request.contextPath}/resources/js/bootstrap.bundle.min.js"></script>
+        <script src="#{request.contextPath}/resources/js/jquery-ui.js"></script>
         <script src="#{request.contextPath}/resources/js/jquery.easing.js"></script>
         <script src="#{request.contextPath}/resources/js/scripts.js"></script>
         <script src="#{request.contextPath}/resources/js/sweetalert.min.js" ></script>
+        <script src="#{request.contextPath}/resources/js/custom-file-input.js" ></script>
         <ui:insert name="script"></ui:insert>
     </h:body>
 </html>

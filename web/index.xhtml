@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="resources/css/index.css"/>
     <link rel="stylesheet" href="resources/css/bootstrap.css"/>
     <link rel="stylesheet" href="resources/css/formValidation.min.css"/>
-    <link rel="icon" href="resources/img/LOGO.png"/>
+    <link rel="icon" href="resources/images/LOGO.png"/>
     <h:body class="login">
         <div class="container">
             <div class="row mt-5">
@@ -15,41 +15,47 @@
                 </div>
             </div>
         </div>
-        <div class="container">
+        <div class="container login-box">
             <div class="row mt-3 justify-content-md-center">
                 <div class="col-md-6 shadow well">
                     <h:form prependId="false">
                         <div class="form-group">
                             <label for="user"><strong> Usuario </strong> </label>
-                            <h:inputText class="form-control"
+                            <h:inputText a:type="number"  class="form-control" maxlength="15"
                                          id="usuario" value="#{sessionController.idUsuario}"
                                          a:required="required"/>
                         </div>
                         <div class="form-group">
                             <label for="pass"><strong> Contraseña </strong> </label>
-                            <h:inputSecret id="pass"
+                            <h:inputSecret id="pass" maxlength="50"
                                            required="true" class="form-control"
                                            value="#{sessionController.clave}"/>
                         </div>
-                        <div class="checkbox">
-                            <label>
-                                <input class="mr-2" type="checkbox" value=""/> Recordarme 
-                            </label>
-                        </div>
                         <br/>
                         <div>
-                            <h:commandButton class="btn btn-danger btn-block"
+                            <h:commandButton class="btn btn-custom btn-block"
                                              action="#{sessionController.iniciarSesion()}"
                                              value="Ingresar"/>
                         </div>
                         <hr/>
                         <div class="text-center">
-                            <strong> Olvido la <h:commandLink  hreflang="recuperarClave.xhtml">Contraseña?</h:commandLink></strong>
+                            <strong> Olvido la <h:commandLink>Contraseña?</h:commandLink></strong>
                         </div>
                     </h:form>
                 </div>
             </div>
         </div>
         <br />
+        <br />
+        <h:link outcome="welcomePrimefaces" value="Primefaces welcome page" />
     </h:body>
+    <script src="#{request.contextPath}/resources/js/jquery.js"></script>
+    <script src="#{request.contextPath}/resources/js/popper.min.js"></script>
+    <script src="#{request.contextPath}/resources/js/tether.min.js"></script>
+    <script src="#{request.contextPath}/resources/js/bootstrap.min.js"></script>
+    <script src="#{request.contextPath}/resources/js/bootstrap.bundle.min.js"></script>
+    <script src="#{request.contextPath}/resources/js/jquery-ui.js"></script>
+    <script src="#{request.contextPath}/resources/js/formValidation.min.js"></script>
+    <script src="#{request.contextPath}/resources/js/jquery.easing.js"></script>
+    <script src="#{request.contextPath}/resources/js/sweetalert.min.js" ></script>
 </html>
