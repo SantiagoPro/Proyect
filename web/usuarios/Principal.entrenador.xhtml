@@ -23,42 +23,42 @@
     <ui:define name="Contenido" > 
         <!--Tabla Usuarios-->
         <h:dataTable class="table table-sm table-light table-hover" id="tabla"
-                     value="#{usuarioController.usuario}" var="u">
+                     value="#{usuarioController.deportista}" var="d">
             <h:column>
                 <f:facet name="header" > <i class="fa fa-fw fa-address-card"></i> Documento</f:facet>
-                <h:outputText value="#{u.idUsuarios}"/>
+                <h:outputText value="#{d.idUsuarios}"/>
             </h:column>
             <h:column>
                 <f:facet name="header"> <i class="fa fa-fw fa-address-card-o"></i> Tipo Documento</f:facet>
-                <h:outputText value="#{u.idTipoDocumento.sigla}"/>
+                <h:outputText value="#{d.idTipoDocumento.sigla}"/>
             </h:column>
             <h:column>
                 <f:facet name="header"> <i class="fa fa-fw fa-user-o"></i> Nombre</f:facet>
-                <h:outputText value=" #{u.nombre} "/>
-                <h:outputText value=" #{u.apellido} "/>
+                <h:outputText value=" #{d.nombre} "/>
+                <h:outputText value=" #{d.apellido} "/>
             </h:column>
             <h:column>
                 <f:facet name="header"> <i class="fa fa-fw fa-tint"></i> RH </f:facet>
-                <h:outputText value="#{u.rh}"/>
+                <h:outputText value="#{d.rh}"/>
             </h:column> 
             <h:column>
                 <f:facet name="header"> <i class="fa fa-fw fa-calculator"></i> Categoria</f:facet>
             </h:column> 
             <h:column>
                 <f:facet name="header"><i class="fa fa-fw fa-cog"></i>Modificar</f:facet>
-                <h:commandLink actionListener="#{usuarioController.seleccionarUsuario(u)}" 
+                <h:commandLink actionListener="#{usuarioController.seleccionarUsuario(d)}" 
                                class="btn btn-success"
                                a:data-toggle="modal" a:data-target="#modalEditar">
                     <f:ajax render=":contentModalEditar"/>
                     <i class="fa fa-pencil"></i>
                 </h:commandLink>
-                <h:commandLink actionListener="#{usuarioController.seleccionarUsuario(u)}" 
+                <h:commandLink actionListener="#{usuarioController.seleccionarUsuario(d)}" 
                                class="btn btn-info"
                                a:data-toggle="modal" a:data-target="#modalBloquear">
                     <f:ajax render=":contentModalBloquear"/>
                     <i class="fa fa-user-o"></i>
                 </h:commandLink>
-                <h:commandLink actionListener="#{usuarioController.seleccionarUsuario(u)}" 
+                <h:commandLink actionListener="#{usuarioController.seleccionarUsuario(d)}" 
                                class="btn btn-danger"
                                a:data-toggle="modal" a:data-target="#modalEliminar">
                     <f:ajax render=":contentModalEliminar"/>
