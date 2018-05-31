@@ -15,7 +15,7 @@ import javax.ejb.Local;
  */
 @Local
 public interface UsuarioFacadeLocal {
-
+    
     void create(Usuario usuario);
 
     void edit(Usuario usuario);

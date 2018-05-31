@@ -99,15 +99,18 @@ public class SessionController implements Serializable {
                 System.out.println("pasa estado " + user.getEstado());
                 if (user.getIdRol() != null) {
                     System.out.println("pasa rol " + getIdRol());
-                    if (user.getIdRol().getIdRol() == 0) {
-                        System.out.println("pasa");
-                        return "/usuarios/Principal.deportista.xhtml?faces-redirect=true";
-                    } else if (user.getIdRol().getIdRol() == 1) {
-                        System.out.println("pasa");
-                        return "/usuarios/Principal.entrenador.xhtml?faces-redirect=true";
-                    } else if (user.getIdRol().getIdRol() == 2) {
-                        System.out.println("pasa");
-                        return "/usuarios/Principal.administrador.xhtml?faces-redirect=true";
+                    if (null != user.getIdRol().getIdRol()) switch (user.getIdRol().getIdRol()) {
+                        case 0:
+                            System.out.println("pasa");
+                            return "/usuarios/Principal.deportista.xhtml?faces-redirect=true";
+                        case 1:
+                            System.out.println("pasa");
+                            return "/usuarios/Principal.entrenador.xhtml?faces-redirect=true";
+                        case 2:
+                            System.out.println("pasa");
+                            return "/usuarios/Principal.administrador.xhtml?faces-redirect=true";
+                        default:
+                            break;
                     }
                 } else {
                     MessagesUtil.info(null, "No se pudo iniciar sesion. El usuario no tiene rol definido", "", false);
@@ -132,37 +135,33 @@ public class SessionController implements Serializable {
         }
     }
     
-    public void validarRolDeportistas(Integer roles) throws IOException {
+    public void validarRol(Integer roles) throws IOException {
         if (sessionStart()) {
-            if (rol.getIdRol() != roles.intValue()) {
-                ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-                ec.redirect(ec.getRequestContextPath()+ "/usuarios/Principal.deportista.xhtml");
-            } else {
-                validarSesion();
+            switch (roles.intValue()) {
+                case 0:
+                    {
+                        ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+                        ec.redirect(ec.getRequestContextPath()+ "/usuarios/Principal.deportista.xhtml");
+                        break;
+                    }
+                case 1:
+                    {
+                        ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+                        ec.redirect(ec.getRequestContextPath()+ "/usuarios/Principal.entrenador.xhtml");
+                        break;
+                    }
+                case 2:
+                    {
+                        ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+                        ec.redirect(ec.getRequestContextPath()+ "/usuarios/Principal.entrenador.xhtml");
+                        validarSesion();
+                        break;
+                    }
+                default:
+                    break;
             }
-        }
-    }
-
-    public void validarRolEntrenador(Integer roles) throws IOException {
-        if (sessionStart()) {
-            if (rol.getIdRol() != roles.intValue()) {
-                ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-                ec.redirect(ec.getRequestContextPath()+ "/usuarios/Principal.entrenador.xhtml");
-            } else {
-                validarSesion();
-            }
-        }
-    }
-
-    public void validarRolAdministrador(Integer roles) throws IOException {
-        if (sessionStart()) {
-            if (rol.getIdRol() != roles.intValue()) {
-                ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-                ec.redirect(ec.getRequestContextPath() + "/usuarios/Principal.admanistrador.xhtml" );
-            } else {
-                validarSesion();
-            }
-        }
+        } 
+        MessagesUtil.error("","Error" ,"No ha iniciado sesion",false);
     }
 
     public void cerrarSesion() {

@@ -21,13 +21,13 @@
                     <h:form prependId="false">
                         <div class="form-group">
                             <label for="user"><strong> Usuario </strong> </label>
-                            <h:inputText class="form-control"
+                            <h:inputText a:type="number"  class="form-control" maxlength="15"
                                          id="usuario" value="#{sessionController.idUsuario}"
                                          a:required="required"/>
                         </div>
                         <div class="form-group">
                             <label for="pass"><strong> Contraseña </strong> </label>
-                            <h:inputSecret id="pass"
+                            <h:inputSecret id="pass" maxlength="50"
                                            required="true" class="form-control"
                                            value="#{sessionController.clave}"/>
                         </div>
@@ -46,6 +46,8 @@
             </div>
         </div>
         <br />
+        <br />
+        <h:link outcome="welcomePrimefaces" value="Primefaces welcome page" />
     </h:body>
     <script src="#{request.contextPath}/resources/js/jquery.js"></script>
     <script src="#{request.contextPath}/resources/js/popper.min.js"></script>
@@ -56,5 +58,4 @@
     <script src="#{request.contextPath}/resources/js/formValidation.min.js"></script>
     <script src="#{request.contextPath}/resources/js/jquery.easing.js"></script>
     <script src="#{request.contextPath}/resources/js/sweetalert.min.js" ></script>
-
 </html>
