@@ -14,7 +14,6 @@ import java.io.IOException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
-import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.context.ExternalContext;
@@ -78,8 +77,6 @@ public class SessionController implements Serializable {
     }
 
     public String iniciarSesion() {
-        System.out.println("Id " + idUsuario);
-        System.out.println("Clave " + clave);
         user = ufl.findByIduClv(idUsuario, clave);
         if (user != null) {
             if (user.getEstado() == 1) {
@@ -125,26 +122,8 @@ public class SessionController implements Serializable {
     public void validarRol(Integer idRol) throws IOException {
         ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
         if (isSessionStart()) {
-            if (user.getIdRol().getIdRol() == idRol.intValue()) {
-                System.out.println("tiene rol");
-                if (user.getIdRol().getIdRol() != null) switch (user.getIdRol().getIdRol()) {
-                    case 0:
-                        System.out.println("el rol de deportista es " + user.getIdRol().getIdRol());
-                        ec.redirect(ec.getRequestContextPath() + "/usuarios/Principal.deportista.xhtml?faces-redirect=true");
-                        break;
-                    case 1:
-                        System.out.println("el rol de entrenador " + user.getIdRol().getIdRol());
-                        ec.redirect(ec.getRequestContextPath() + "/usuarios/Principal.entrenador.xhtml?faces-redirect=true");
-                        break;
-                    case 2:
-                        System.out.println("el rol de administrador es " + user.getIdRol().getIdRol());
-                        ec.redirect(ec.getRequestContextPath() + "/usuarios/Principal.administrador.xhtml?faces-redirect=true");
-                        break;
-                    default:
-                        break;
-                }
-            } else {
-                ec.redirect(ec.getRequestContextPath());
+            if (user.getIdRol().getIdRol() != idRol.intValue()) {
+                ec.redirect(ec.getRequestContextPath() + urlPrincipalRol(idRol));
             }
         } else {
             ec.redirect(ec.getRequestContextPath());
@@ -160,6 +139,19 @@ public class SessionController implements Serializable {
             ec.invalidateSession();
             ec.redirect(ec.getRequestContextPath());
         } catch (IOException iOException) {
+        }
+    }
+
+    private String urlPrincipalRol(Integer idRol) {
+        switch (idRol) {
+            case 0:
+                return "/usuarios/Principal.deportista.xhtml?faces-redirect=true";
+            case 1:
+                return "/usuarios/Principal.entrenador.xhtml?faces-redirect=true";
+            case 2:
+                return "/usuarios/Principal.administrador.xhtml?faces-redirect=true";
+            default:
+                return "";
         }
     }
 }

@@ -33,11 +33,14 @@
                         </div>
                         <div class="card-body">
                             <ul class="list-group list-group-flush">
-                                <h:outputText class="list-group-item" id="FechaNacimiento" converter="fechaConverter" > <strong>#{sessionController.user.fechaNacimiento} </strong> </h:outputText>
-                                <h:outputText class="list-group-item" id="Correo"><strong> #{sessionController.user.mail} </strong> </h:outputText>
-                                <h:outputText class="list-group-item" id="Telefono"><strong> #{sessionController.user.telefono} </strong> </h:outputText>
-                                <h:outputText class="list-group-item" id="Rh"><strong>  #{sessionController.user.rh}  </strong> </h:outputText>
-                                <h:outputText class="list-group-item" id="Seguro"><strong> #{sessionController.user.seguroMedico} </strong> </h:outputText>
+                                <h:outputText class="list-group-item" id="Documento" value="#{sessionController.user.idUsuarios}"/>
+                                <h:outputText class="list-group-item" id="Sexo" value="#{sessionController.user.sexo}"/>
+                                <h:outputText class="list-group-item" id="FechaNacimiento" converter="fechaConverter" value="#{sessionController.user.fechaNacimiento}"/>
+                                <h:outputText class="list-group-item" id="Seguro" value="#{sessionController.user.seguroMedico}"/>
+                                <h:outputText class="list-group-item" id="Rh" value="#{sessionController.user.rh}"/>
+                                <h:outputText class="list-group-item" id="Correo" value="#{sessionController.user.mail}"/>
+                                <h:outputText class="list-group-item" id="Telefono" value="#{sessionController.user.telefono}"/>
+                                <h:outputText class="list-group-item" id="Direccion" value="#{sessionController.user.direccion}"/>
                             </ul>
                         </div>
                     </div>
