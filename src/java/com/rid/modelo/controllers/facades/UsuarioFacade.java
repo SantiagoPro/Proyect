@@ -9,7 +9,6 @@ import com.rid.modelo.entities.Usuario;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 /**
@@ -36,21 +35,10 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
         return null;
     }
 
-    /*
     @Override
-    public Usuario findByIduClv(Long idUsuario, String clave) {
-        try {
-            TypedQuery<Usuario> q = getEntityManager().createQuery("SELECT u FROM Usuario u WHERE u.idUsuarios=:idU AND u.clave=:clb", Usuario.class);
-            q.setParameter("idU", idUsuario);
-            q.setParameter("clv", clave);
-            List<Usuario> user = q.getResultList();
-            if (user != null && user.size() == 1) {
-                user.get(0);
-            }
-            return null;
-        } catch (Exception e) {
-        }
+    public List<Usuario> findByIdRol(Integer idRol) {
+        TypedQuery<Usuario> q = getEntityManager().createQuery("SELECT u FROM Usuario u WHERE u.idRol = :idRol" , Usuario.class);
+        q.setParameter("idRol", idRol);
         return null;
     }
-     */
 }

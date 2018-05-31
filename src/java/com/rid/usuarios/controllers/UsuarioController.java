@@ -32,6 +32,8 @@ public class UsuarioController implements Serializable {
     private TipoDocumentoFacadeLocal tdfl;
 
     private List<Usuario> usuario;
+    private List<Usuario> deportista;
+    private List<Usuario> entrenador;
     private List<TipoDocumento> tipoDocumento;
 
     private TipoDocumento tipoDocumentoList;
@@ -90,6 +92,21 @@ public class UsuarioController implements Serializable {
         return usuario;
     }
 
+    public List<Usuario> getDeportista() {
+        if (deportista == null || deportista.isEmpty()) {
+            deportista = ufl.findByIdRol(0);
+        }
+        return deportista;
+    }
+
+    public List<Usuario> getEntrenador() {
+        if (entrenador == null || entrenador.isEmpty()) {
+            entrenador = ufl.findByIdRol(1);
+        }
+        
+        return entrenador;
+    }    
+    
     public List<TipoDocumento> getDocumento() {
         tipoDocumento = tdfl.findAll();
         return tipoDocumento;
@@ -133,8 +150,6 @@ public class UsuarioController implements Serializable {
 
     public String bloquearODesbloquear() {
         try {
-            System.out.println("Vamo a editá el usualio:");
-            System.out.println("Id:" + usuarioSeleccionado.getIdUsuarios());
             if (usuarioSeleccionado.getEstado() != null) {
                 usuarioSeleccionado.setEstado(
                         (usuarioSeleccionado.getEstado() == 0) ? Short.valueOf("1") : (usuarioSeleccionado.getEstado() == 1 ? Short.valueOf("0") : usuarioSeleccionado.getEstado()));
@@ -156,5 +171,5 @@ public class UsuarioController implements Serializable {
     public String getClassBloqueUsuario(Usuario u){
         return ((u.getEstado() == null) ? "fa-hotel": ((u.getEstado() == 1) ? "fa-lock": "fa-unlock"));
     }
-
+    
 }
