@@ -129,19 +129,7 @@ public class SessionController implements Serializable {
             ec.redirect(ec.getRequestContextPath());
         }
     }
-
-    public void cerrarSesion() {
-        try {
-            idUsuario = null;
-            clave = null;
-            user = null;
-            ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-            ec.invalidateSession();
-            ec.redirect(ec.getRequestContextPath());
-        } catch (IOException iOException) {
-        }
-    }
-
+    
     private String urlPrincipalRol(Integer idRol) {
         switch (idRol) {
             case 0:
@@ -154,4 +142,17 @@ public class SessionController implements Serializable {
                 return "";
         }
     }
+    public void cerrarSesion() {
+        try {
+            idUsuario = null;
+            clave = null;
+            user = null;
+            ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+            ec.invalidateSession();
+            ec.redirect(ec.getRequestContextPath());
+        } catch (IOException iOException) {
+        }
+    }
+
+   
 }

@@ -24,68 +24,68 @@
         <!--Tabla Usuarios-->
         <h:dataTable class="table table-sm table-light table-hover" id="tabla"
                      value="#{usuarioController.usuario}" var="u">
-            <h:column>
-                <f:facet name="header" > <i class="fa fa-fw fa-address-card"></i> Documento </f:facet>
-                <h:outputText value="#{u.idUsuarios}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header"> <i class="fa fa-fw fa-address-card-o"></i> Tipo Documento </f:facet>
-                <h:outputText value="#{u.idTipoDocumento.sigla}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header"> <i class="fa fa-fw fa-user-o"></i> Nombre </f:facet>
-                <h:outputText value=" #{u.nombre} "/>
-                <h:outputText value=" #{u.apellido} "/>
-            </h:column>
-            <h:column>
-                <f:facet name="header"> <i class="fa fa-fw fa-tint"></i> RH </f:facet>
-                <h:outputText value="#{u.rh}"/>
-            </h:column> 
-            <h:column>
-                <f:facet name="header"> <i class="fa fa-fw fa-calculator"></i> Categoria</f:facet>
-            </h:column> 
-            <h:column>
-                <f:facet name="header"><i class="fa fa-fw fa-cog"></i> Modificar </f:facet>
-                <h:commandLink actionListener="#{usuarioController.seleccionarUsuario(d)}" 
-                               class="btn btn-success"
-                               a:data-toggle="modal" a:data-target="#modalEditar">
-                    <f:ajax render=":contentModalEditar"/>
-                    <i class="fa fa-pencil"></i>
-                </h:commandLink>
-                <h:commandLink actionListener="#{usuarioController.seleccionarUsuario(d)}" 
-                               class="btn btn-info"
-                               a:data-toggle="modal" a:data-target="#modalBloquear">
-                    <f:ajax render=":contentModalBloquear"/>
-                    <i class="fa fa-user-o"></i>
-                </h:commandLink>
-                <h:commandLink actionListener="#{usuarioController.seleccionarUsuario(d)}" 
-                               class="btn btn-danger"
-                               a:data-toggle="modal" a:data-target="#modalEliminar">
-                    <f:ajax render=":contentModalEliminar"/>
-                    <i class="fa fa-trash"></i>
-                </h:commandLink>
-            </h:column>
+            <form preventId="false" >
+                <h:column>
+                    <f:facet name="header" > <i class="fa fa-fw fa-address-card"></i> Documento </f:facet>
+                    <h:outputText value="#{u.idUsuarios}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header"> <i class="fa fa-fw fa-address-card-o"></i> Tipo Documento </f:facet>
+                    <h:outputText value="#{u.idTipoDocumento.sigla}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header"> <i class="fa fa-fw fa-user-o"></i> Nombre </f:facet>
+                    <h:outputText value=" #{u.nombre} "/>
+                    <h:outputText value=" #{u.apellido} "/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header"> <i class="fa fa-fw fa-tint"></i> RH </f:facet>
+                    <h:outputText value="#{u.rh}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header"><i class="fa fa-fw fa-cog"></i> Opciones </f:facet>
+                    <h:commandLink actionListener="#{usuarioController.seleccionarUsuario(u)}" 
+                                   class="btn btn-success alert-secondary" style="margin: 1px"
+                                   a:data-toggle="modal" a:data-target="#modalEditar">
+                        <f:ajax render=":contentModalEditar"/>
+                        <i class="fa fa-pencil"></i>
+                    </h:commandLink>
+                    <h:commandLink class="btn btn-primary alert-secondary" style="margin: 1px"
+                                   actionListener="#{usuarioController.cambiarEstado(u)}">
+                        <i class="fa #{usuarioController.getClassBloqueUsuarioIcon(u)}"></i>
+                        <f:ajax render="@this" immediate="true"/>
+                    </h:commandLink>
+                    <h:commandLink class="btn btn-danger alert-secondary"
+                                   actionListener="#{usuarioController.seleccionarUsuario(u)}" style="margin: 1px"
+                                   a:data-toggle="modal" a:data-target="#modalEliminar"
+                                   action="#{usuarioController.seleccionarUsuario(u)}">
+                        <i class="fa fa-trash "></i>
+                        <f:ajax render=":contentModalEliminar"/>
+                    </h:commandLink>
+                </h:column>
+            </form>
         </h:dataTable>
+
         <!-- Modal para Eliminar -->
         <div id="modalEliminar" class="modal fade" role="dialog">
             <div class="modal-dialog">
-                <h:panelGroup id="contentModalEliminar" layout="block">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h5 class="modal-title">Seguro desea eliminar a:</h5>
+                <h:form prependId="false">
+                    <h:panelGroup id="contentModalEliminar" layout="block">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Seguro desea eliminar a:</h5>
+                            </div>
+                            <div class="modal-body">
+                                <p>Nombres: #{usuarioController.usuarioSeleccionado.nombre}</p>
+                                <p>Apellidos: #{usuarioController.usuarioSeleccionado.apellido}</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger alert-light" data-dismiss="modal">Cancelar</button>
+                                <h:commandButton class="btn btn-success alert-light" value="Eliminar" actionListener="#{usuarioController.eliminarUsuario()}"/>
+                            </div>
                         </div>
-                        <div class="modal-body">
-                            <p>Nombres: #{usuarioController.usuarioSeleccionado.nombre}</p>
-                            <p>Apellidos: #{usuarioController.usuarioSeleccionado.apellido}</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <h:commandLink actionListener="#{usuarioController.eliminarUsuario()}" 
-                                           class="btn btn-danger" value="Eliminar"/>
-                        </div>
-                    </div>
-                </h:panelGroup>
+                    </h:panelGroup>
+                </h:form>
             </div>
         </div>
         <!-- Modal para actualizar -->

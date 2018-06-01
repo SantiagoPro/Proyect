@@ -16,20 +16,24 @@
         <h:form prependId="false">
             <div class="row  d-flex justify-content-center">
                 <div class="card-deck" >
-                    <div class="card" >
-                        <img class="card-img-top" src="#{request.contextPath}/resources/images/LOGO.png" alt="Foto de perfil"/>	
-                        <div class="btn ">
-                            <div>
-                                <input type="file" name="file" id="file" class="inputfile "/>
-                                <label for="file">Cambiar</label>	
+                    <div class="card text-center" >
+                        <div class="card-header">
+                            <h6 class="card-title" >Foto</h6>
+                        </div>
+                        <div class="card-content">
+                            <img class="card-img-top" src="#{request.contextPath}/resources/images/LOGO.png" alt="Foto de perfil"/>	
+                        </div>
+                        <div class="card-footer form-row" align="center" >
+                            <div class="">
+                                <input type="file" class=""/>
                             </div>
                         </div>
                     </div>
                     <div class="card text-center" value="">
                         <div class="card-header">
-                            <h4 class="card-title"> 
+                            <h6 class="card-title"> 
                                 <h:outputText value="#{sessionController.user.nombre} #{sessionController.user.apellido}"/>
-                            </h4>
+                            </h6>
                         </div>
                         <div class="card-body">
                             <ul class="list-group list-group-flush">

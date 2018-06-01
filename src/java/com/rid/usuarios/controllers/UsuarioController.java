@@ -83,7 +83,7 @@ public class UsuarioController implements Serializable {
     public Usuario getUsuarioSeleccionado() {
         return usuarioSeleccionado;
     }
-    
+
     public List<Usuario> getUsuario() {
 
         if (usuario == null || usuario.isEmpty()) {
@@ -103,10 +103,10 @@ public class UsuarioController implements Serializable {
         if (entrenador == null || entrenador.isEmpty()) {
             entrenador = ufl.findByIdRol(1);
         }
-        
+
         return entrenador;
-    }    
-    
+    }
+
     public List<TipoDocumento> getDocumento() {
         tipoDocumento = tdfl.findAll();
         return tipoDocumento;
@@ -116,9 +116,10 @@ public class UsuarioController implements Serializable {
         usuarioSeleccionado = u;
     }
 
-    public String registrarUsuario() {
+    public String registrarDeportista() {
         try {
             ufl.create(nuevoUsuario);
+            setTipoDocumento(tipoDocumento);
             MessagesUtil.info(null, "Registro exitoso", "Se ha registrado correctamente el nuevo usuario.", true);
             return "/usuarios/Principal.entrenador.xhtml?faces-redirect=true";
         } catch (Exception e) {
@@ -126,17 +127,16 @@ public class UsuarioController implements Serializable {
         }
         return "";
     }
-
-    public String eliminarUsuario() {
+    
+    public void eliminarUsuario() {
         try {
             ufl.remove(usuarioSeleccionado);
             usuario = null;
-            MessagesUtil.info(null, "Eliminación exitosa", "Se ha eliminado correctamente el Deportista.", false);
+            MessagesUtil.info(null, "Eliminación exitosa", "Se ha eliminado correctamente al usuario.", false);
         } catch (Exception e) {
             MessagesUtil.error(null, "Error al eliminar el usuario.", e.getMessage(), false);
         }
         usuarioSeleccionado = null;
-        return "/usuarios/Principal.entrenador.xhtml?faces-redirect=true";
     }
 
     public void editarUsuario() {
@@ -146,30 +146,29 @@ public class UsuarioController implements Serializable {
         } catch (Exception e) {
             MessagesUtil.error(null, "Error al editar el usuario.", e.getMessage(), false);
         }
+        usuarioSeleccionado = null;
     }
 
-    public String bloquearODesbloquear() {
+    public void cambiarEstado(Usuario u) {
         try {
-            if (usuarioSeleccionado.getEstado() != null) {
-                usuarioSeleccionado.setEstado(
-                        (usuarioSeleccionado.getEstado() == 0) ? Short.valueOf("1") : (usuarioSeleccionado.getEstado() == 1 ? Short.valueOf("0") : usuarioSeleccionado.getEstado()));
-
-            } else {
+            System.out.println("Cambiando estado");
+            usuarioSeleccionado = u;
+            if (usuarioSeleccionado.getEstado() == null
+                    || usuarioSeleccionado.getEstado() == 0) {
+                usuarioSeleccionado.setEstado(Short.valueOf("1"));
+            System.out.println("Cambiando estado");
+            } else if (usuarioSeleccionado.getEstado() == 1) {
                 usuarioSeleccionado.setEstado(Short.valueOf("0"));
+            System.out.println("Cambiando estado");
             }
             ufl.edit(usuarioSeleccionado);
             usuario = null;
-            MessagesUtil.info(null, "Se ha cambiado el destado del usaurio.", "", false);
         } catch (Exception e) {
             e.printStackTrace();
-            MessagesUtil.error(null, "Error al cambiar el estado el usuario.", e.getMessage(), false);
         }
-        usuarioSeleccionado = null;
-        return "listar.xhtml?faces-redirect=true";
     }
 
-    public String getClassBloqueUsuario(Usuario u){
-        return ((u.getEstado() == null) ? "fa-hotel": ((u.getEstado() == 1) ? "fa-lock": "fa-unlock"));
+    public String getClassBloqueUsuarioIcon(Usuario u) {
+        return ((u.getEstado() == null) ? "fa-eye" : ((u.getEstado() == 1) ? "fa-eye" : "fa-eye-slash"));
     }
-    
 }
