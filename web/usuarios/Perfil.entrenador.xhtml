@@ -16,28 +16,35 @@
         <h:form prependId="false">
             <div class="row  d-flex justify-content-center">
                 <div class="card-deck" >
-                    <div class="card" >
-                        <img class="card-img-top" src="#{request.contextPath}/resources/images/LOGO.png" alt="Foto de perfil"/>	
-                        <div class="btn ">
-                            <div>
-                                <input type="file" name="file" id="file" class="inputfile "/>
-                                <label for="file">Cambiar</label>	
+                    <div class="card text-center" >
+                        <div class="card-header">
+                            <h6 class="card-title" >Foto</h6>
+                        </div>
+                        <div class="card-content">
+                            <img class="card-img-top" src="#{request.contextPath}/resources/images/LOGO.png" alt="Foto de perfil"/>	
+                        </div>
+                        <div class="card-footer form-row" align="center" >
+                            <div class="">
+                                <input type="file" class=""/>
                             </div>
                         </div>
                     </div>
                     <div class="card text-center" value="">
                         <div class="card-header">
-                            <h4 class="card-title"> 
+                            <h6 class="card-title"> 
                                 <h:outputText value="#{sessionController.user.nombre} #{sessionController.user.apellido}"/>
-                            </h4>
+                            </h6>
                         </div>
                         <div class="card-body">
                             <ul class="list-group list-group-flush">
-                                <h:outputText class="list-group-item" id="FechaNacimiento" converter="fechaConverter" > <strong>#{sessionController.user.fechaNacimiento} </strong> </h:outputText>
-                                <h:outputText class="list-group-item" id="Correo"><strong> #{sessionController.user.mail} </strong> </h:outputText>
-                                <h:outputText class="list-group-item" id="Telefono"><strong> #{sessionController.user.telefono} </strong> </h:outputText>
-                                <h:outputText class="list-group-item" id="Rh"><strong>  #{sessionController.user.rh}  </strong> </h:outputText>
-                                <h:outputText class="list-group-item" id="Seguro"><strong> #{sessionController.user.seguroMedico} </strong> </h:outputText>
+                                <h:outputText class="list-group-item" id="Documento" value="#{sessionController.user.idUsuarios}"/>
+                                <h:outputText class="list-group-item" id="Sexo" value="#{sessionController.user.sexo}"/>
+                                <h:outputText class="list-group-item" id="FechaNacimiento" converter="fechaConverter" value="#{sessionController.user.fechaNacimiento}"/>
+                                <h:outputText class="list-group-item" id="Seguro" value="#{sessionController.user.seguroMedico}"/>
+                                <h:outputText class="list-group-item" id="Rh" value="#{sessionController.user.rh}"/>
+                                <h:outputText class="list-group-item" id="Correo" value="#{sessionController.user.mail}"/>
+                                <h:outputText class="list-group-item" id="Telefono" value="#{sessionController.user.telefono}"/>
+                                <h:outputText class="list-group-item" id="Direccion" value="#{sessionController.user.direccion}"/>
                             </ul>
                         </div>
                     </div>
