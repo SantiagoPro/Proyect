@@ -25,4 +25,8 @@
         <exception-type>org.jboss.weld.contexts.ContextNotActiveException</exception-type>
         <location>/index.xhtml</location>
     </error-page>
+    <error-page>
+        <error-code>500</error-code>
+        <location>/index.xhtml</location>
+    </error-page>
 </web-app>

@@ -29,7 +29,6 @@ public class FechaConverter implements Converter<Date>{
     @Override
     public Date getAsObject(FacesContext context, UIComponent component, String value) {
         try {
-            System.out.println(value);
             return sdf.parse(value);
         } catch (ParseException e) {
             e.printStackTrace();
