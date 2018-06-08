@@ -76,7 +76,7 @@ public class Usuario implements Serializable {
     @Column(name = "telefono")
     private String telefono;
     @Basic(optional = false)
-    @Column(name = "Direccion")
+    @Column(name = "direccion")
     private String direccion;
     @Basic(optional = false)
     @Column(name = "clave")
@@ -84,6 +84,8 @@ public class Usuario implements Serializable {
     @Basic(optional = false)
     @Column(name = "estado")
     private Short estado;
+    @Column(name = "foto")
+    private String foto;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "usuario")
     private Deportista deportista;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "usuario")
@@ -215,6 +217,14 @@ public class Usuario implements Serializable {
         this.estado = estado;
     }
 
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
+    
     public Deportista getDeportista() {
         return deportista;
     }

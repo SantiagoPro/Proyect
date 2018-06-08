@@ -85,7 +85,6 @@ public class UsuarioController implements Serializable {
     }
 
     public List<Usuario> getUsuario() {
-
         if (usuario == null || usuario.isEmpty()) {
             usuario = ufl.findAll();
         }
@@ -103,7 +102,6 @@ public class UsuarioController implements Serializable {
         if (entrenador == null || entrenador.isEmpty()) {
             entrenador = ufl.findByIdRol(1);
         }
-
         return entrenador;
     }
 
@@ -151,15 +149,12 @@ public class UsuarioController implements Serializable {
 
     public void cambiarEstado(Usuario u) {
         try {
-            System.out.println("Cambiando estado");
             usuarioSeleccionado = u;
             if (usuarioSeleccionado.getEstado() == null
                     || usuarioSeleccionado.getEstado() == 0) {
                 usuarioSeleccionado.setEstado(Short.valueOf("1"));
-            System.out.println("Cambiando estado");
             } else if (usuarioSeleccionado.getEstado() == 1) {
                 usuarioSeleccionado.setEstado(Short.valueOf("0"));
-            System.out.println("Cambiando estado");
             }
             ufl.edit(usuarioSeleccionado);
             usuario = null;
