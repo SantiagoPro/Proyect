@@ -79,18 +79,21 @@ public class SessionController implements Serializable {
     public String iniciarSesion() {
         user = ufl.findByIduClv(idUsuario, clave);
         if (user != null) {
+            System.out.println("pasa usuario");
             if (user.getEstado() == 1) {
+                System.out.println("pasa estado");
                 if (user.getIdRol() != null) {
+                    System.out.println("pasa rol");
                     if (user.getIdRol().getIdRol() != null) {
                         switch (user.getIdRol().getIdRol()) {
                             case 0:
-                                System.out.println("pasa");
+                                System.out.println("pasa" + user.getIdRol() );
                                 return "/usuarios/Principal.deportista.xhtml?faces-redirect=true";
                             case 1:
-                                System.out.println("pasa");
+                                System.out.println("pasa" + user.getIdRol() );
                                 return "/usuarios/Principal.entrenador.xhtml?faces-redirect=true";
                             case 2:
-                                System.out.println("pasa");
+                                System.out.println("pasa" + user.getIdRol() );
                                 return "/usuarios/Principal.administrador.xhtml?faces-redirect=true";
                             default:
                                 break;
@@ -122,14 +125,14 @@ public class SessionController implements Serializable {
     public void validarRol(Integer idRol) throws IOException {
         ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
         if (isSessionStart()) {
-            if (user.getIdRol().getIdRol() != idRol.intValue()) {
+            if (user.getIdRol().getIdRol() == idRol.intValue()) {
                 ec.redirect(ec.getRequestContextPath() + urlPrincipalRol(idRol));
             }
         } else {
             ec.redirect(ec.getRequestContextPath());
         }
     }
-    
+
     private String urlPrincipalRol(Integer idRol) {
         switch (idRol) {
             case 0:
@@ -142,6 +145,7 @@ public class SessionController implements Serializable {
                 return "";
         }
     }
+
     public void cerrarSesion() {
         try {
             idUsuario = null;
@@ -151,8 +155,8 @@ public class SessionController implements Serializable {
             ec.invalidateSession();
             ec.redirect(ec.getRequestContextPath());
         } catch (IOException iOException) {
+            iOException.printStackTrace();
         }
     }
 
-   
 }

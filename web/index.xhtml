@@ -2,10 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
-    <link rel="stylesheet" href="resources/css/index.css"/>
-    <link rel="stylesheet" href="resources/css/bootstrap.css"/>
-    <link rel="stylesheet" href="resources/css/formValidation.min.css"/>
-    <link rel="icon" href="resources/images/LOGO.png"/>
+    <link rel="stylesheet" href="#{request.contextPath}/resources/css/index.css"/>
+    <link rel="stylesheet" href="#{request.contextPath}/resources/css/bootstrap.css"/>
+    <link rel="stylesheet" href="#{request.contextPath}/resources/css/formValidation.min.css"/>
+    <link rel="icon" href="#{request.contextPath}/resources/images/LOGO.png"/>
     <h:body class="login">
         <div class="container">
             <div class="row mt-5">
@@ -39,7 +39,7 @@
                         </div>
                         <hr/>
                         <div class="text-center">
-                            <strong> Olvido la <h:commandLink>Contraseña?</h:commandLink></strong>
+                            <strong> Olvido la <a href="recuperarClave.xhtml"> Contraseña? </a> </strong>
                         </div>
                     </h:form>
                 </div>

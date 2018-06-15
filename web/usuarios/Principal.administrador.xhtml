@@ -22,49 +22,50 @@
     </ui:define>
     <ui:define name="Contenido" >   
         <!--Tabla Usuarios-->
-        <h:dataTable class="table table-sm table-light table-hover" id="tabla"
-                     value="#{usuarioController.usuario}" var="u">
-            <form preventId="false" >
-                <h:column>
-                    <f:facet name="header" > <i class="fa fa-fw fa-address-card"></i> Documento </f:facet>
-                    <h:outputText value="#{u.idUsuarios}"/>
-                </h:column>
-                <h:column>
-                    <f:facet name="header"> <i class="fa fa-fw fa-address-card-o"></i> Tipo Documento </f:facet>
-                    <h:outputText value="#{u.idTipoDocumento.sigla}"/>
-                </h:column>
-                <h:column>
-                    <f:facet name="header"> <i class="fa fa-fw fa-user-o"></i> Nombre </f:facet>
-                    <h:outputText value=" #{u.nombre} "/>
-                    <h:outputText value=" #{u.apellido} "/>
-                </h:column>
-                <h:column>
-                    <f:facet name="header"> <i class="fa fa-fw fa-tint"></i> RH </f:facet>
-                    <h:outputText value="#{u.rh}"/>
-                </h:column>
-                <h:column>
-                    <f:facet name="header"><i class="fa fa-fw fa-cog"></i> Opciones </f:facet>
-                    <h:commandLink class="btn btn-warning alert-secondary" style="margin: 1px"
-                                   actionListener="#{usuarioController.seleccionarUsuario(u)}" 
-                                   a:data-toggle="modal" a:data-target="#modalEditar">
-                        <f:ajax render=":contentModalEditar"/>
-                        <i class="fa fa-pencil"></i>
-                    </h:commandLink>
-                    <h:commandLink class="btn btn-dark alert-secondary" style="margin: 1px"
-                                   actionListener="#{usuarioController.cambiarEstado(u)}">
-                        <i class="fa #{usuarioController.getClassBloqueUsuarioIcon(u)}"></i>
-                        <f:ajax render="@this" immediate="true"/>
-                    </h:commandLink>
-                    <h:commandLink class="btn btn-danger alert-secondary"
-                                   actionListener="#{usuarioController.seleccionarUsuario(u)}" style="margin: 1px"
-                                   a:data-toggle="modal" a:data-target="#modalEliminar"
-                                   action="#{usuarioController.seleccionarUsuario(u)}">
-                        <i class="fa fa-user-times "></i>
-                        <f:ajax render=":contentModalEliminar"/>
-                    </h:commandLink>
-                </h:column>
-            </form>
-        </h:dataTable>
+        <form preventId="false" >
+            <h:panelGroup>
+                <h:dataTable class="table table-sm table-light table-hover" id="tabla"
+                             value="#{usuarioController.deportista}" var="u">
+                    <h:column>
+                        <f:facet name="header" > <i class="fa fa-fw fa-address-card"></i> Documento </f:facet>
+                        <h:outputText value="#{u.idUsuarios}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header"> <i class="fa fa-fw fa-address-card-o"></i> Tipo Documento </f:facet>
+                        <h:outputText value="#{u.idTipoDocumento.sigla}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header"> <i class="fa fa-fw fa-user-o"></i> Nombre </f:facet>
+                        <h:outputText value=" #{u.nombre} "/>
+                        <h:outputText value=" #{u.apellido} "/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header"> <i class="fa fa-fw fa-tint"></i> RH </f:facet>
+                        <h:outputText value="#{u.rh}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header"><i class="fa fa-fw fa-cog"></i> Opciones </f:facet>
+                        <h:commandLink class="btn btn-warning alert-secondary" style="margin: 1px"
+                                       actionListener="#{usuarioController.seleccionarUsuario(u)}" 
+                                       a:data-toggle="modal" a:data-target="#modalEditar">
+                            <f:ajax render=":contentModalEditar"/>
+                            <i class="fa fa-pencil"></i>
+                        </h:commandLink>
+                        <h:commandLink class="btn btn-dark alert-secondary" style="margin: 1px"
+                                       actionListener="#{usuarioController.cambiarEstado(u)}">
+                            <i class="fa #{usuarioController.getClassBloqueUsuarioIcon(u)}"></i>
+                            <f:ajax render="@this" immediate="true"/>
+                        </h:commandLink>
+                        <h:commandLink class="btn btn-danger alert-secondary"
+                                       actionListener="#{usuarioController.seleccionarUsuario(u)}" style="margin: 1px"
+                                       a:data-toggle="modal" a:data-target="#modalEliminar">
+                            <i class="fa fa-user-times "></i>
+                            <f:ajax render=":contentModalEliminar"/>
+                        </h:commandLink>
+                    </h:column>
+                </h:dataTable>
+            </h:panelGroup>
+        </form>
         <div class="container row">
             <h:form id="form-file" prependId="false" enctype="multipart/form-data" class="col-md-4">
                 <h6 class="">Carga de varios archivos al servidor</h6>
@@ -195,7 +196,7 @@
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="documento">Documento <span class="required">*</span>
                                             </label>
                                             <div class="col-md-12 col-md-12 col-xs-12">
-                                                <h:inputText id="documento" value="#{usuarioController.usuarioSeleccionado.idUsuarios}"
+                                                <h:inputText id="documento" value="{usuarioController.usuarioSeleccionado.idUsuarios}"
                                                              a:type="number" class="form-control col-md-7 col-xs-12"/>
                                             </div>
                                         </div>
@@ -203,7 +204,7 @@
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nombres">Nombres <span class="required">*</span>
                                             </label>
                                             <div class="col-md-12 col-md-12 col-xs-12">
-                                                <h:inputText id="nombres" a:type="text" value="#{usuarioController.usuarioSeleccionado.nombre}"
+                                                <h:inputText id="nombres" a:type="text" value="{usuarioController.usuarioSeleccionado.nombre}"
                                                              a:required="required" class="form-control col-md-7 col-xs-12"/>
                                             </div>
                                         </div>
@@ -211,7 +212,7 @@
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="primerApellido"> Apellidos <span class="required">*</span>
                                             </label>
                                             <div class="col-md-12 col-md-12 col-xs-12">
-                                                <h:inputText id="primerApellido" value="#{usuarioController.usuarioSeleccionado.apellido}"
+                                                <h:inputText id="primerApellido" value="{usuarioController.usuarioSeleccionado.apellido}"
                                                              a:type="text" a:required="required" class="form-control col-md-7 col-xs-12"/>
                                             </div>
                                         </div>
@@ -219,13 +220,13 @@
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="correo">Correo <span class="required">*</span>
                                             </label>
                                             <div class="col-md-12 col-md-12 col-xs-12">
-                                                <h:inputText id="correo" a:type="email" value="#{usuarioController.usuarioSeleccionado.mail}"
+                                                <h:inputText id="correo" a:type="email" value="{usuarioController.usuarioSeleccionado.mail}"
                                                              a:required="required" class="form-control col-md-7 col-xs-12"/>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-danger alert-light" data-dismiss="modal">Cancelar</button>
-                                            <h:commandButton actionListener="#{usuarioController}" 
+                                            <h:commandButton actionListener="{usuarioController}" 
                                                              class="btn btn-success alert-light" value="Editar"/>
                                         </div>
                                     </div>

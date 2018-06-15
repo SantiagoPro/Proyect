@@ -35,6 +35,7 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "CategoriaDeportista.findByIdCategoriaDeportista", query = "SELECT c FROM CategoriaDeportista c WHERE c.idCategoriaDeportista = :idCategoriaDeportista")})
 public class CategoriaDeportista implements Serializable {
 
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,6 +48,8 @@ public class CategoriaDeportista implements Serializable {
     @JoinColumn(name = "id_deportista", referencedColumnName = "id_deportista")
     @ManyToOne(optional = false)
     private Deportista idDeportista;
+    @Column(name = "estado_categoria")
+    private Short estadoCategoria;
     @OneToMany(mappedBy = "idCategoriaDeportista")
     private List<Entrenamiento> entrenamientoList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCategoriaDeportista")
@@ -83,6 +86,15 @@ public class CategoriaDeportista implements Serializable {
         this.idDeportista = idDeportista;
     }
 
+    public Short getEstadoCategoria() {
+        return estadoCategoria;
+    }
+
+    public void setEstadoCategoria(Short estadoCategoria) {
+        this.estadoCategoria = estadoCategoria;
+    }
+    
+    
     @XmlTransient
     public List<Entrenamiento> getEntrenamientoList() {
         return entrenamientoList;
@@ -108,6 +120,7 @@ public class CategoriaDeportista implements Serializable {
         return hash;
     }
 
+    
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
@@ -125,5 +138,6 @@ public class CategoriaDeportista implements Serializable {
     public String toString() {
         return "com.rid.modelo.entities.CategoriaDeportista[ idCategoriaDeportista=" + idCategoriaDeportista + " ]";
     }
+
     
 }
