@@ -35,7 +35,9 @@ public class ResultadosController implements Serializable{
     
     private Integer idResultado;
     private Integer pesoArranque;
+    private Boolean validoArranque;
     private Integer pesoEnvion;
+    private Boolean validoEnvion;
     private Participacion idParticipacion;
     
     public ResultadosController() {
@@ -69,6 +71,22 @@ public class ResultadosController implements Serializable{
         this.pesoEnvion = pesoEnvion;
     }
 
+    public Boolean getValidoArranque() {
+        return validoArranque;
+    }
+
+    public void setValidoArranque(Boolean validoArranque) {
+        this.validoArranque = validoArranque;
+    }
+
+    public Boolean getValidoEnvion() {
+        return validoEnvion;
+    }
+
+    public void setValidoEnvion(Boolean validoEnvion) {
+        this.validoEnvion = validoEnvion;
+    }
+
     
 
     public Participacion getIdParticipacion() {
@@ -89,12 +107,16 @@ public class ResultadosController implements Serializable{
     public String registrarResultado(){
         System.out.println("Id: " +idResultado);
         System.out.println("id: " +pesoArranque);
+        System.out.println("id: " +validoArranque);
         System.out.println("id: " +pesoEnvion);
+        System.out.println("id: " +validoEnvion);
         System.out.println("id: " +idParticipacion);
         try {
             Resultado r = new Resultado(null);
             r.setPesoArranque(pesoArranque);
+            r.setValidoArranque(validoArranque);
             r.setPesoEnvion(pesoEnvion);
+            r.setValidoEnvion(validoEnvion);
             r.setIdParticipacion(idParticipacion);
             rfl.create(r);
             r = null;

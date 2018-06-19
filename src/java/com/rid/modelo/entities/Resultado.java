@@ -17,6 +17,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -33,6 +34,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Resultado.findByPesoEnvion", query = "SELECT r FROM Resultado r WHERE r.pesoEnvion = :pesoEnvion")})
 public class Resultado implements Serializable {
 
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,10 +43,14 @@ public class Resultado implements Serializable {
     private Integer idResultado;
     @Basic(optional = false)
     @Column(name = "peso_arranque")
-        private Integer pesoArranque;
+    private Integer pesoArranque;
+    @Column(name = "valido_arranque")
+    private Boolean validoArranque;
     @Basic(optional = false)
     @Column(name = "peso_envion")
     private Integer pesoEnvion;
+    @Column(name = "valido_envion")
+    private Boolean validoEnvion;
     @JoinColumn(name = "id_participacion", referencedColumnName = "id_participacion")
     @ManyToOne(optional = false)
     private Participacion idParticipacion;
@@ -78,6 +84,14 @@ public class Resultado implements Serializable {
         this.pesoArranque = pesoArranque;
     }
 
+    public Boolean getValidoArranque() {
+        return validoArranque;
+    }
+
+    public void setValidoArranque(Boolean validoArranque) {
+        this.validoArranque = validoArranque;
+    }
+    
     public Integer getPesoEnvion() {
         return pesoEnvion;
     }
@@ -89,7 +103,15 @@ public class Resultado implements Serializable {
     public Participacion getIdParticipacion() {
         return idParticipacion;
     }
+    
+    public Boolean getValidoEnvion() {
+        return validoEnvion;
+    }
 
+    public void setValidoEnvion(Boolean validoEnvion) {
+        this.validoEnvion = validoEnvion;
+    }
+    
     public void setIdParticipacion(Participacion idParticipacion) {
         this.idParticipacion = idParticipacion;
     }
@@ -118,5 +140,12 @@ public class Resultado implements Serializable {
     public String toString() {
         return "com.rid.modelo.entities.Resultado[ idResultado=" + idResultado + " ]";
     }
+
+    
+
+    
+
+
+    
     
 }

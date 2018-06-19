@@ -136,7 +136,7 @@ body.sidenav-toggled .navbar-sidenav .nav-link-text {
     margin-top: calc(100vh - 50px);
 }
 #mainNav ul li:hover{
-    background-color: #355C7D;
+    background-color: #0f0c29;
 }
 #mainNav span{
     color:#fff;

@@ -23,8 +23,9 @@
     </ui:define>
     <ui:define name="Contenido">
         <!--Tabla Usuarios-->
-        <h:dataTable class="table table-sm table-light table-hover" id="tabla"
-                     value="#{usuarioController.usuario}" var="u">
+        <h:dataTable class="table table-sm table-responsive-lg table-responsive-md 
+                             table-responsive-sm table-responsive-xl table-hover" id="tabla"
+                             value="#{usuarioController.deportista}" var="u">
             <form preprendId="false" >
                 <h:column>
                     <f:facet name="header" > <i class="fa fa-fw fa-address-card"></i> Documento </f:facet>
