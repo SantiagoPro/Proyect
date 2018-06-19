@@ -61,6 +61,10 @@ public class Participacion implements Serializable {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    public Participacion(Integer idParticipacion) {
+        this.idParticipacion = idParticipacion;
+    }
+    
     public Integer getIdParticipacion() {
         return idParticipacion;
     }
