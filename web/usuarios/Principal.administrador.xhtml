@@ -22,50 +22,52 @@
     </ui:define>
     <ui:define name="Contenido" >   
         <!--Tabla Usuarios-->
-        <form preventId="false" >
+        <h:form prependId="false" >
             <h:panelGroup>
-                <h:dataTable class="table table-sm table-light table-hover" id="tabla"
-                             value="#{usuarioController.deportista}" var="u">
+                <h:dataTable class="table table-sm table-striped table-responsive-lg table-responsive-md 
+                             table-responsive-sm table-responsive-xl table-hover"
+                             value="#{usuarioController.entrenador}" var="u">
                     <h:column>
-                        <f:facet name="header" > <i class="fa fa-fw fa-address-card"></i> Documento </f:facet>
+                        <f:facet name="header"> <i class="icon icon-address-card"></i> Documento </f:facet>
                         <h:outputText value="#{u.idUsuarios}"/>
                     </h:column>
                     <h:column>
-                        <f:facet name="header"> <i class="fa fa-fw fa-address-card-o"></i> Tipo Documento </f:facet>
+                        <f:facet name="header"> <i class="icon- icon-fw icon-address-card-o"></i> Tipo Documento </f:facet>
                         <h:outputText value="#{u.idTipoDocumento.sigla}"/>
                     </h:column>
                     <h:column>
-                        <f:facet name="header"> <i class="fa fa-fw fa-user-o"></i> Nombre </f:facet>
+                        <f:facet name="header"> <i class="icon icon-fw icon-user-o"></i> Nombre </f:facet>
                         <h:outputText value=" #{u.nombre} "/>
                         <h:outputText value=" #{u.apellido} "/>
                     </h:column>
                     <h:column>
-                        <f:facet name="header"> <i class="fa fa-fw fa-tint"></i> RH </f:facet>
+                        <f:facet name="header"> <i class="icon icon-fw icon-tint"></i> RH </f:facet>
                         <h:outputText value="#{u.rh}"/>
                     </h:column>
                     <h:column>
-                        <f:facet name="header"><i class="fa fa-fw fa-cog"></i> Opciones </f:facet>
+                        <f:facet name="header"><i class="icon-settings3"></i> Opciones </f:facet>
                         <h:commandLink class="btn btn-warning alert-secondary" style="margin: 1px"
                                        actionListener="#{usuarioController.seleccionarUsuario(u)}" 
                                        a:data-toggle="modal" a:data-target="#modalEditar">
                             <f:ajax render=":contentModalEditar"/>
-                            <i class="fa fa-pencil"></i>
+                            <i class="fa icon-pencil"></i>
                         </h:commandLink>
                         <h:commandLink class="btn btn-dark alert-secondary" style="margin: 1px"
                                        actionListener="#{usuarioController.cambiarEstado(u)}">
-                            <i class="fa #{usuarioController.getClassBloqueUsuarioIcon(u)}"></i>
+                            <i class="#{usuarioController.getClassBloqueUsuarioIcon(u)}"></i>
                             <f:ajax render="@this" immediate="true"/>
                         </h:commandLink>
                         <h:commandLink class="btn btn-danger alert-secondary"
                                        actionListener="#{usuarioController.seleccionarUsuario(u)}" style="margin: 1px"
                                        a:data-toggle="modal" a:data-target="#modalEliminar">
-                            <i class="fa fa-user-times "></i>
+                            <i class="fa icon-user-times "></i>
                             <f:ajax render=":contentModalEliminar"/>
                         </h:commandLink>
                     </h:column>
                 </h:dataTable>
             </h:panelGroup>
-        </form>
+        </h:form>
+        <!--Carga de archivos al servidor-->
         <div class="container row">
             <h:form id="form-file" prependId="false" enctype="multipart/form-data" class="col-md-4">
                 <h6 class="">Carga de varios archivos al servidor</h6>
@@ -85,6 +87,7 @@
                 </div> 
             </h:form>
         </div>
+        <!--Enviar Correo-->
         <div class="form-control col-md-2">
             <h:form prependId="false">
                 <h:outputLabel> <strong> Enviar correo </strong> </h:outputLabel>
@@ -92,7 +95,7 @@
                 <h:commandLink class="btn btn-primary alert-light"
                                a:data-toggle="modal" a:data-target="#modalCorreo">
                     <f:ajax render=":contentModalCorreo"/>
-                    <i class="fa fa-mail-forward"></i>
+                    <i class="fa icon-mail-forward"></i>
                 </h:commandLink>
                 <h:outputLabel> <strong> Registrar Deportista </strong> </h:outputLabel>
                 <br/>
@@ -100,7 +103,7 @@
                                actionListener="#{usuarioController.seleccionarUsuario(u)}" style="margin: 1px"
                                a:data-toggle="modal" a:data-target="#modalRegistrar"
                                action="#{usuarioController.seleccionarUsuario(u)}">
-                    <i class="fa fa-user-plus"></i>
+                    <i class="fa icon-user-plus"></i>
                     <f:ajax render=":contentModalRegistrar"/>
                 </h:commandLink>
             </h:form>
@@ -128,6 +131,7 @@
                 </h:form>
             </div>
         </div>
+        
         <!-- Modal para actualizar -->
         <div id="modalEditar" class="modal fade" role="dialog">
             <div class="modal-dialog">
@@ -139,14 +143,6 @@
                                 <h5 class="modal-title">Editar usuario:</h5>
                             </div>
                             <div class="modal-body">
-                                <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="documento">Documento <span class="required">*</span>
-                                    </label>
-                                    <div class="col-md-12 col-md-12 col-xs-12">
-                                        <h:inputText id="documento" value="#{usuarioController.usuarioSeleccionado.idUsuarios}"
-                                                     a:type="number" class="form-control col-md-7 col-xs-12"/>
-                                    </div>
-                                </div>
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nombres">Nombres <span class="required">*</span>
                                     </label>
@@ -182,104 +178,174 @@
                 </h:form>
             </div>
         </div>
-        <!--        <div id="modalActualizar" class="modal fade" role="dialog">
-                    <div class="modal-dialog">
-                        <h:form id="demo-form2" a:data-parsley-validate="true" class="form-horizontal form-control-success"
-                                prependId="false">
-                            <h:panelGroup id="contentModalActualizar" layout="block">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title">Registrar usuario:</h5>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="documento">Documento <span class="required">*</span>
-                                            </label>
-                                            <div class="col-md-12 col-md-12 col-xs-12">
-                                                <h:inputText id="documento" value="{usuarioController.usuarioSeleccionado.idUsuarios}"
-                                                             a:type="number" class="form-control col-md-7 col-xs-12"/>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nombres">Nombres <span class="required">*</span>
-                                            </label>
-                                            <div class="col-md-12 col-md-12 col-xs-12">
-                                                <h:inputText id="nombres" a:type="text" value="{usuarioController.usuarioSeleccionado.nombre}"
-                                                             a:required="required" class="form-control col-md-7 col-xs-12"/>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="primerApellido"> Apellidos <span class="required">*</span>
-                                            </label>
-                                            <div class="col-md-12 col-md-12 col-xs-12">
-                                                <h:inputText id="primerApellido" value="{usuarioController.usuarioSeleccionado.apellido}"
-                                                             a:type="text" a:required="required" class="form-control col-md-7 col-xs-12"/>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="correo">Correo <span class="required">*</span>
-                                            </label>
-                                            <div class="col-md-12 col-md-12 col-xs-12">
-                                                <h:inputText id="correo" a:type="email" value="{usuarioController.usuarioSeleccionado.mail}"
-                                                             a:required="required" class="form-control col-md-7 col-xs-12"/>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-danger alert-light" data-dismiss="modal">Cancelar</button>
-                                            <h:commandButton actionListener="{usuarioController}" 
-                                                             class="btn btn-success alert-light" value="Editar"/>
-                                        </div>
-                                    </div>
-                                </div>
-                            </h:panelGroup>
-                        </h:form>
-                    </div>
-                </div>-->
-        <!--Modal Correo-->
-        <div id="modalCorreo" class="modal fade" role="dialog">
+        <!--Registrar Usuario-->
+        <div id="modalRegistrar" class="modal fade" role="dialog">
             <div class="modal-dialog">
-                <h:form prependId="false">
-                    <h:panelGroup id="contentModalCorreo" layout="block">
+                <h:form a:data-parsley-validate="true" class="form-horizontal form-control-success"
+                        prependId="false">
+                    <h:panelGroup id="contentModalRegistrar" layout="block">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title">Enviar correo</h5>
+                                <h5 class="modal-title">Registrar usuario:</h5>
                             </div>
-                            <div class="modal-body">
+                            <div class="modal-body col-md-12">
                                 <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="destinatarioMail">Correo <span class="required">*</span>
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="documentoR">Documento <span class="required">*</span>
                                     </label>
                                     <div class="col-md-12 col-md-12 col-xs-12">
-                                        <h:inputText id="destinatarioMail" a:type="email" value="#{sendMail.destinatarios}"
-                                                     a:required="required" class="form-control col-md-7 col-xs-12"
-                                                     autocomplete="off"/>
+                                        <h:inputText id="documentoR" value="#{usuarioController.documento}"
+                                                     a:type="number" class="form-control col-md-7 col-xs-12"/>
+                                    </div>
+                                </div>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tipoDocumentoR">Tipo documento <span class="required" >*</span> </label>
+                                <div class="col-md-10 col-sm-8 col-xs-12">
+                                    <h:selectOneMenu id="tipoDocumentoR" value="#{usuarioController.tiposDocumento}"
+                                                     required="required" class="form-control col-md-7 col-xs-12">
+                                        <f:selectItems value="#{documentoController.tiposDocumentos}" var="td" itemLabel="#{td.nombre}"></f:selectItems>
+                                    </h:selectOneMenu>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nombresR">Nombres <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-12 col-md-12 col-xs-12">
+                                        <h:inputText id="nombresR" a:type="text" value="#{usuarioController.nombre}"
+                                                     a:required="required" class="form-control col-md-7 col-xs-12"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="asuntoMail">Asunto del Correo<span class="required">*</span>
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="apellidoR"> Apellidos <span class="required">*</span>
                                     </label>
                                     <div class="col-md-12 col-md-12 col-xs-12">
-                                        <h:inputText id="asuntoMail" a:type="text" value="#{sendMail.asunto}"
-                                                     a:required="required" class="form-control col-md-7 col-xs-12"
-                                                     autocomplete="off"/>
+                                        <h:inputText id="apellidoR" value="#{usuarioController.apellido}"
+                                                     a:type="text" a:required="required" class="form-control col-md-7 col-xs-12"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="cuerpoMail">Cuerpo de correo <span class="required">*</span>
+                                    <label class="control-label col-md-10 col-sm-10 col-xs-12" for="generoR"> Genero <span class="required">*</span>
                                     </label>
-                                    <div class="col-md-12 col-md-12 col-xs-12">
-                                        <h:inputTextarea id="cuerpoMail" a:type="text" value="#{sendMail.cuerpo}"
-                                                         a:required="required" class="form-control col-md-7 col-xs-12"/>
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <h:selectOneMenu id="generoR" value="#{usuarioController.sexo}"
+                                                         required="required" class="form-control col-md-7 col-xs-12">
+                                            <f:selectItem itemLabel="Seleccione el género"/>
+                                            <f:selectItem itemValue="F" itemLabel="Femenino"/>
+                                            <f:selectItem itemValue="M" itemLabel="Masculino"/>
+                                        </h:selectOneMenu>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-danger alert-light" data-dismiss="modal">Cancelar</button>
-                                <h:commandButton class="btn btn-success alert-light"  value="Enviar" actionListener="#{sendMail.sendMail()}"/>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="fechaNecR"> Fecha de nacimiento <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-12 col-md-12 col-xs-12">
+                                        <h:inputText id="fechaNacR" value="#{usuarioController.fechaNacimiento}" converter="fechaConverter"
+                                                     a:type="date" a:required="required" class="form-control col-md-7 col-xs-12"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="seguroR"> Seguro Medico <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-12 col-md-12 col-xs-12">
+                                        <h:inputText id="seguroR" value="#{usuarioController.seguroMedico}"
+                                                     a:type="text" a:required="required" class="form-control col-md-7 col-xs-12"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-10 col-sm-10 col-xs-12" for="rhR"> Rh <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <h:selectOneRadio id="rhR" value="#{usuarioController.rh}" layout="pageDirection"
+                                                          required="required" class="form-control col-md-7 col-xs-12">
+                                            <f:selectItem itemValue="O-" itemLabel="O-"/>
+                                            <f:selectItem itemValue="O+" itemLabel="O+"/>
+                                            <f:selectItem itemValue="A-" itemLabel="A-"/>
+                                            <f:selectItem itemValue="A+" itemLabel="A+"/>
+                                            <f:selectItem itemValue="AB-" itemLabel="AB-"/>
+                                            <f:selectItem itemValue="AB+" itemLabel="AB+"/>
+                                        </h:selectOneRadio>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="correoR"> Correo <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-12 col-md-12 col-xs-12">
+                                        <h:inputText id="correoR" a:type="email" value="#{usuarioController.mail}"
+                                                     a:required="required" class="form-control col-md-7 col-xs-12"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="telefonoR"> Telefono <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-12 col-md-12 col-xs-12">
+                                        <h:inputText id="telefonoR" a:type="number" value="#{usuarioController.telefono}"
+                                                     a:required="required" class="form-control col-md-7 col-xs-12"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="direccionR"> Direccion <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-12 col-md-12 col-xs-12">
+                                        <h:inputText id="direccionR" a:type="text" value="#{usuarioController.direccion}"
+                                                     a:required="required" class="form-control col-md-7 col-xs-12"/>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger alert-light" data-dismiss="modal">Cancelar</button>
+                                    <h:commandButton actionListener="#{usuarioController.registrarDeportista()}" 
+                                                     class="btn btn-success alert-light" value="Registrar"/>
+                                </div>
                             </div>
                         </div>
                     </h:panelGroup>
                 </h:form>
             </div>
         </div>
+        <!--Modal Correo-->
+        <div class="col" id="correo">
+            <div class="collapse multi-collapse" id="registrar">
+                <div class="card card-body">
+                    <h:form prependId="false">
+                        <h:panelGroup id="contentModalCorreo" layout="block">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Enviar correo</h5>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="destinatarioMail">Correo <span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-12 col-md-12 col-xs-12">
+                                            <h:inputText id="destinatarioMail" a:type="email" value="#{sendMail.destinatarios}"
+                                                         a:required="required" class="form-control col-md-7 col-xs-12"
+                                                         autocomplete="off"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="asuntoMail">Asunto del Correo<span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-12 col-md-12 col-xs-12">
+                                            <h:inputText id="asuntoMail" a:type="text" value="#{sendMail.asunto}"
+                                                         a:required="required" class="form-control col-md-7 col-xs-12"
+                                                         autocomplete="off"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="cuerpoMail">Cuerpo de correo <span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-12 col-md-12 col-xs-12">
+                                            <h:inputTextarea id="cuerpoMail" a:type="text" value="#{sendMail.cuerpo}"
+                                                             a:required="required" class="form-control col-md-7 col-xs-12"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger alert-light" data-dismiss="modal">Cancelar</button>
+                                    <h:commandButton class="btn btn-success alert-light"  value="Enviar" actionListener="#{sendMail.sendMail()}"/>
+                                </div>
+                            </div>
+                        </h:panelGroup>
+                    </h:form>
+                </div>
+            </div>
+        </div>
+
     </ui:define>
 </ui:composition>

@@ -46,4 +46,16 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
             return null;
         }
     }
+    
+    @Override
+    public Usuario cambioClave(Long documento) {
+        try {
+            TypedQuery<Usuario> q = getEntityManager().createQuery("SELECT u FROM Usuario u WHERE u.idUsuarios = :idU", Usuario.class);
+            q.setParameter("idU", documento);
+            return q.getSingleResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

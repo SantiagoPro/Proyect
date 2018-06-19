@@ -33,7 +33,13 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Deportista.findAll", query = "SELECT d FROM Deportista d")
     , @NamedQuery(name = "Deportista.findByIdDeportista", query = "SELECT d FROM Deportista d WHERE d.idDeportista = :idDeportista")
     , @NamedQuery(name = "Deportista.findByPeso", query = "SELECT d FROM Deportista d WHERE d.peso = :peso")
-    , @NamedQuery(name = "Deportista.findByEstatura", query = "SELECT d FROM Deportista d WHERE d.estatura = :estatura")})
+    , @NamedQuery(name = "Deportista.findByEstatura", query = "SELECT d FROM Deportista d WHERE d.estatura = :estatura")
+    , @NamedQuery(name = "Deportista.findByFuerza", query = "SELECT d FROM Deportista d WHERE d.fuerza = :fuerza")
+    , @NamedQuery(name = "Deportista.findByVelocidad", query = "SELECT d FROM Deportista d WHERE d.velocidad = :velocidad")
+    , @NamedQuery(name = "Deportista.findBySalto", query = "SELECT d FROM Deportista d WHERE d.salto = :salto")
+    , @NamedQuery(name = "Deportista.findByFlexibilidad", query = "SELECT d FROM Deportista d WHERE d.flexibilidad = :flexibilidad")
+    , @NamedQuery(name = "Deportista.findByResistencia", query = "SELECT d FROM Deportista d WHERE d.resistencia = :resistencia")})
+
 public class Deportista implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -47,6 +53,16 @@ public class Deportista implements Serializable {
     @Basic(optional = false)
     @Column(name = "estatura")
     private double estatura;
+    @Column(name = "fuerza")
+    private Integer fuerza;
+    @Column(name = "velocidad")
+    private Integer velocidad;
+    @Column(name = "salto")
+    private Integer salto;
+    @Column(name = "flexibilidad")
+    private Integer flexibilidad;
+    @Column(name = "resistencia")
+    private Integer resistencia;
     @ManyToMany(mappedBy = "deportistaList")
     private List<Horario> horarioList;
     @JoinColumn(name = "id_deportista", referencedColumnName = "id_usuarios", insertable = false, updatable = false)
@@ -64,10 +80,15 @@ public class Deportista implements Serializable {
         this.idDeportista = idDeportista;
     }
 
-    public Deportista(Long idDeportista, double peso, double estatura) {
+    public Deportista(Long idDeportista, double peso, double estatura, Integer fuerza, Integer velocidad, Integer salto, Integer flexibilidad, Integer resistencia) {
         this.idDeportista = idDeportista;
         this.peso = peso;
         this.estatura = estatura;
+        this.fuerza = fuerza;
+        this.velocidad = velocidad;
+        this.salto = salto;
+        this.flexibilidad = flexibilidad;
+        this.resistencia = resistencia;
     }
 
     public Long getIdDeportista() {
@@ -93,6 +114,47 @@ public class Deportista implements Serializable {
     public void setEstatura(double estatura) {
         this.estatura = estatura;
     }
+
+    public Integer getFuerza() {
+        return fuerza;
+    }
+
+    public void setFuerza(Integer fuerza) {
+        this.fuerza = fuerza;
+    }
+
+    public Integer getVelocidad() {
+        return velocidad;
+    }
+
+    public void setVelocidad(Integer velocidad) {
+        this.velocidad = velocidad;
+    }
+
+    public Integer getSalto() {
+        return salto;
+    }
+
+    public void setSalto(Integer salto) {
+        this.salto = salto;
+    }
+
+    public Integer getFlexibilidad() {
+        return flexibilidad;
+    }
+
+    public void setFlexibilidad(Integer flexibilidad) {
+        this.flexibilidad = flexibilidad;
+    }
+
+    public Integer getResistencia() {
+        return resistencia;
+    }
+
+    public void setResistencia(Integer resistencia) {
+        this.resistencia = resistencia;
+    }
+    
 
     @XmlTransient
     public List<Horario> getHorarioList() {

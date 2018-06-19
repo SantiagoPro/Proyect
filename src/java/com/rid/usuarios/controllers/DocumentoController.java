@@ -34,11 +34,18 @@ public class DocumentoController implements Serializable{
     
     @PostConstruct
     public void init(){
-        tiposDocumentos = tdfl.findAll();
     }
     
     public List<TipoDocumento> getTiposDocumentos(){
+        if (tiposDocumentos == null || tiposDocumentos.isEmpty()) {
+            tiposDocumentos = tdfl.findAll();
+        }
         return tiposDocumentos;
     }
+
+    public void setTiposDocumentos(List<TipoDocumento> tiposDocumentos) {
+        this.tiposDocumentos = tiposDocumentos;
+    }
+    
     
 }

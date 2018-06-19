@@ -31,6 +31,8 @@ public interface UsuarioFacadeLocal {
     List<Usuario> findRange(int[] range);
     
     Usuario findByIduClv(Long idUsuario, String clave);    
+    
+    Usuario cambioClave(Long idUsuario);    
 
     int count();
     

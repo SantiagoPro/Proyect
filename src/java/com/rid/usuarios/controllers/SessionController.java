@@ -87,13 +87,13 @@ public class SessionController implements Serializable {
                     if (user.getIdRol().getIdRol() != null) {
                         switch (user.getIdRol().getIdRol()) {
                             case 0:
-                                System.out.println("pasa" + user.getIdRol() );
+                                System.out.println("pasa" + user.getIdRol().getIdRol() );
                                 return "/usuarios/Principal.deportista.xhtml?faces-redirect=true";
                             case 1:
-                                System.out.println("pasa" + user.getIdRol() );
+                                System.out.println("pasa" + user.getIdRol().getIdRol() );
                                 return "/usuarios/Principal.entrenador.xhtml?faces-redirect=true";
                             case 2:
-                                System.out.println("pasa" + user.getIdRol() );
+                                System.out.println("pasa" + user.getIdRol().getIdRol() );
                                 return "/usuarios/Principal.administrador.xhtml?faces-redirect=true";
                             default:
                                 break;

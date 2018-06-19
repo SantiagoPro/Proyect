@@ -16,17 +16,16 @@
     </ui:define>
     <ui:define name="Contenido">
         <h:form prependId="false">
-            <div class="row  d-flex justify-content-center">
+            <div class="row  d-flex justify-content-center ">
                 <div class="card-deck" >
-                    <div class="card text-center" >
-                        <div class="card-header">
-                            <h6 class="card-title" >Foto</h6>
+                    <div class="card text-center ">
+                        <div class="card-header" style="background-color: #0f454e; color: #fff" >
+                            <h6 class="card-title" > Foto </h6>
                         </div>
-                        <div class="card-content">
-                            <img class="card-img-top" src="#{request.contextPath}/resources/images/LOGO.png" alt="Foto de perfil"/>	
+                        <div class="card-content" >
+                            <img class="card-img" style="max-width: 350px " src="#{request.contextPath}/resources/images/perfiles/#{sessionController.user.foto}.jpg" alt="Foto de perfil"/>	
                         </div>
-                        <div class="card-footer" align="center" >
-                            <h6>Cambio de imagen</h6>
+                        <div class="card-footer " align="left" >
                             <div class="col-sm-12 col-md-6">
                                 <div class="form-group">
                                     <h:messages id="msjFile" for="file"/>
@@ -42,8 +41,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card text-center" value="">
-                        <div class="card-header">
+                    <div class="card text-center">
+                        <div class="card-header" style="background-color:#0f454e; color: #fff">
                             <h6 class="card-title"> 
                                 <h:outputText value="#{sessionController.user.nombre} #{sessionController.user.apellido}"/>
                             </h6>

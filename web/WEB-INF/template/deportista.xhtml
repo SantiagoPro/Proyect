@@ -5,27 +5,27 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <f:metadata>
-        <f:event type="preRenderView" listener="#{sessionController.validarRol(0)}"></f:event>
+        <f:event type="preRenderView" listener="{sessionController.validarRol(0)}"></f:event>
     </f:metadata>
     <h:head>
-        <link rel="stylesheet" href="#{request.contextPath}/resources/css/jquery-ui.css"/>
         <link rel="stylesheet" href="#{request.contextPath}/resources/css/jquery-ui.theme.css"/>|
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/jquery-ui.css"/>|
         <link rel="stylesheet" href="#{request.contextPath}/resources/css/bootstrap.css"/>
+        <link rel="icon"       href="#{request.contextPath}/resources/images/LOGO.png"/>
         <link rel="stylesheet" href="#{request.contextPath}/resources/css/paginas.css"/>
         <link rel="stylesheet" href="#{request.contextPath}/resources/css/font-awesome.css" />
         <link rel="stylesheet" href="#{request.contextPath}/resources/css/style.css"/>
         <link rel="stylesheet" href="#{request.contextPath}/resources/css/sweetalert.min.css"/>
         <link rel="stylesheet" href="#{request.contextPath}/resources/css/animate.css"/>
-        <link rel="icon" type="image/png" href="#{request.contextPath}/resources/images/LOGO.png"/>
         <meta charset="UTF-8"/>
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
         <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
         <ui:insert name="link"></ui:insert>
-        <title><ui:insert name="title">Nueva Pagina</ui:insert></title>
+        <title><ui:insert name="title"></ui:insert></title>
     </h:head>
     <h:body class="fixed-nav" id="page-top">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-danger fixed-top" id="mainNav">
-            <h:form prependId="false">    
+        <h:form prependId="false">    
+            <nav class="navbar navbar-expand-lg navbar-dark bg-danger fixed-top" id="mainNav">
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -64,8 +64,8 @@
                         </li>
                     </ul>
                 </div>
-            </h:form>
-        </nav>
+            </nav>
+        </h:form>
         <div class="content-wrapper">
             <div class="container-fluid">     
                 <div class="row">
