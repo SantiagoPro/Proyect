@@ -111,6 +111,7 @@ public class ResultadosController implements Serializable{
         System.out.println("id: " +pesoEnvion);
         System.out.println("id: " +validoEnvion);
         System.out.println("id: " +idParticipacion);
+        
         try {
             Resultado r = new Resultado(null);
             r.setPesoArranque(pesoArranque);
