@@ -2,7 +2,8 @@
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 template="./../WEB-INF/template/entrenador.xhtml"
-                xmlns:h="http://xmlns.jcp.org/jsf/html">
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
     <ui:define name="link">
         <link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/css/perfil.css"/>
     </ui:define>
@@ -16,28 +17,46 @@
         <h:form prependId="false">
             <div class="row  d-flex justify-content-center">
                 <div class="card-deck" >
-                    <div class="card" >
-                        <img class="card-img-top" src="#{request.contextPath}/resources/images/LOGO.png" alt="Foto de perfil"/>	
-                        <div class="btn ">
-                            <div>
-                                <input type="file" name="file" id="file" class="inputfile "/>
-                                <label for="file">Cambiar</label>	
+                    <div class="card text-center">
+                        <div class="card-header" style="background-color: #0f454e; color: #fff" >
+                            <h6 class="card-title" >Foto</h6>
+                        </div>
+                        <div class="card-content" >
+                            <img class="card-img" style="max-width: 350px " src="#{request.contextPath}/resources/images/perfiles/#{sessionController.user.foto}.jpg" alt="Foto de perfil"/>	
+                        </div>
+                        <div class="card-footer" align="center" >
+                            <h6>Cambio de imagen</h6>
+                            <div class="col-sm-12 col-md-6">
+                                <div class="form-group">
+                                    <h:messages id="msjFile" for="file"/>
+                                    <h:inputFile id="file" value="#{fileUpload.filePart}" a:multiple="true" />
+                                </div>
+                            </div> 
+                            <div class="col-sm-12 col-md-6">
+                                <div class="row">
+                                    <h:commandButton id="btnAccion" class="btn btn-primary" value="Cambiar"
+                                                     action="#{fileUpload.accion()}">
+                                    </h:commandButton>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="card text-center" value="">
-                        <div class="card-header">
-                            <h4 class="card-title"> 
+                    <div class="card text-center">
+                        <div class="card-header" style="background-color:#0f454e; color: #fff">
+                            <h6 class="card-title"> 
                                 <h:outputText value="#{sessionController.user.nombre} #{sessionController.user.apellido}"/>
-                            </h4>
+                            </h6>
                         </div>
                         <div class="card-body">
                             <ul class="list-group list-group-flush">
-                                <h:outputText class="list-group-item" id="FechaNacimiento" converter="fechaConverter" > <strong>#{sessionController.user.fechaNacimiento} </strong> </h:outputText>
-                                <h:outputText class="list-group-item" id="Correo"><strong> #{sessionController.user.mail} </strong> </h:outputText>
-                                <h:outputText class="list-group-item" id="Telefono"><strong> #{sessionController.user.telefono} </strong> </h:outputText>
-                                <h:outputText class="list-group-item" id="Rh"><strong>  #{sessionController.user.rh}  </strong> </h:outputText>
-                                <h:outputText class="list-group-item" id="Seguro"><strong> #{sessionController.user.seguroMedico} </strong> </h:outputText>
+                                <h:outputText class="list-group-item" id="Documento" value="#{sessionController.user.idUsuarios}"/>
+                                <h:outputText class="list-group-item" id="Sexo" value="#{sessionController.user.sexo}"/>
+                                <h:outputText class="list-group-item" id="FechaNacimiento" converter="fechaConverter" value="#{sessionController.user.fechaNacimiento}"/>
+                                <h:outputText class="list-group-item" id="Seguro" value="#{sessionController.user.seguroMedico}"/>
+                                <h:outputText class="list-group-item" id="Rh" value="#{sessionController.user.rh}"/>
+                                <h:outputText class="list-group-item" id="Correo" value="#{sessionController.user.mail}"/>
+                                <h:outputText class="list-group-item" id="Telefono" value="#{sessionController.user.telefono}"/>
+                                <h:outputText class="list-group-item" id="Direccion" value="#{sessionController.user.direccion}"/>
                             </ul>
                         </div>
                     </div>

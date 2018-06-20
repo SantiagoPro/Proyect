@@ -2,15 +2,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:atr="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-    <link rel="stylesheet" href="#{request.contextPath}/resources/css/font-awesome.css"/>
-    <link rel="stylesheet" href="#{request.contextPath}/resources/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="#{request.contextPath}/resources/css/iconos.css"/>
-    <link rel="stylesheet" href="#{request.contextPath}/resources/css/contraseña.css"/>
-    <link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/css/sweetalert.min.css"/>
-    <link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/css/animate.css"/>
-    <link rel="icon" href="#{request.contextPath}/resources/img/LOGO.png"/>
+    <link rel="stylesheet" href="#{request.contextPath}/resources/css/index.css"/>
+    <link rel="stylesheet" href="#{request.contextPath}/resources/css/bootstrap.css"/>
+    <link rel="stylesheet" href="#{request.contextPath}/resources/css/formValidation.min.css"/>
+    <link rel="icon" href="#{request.contextPath}/resources/images/LOGO.png"/>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
     <title>Recuperar contraseña</title>
@@ -18,7 +16,7 @@
         <div class="container">
             <div class="row mt-5">
                 <div class="col">
-                    <h1 class="text-center page-header">Cambio de contraseña</h1>
+                    <h1 class="text-center page-header titulo">Cambio de clave</h1>
                     <hr/>	
                 </div>
             </div>
@@ -26,23 +24,38 @@
         <div class="container">
             <div class="row mt-3 justify-content-md-center">
                 <div class="col-md-6 shadow well">
-                    <h:form>
+                    <h:form prependId="false">
                         <div class="form-group">
-                            <label for="correo"> <strong>Usuario</strong> </label>
-                            <input id="Doc" name="Doc" class="form-control" type="text" placeholder="Documento" required="" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}"/>
+                            <label for="documento"><strong> Documento </strong> </label>
+                            <h:inputText id="documento" class="form-control" a:placeholder="Ingrese su documento"
+                                         value="#{sendMail.documento}"
+                                         />
                         </div>
                         <div class="form-group">
-                            <label for="password"> <strong>Contraseña Nueva</strong> </label>
-                            <input id="clave1" name="clave1" class="form-control" type="password" placeholder="Ingrese la nueva contraseña" required="" minlength="8" maxlength="50" pattern="[0-9a-zA-Z]{8,50}"/>
+                            <label for="clave"><strong> Contraseña Nueva </strong> </label>
+                            <h:inputText class="form-control" id="clave" a:placeholder="Cree su nueva contraseña"
+                                         
+                                         value="#{sendMail.clave}"
+                                         />
                         </div>
                         <div class="form-group">
-                            <label for="password"> <strong>Repita la contraseña</strong> </label>
-                            <input id="clave2" name="clave2" class="form-control" type="password" placeholder="Ingrese la contrasena nuevamente" required="" minlength="8" maxlength="50" pattern="[0-9a-zA-Z]{8,50}"/>
+                            <label for="clave2"><strong> Repetir Contraseña </strong> </label>
+                            <h:inputSecret id="clave2" class="form-control" a:placeholder="Repita la contraseña"
+                                           value="#{sendMail.clave2}"
+                                           />
                         </div>
                         <br/>
-                        <button id="recuperar" type="button" href="" class="btn btn-success" onclick="verificarclave()">Confirmar</button>
-                        <button id="" type="button" class="btn btn-info" ><a href="index.xhtml" style="text-decoration: none; color: white">Volver</a></button>
-                    </h:form>			
+                        <div>
+                            <h:commandButton class="btn btn-success " value="Cambiar"
+                                             action="#{sendMail.validarContraseña()}"
+                                             />
+                            <br/>
+                            <br/>
+                            <h:commandButton class="btn btn-info" 
+                                             action="/index.xhtml?faces-redirect=true"
+                                             value="Regresar"/>
+                        </div>
+                    </h:form>
                 </div>
             </div>
         </div>

@@ -26,11 +26,13 @@ public interface UsuarioFacadeLocal {
 
     List<Usuario> findAll();
 
-    List<Usuario> findByIdRol(Integer idRol);
+    List<Usuario> findByIdRol(int idRol);
     
     List<Usuario> findRange(int[] range);
     
     Usuario findByIduClv(Long idUsuario, String clave);    
+    
+    Usuario cambioClave(Long idUsuario);    
 
     int count();
     

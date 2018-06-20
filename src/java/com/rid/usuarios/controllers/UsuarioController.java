@@ -5,14 +5,17 @@
  */
 package com.rid.usuarios.controllers;
 
+import com.rid.modelo.controllers.facades.RolFacadeLocal;
 import com.rid.modelo.entities.Usuario;
 import com.rid.modelo.entities.TipoDocumento;
 import com.rid.modelo.controllers.facades.TipoDocumentoFacadeLocal;
 import com.rid.modelo.controllers.facades.UsuarioFacadeLocal;
+import com.rid.modelo.entities.Rol;
 import com.rid.utils.MessagesUtil;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -29,63 +32,175 @@ public class UsuarioController implements Serializable {
     private UsuarioFacadeLocal ufl;
 
     @EJB
+    private RolFacadeLocal rfl;
+
+    @EJB
     private TipoDocumentoFacadeLocal tdfl;
 
     private List<Usuario> usuario;
     private List<Usuario> deportista;
     private List<Usuario> entrenador;
-    private List<TipoDocumento> tipoDocumento;
 
-    private TipoDocumento tipoDocumentoList;
-    private Usuario nuevoUsuario;
     private Usuario usuarioSeleccionado;
+    
+    private Long documento;
+    private String nombre;
+    private String apellido;
+    private String sexo;
+    private Date fechaNacimiento;
+    private String seguroMedico;
+    private String rh;
+    private String mail;
+    private String telefono;
+    private String direccion;
+    private String clave;
+    private Short estado;
+    private String foto;
+    private TipoDocumento tiposDocumento;
+    private Rol roles;
 
     public UsuarioController() {
     }
 
     @PostConstruct
     public void init() {
-        nuevoUsuario = new Usuario();
     }
 
-    public TipoDocumentoFacadeLocal getTdfl() {
-        return tdfl;
+    public RolFacadeLocal getRfl() {
+        return rfl;
     }
 
-    public void setTdfl(TipoDocumentoFacadeLocal tdfl) {
-        this.tdfl = tdfl;
+    public void setRfl(RolFacadeLocal rfl) {
+        this.rfl = rfl;
     }
 
-    public List<TipoDocumento> getTipoDocumento() {
-        return tipoDocumento;
+    public Long getDocumento() {
+        return documento;
     }
 
-    public void setTipoDocumento(List<TipoDocumento> tipoDocumento) {
-        this.tipoDocumento = tipoDocumento;
+    public void setDocumento(Long documento) {
+        this.documento = documento;
     }
 
-    public TipoDocumento getTipoDocumentoList() {
-        return tipoDocumentoList;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setTipoDocumentoList(TipoDocumento tipoDocumentoList) {
-        this.tipoDocumentoList = tipoDocumentoList;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public Usuario getNuevoUsuario() {
-        return nuevoUsuario;
+    public String getApellido() {
+        return apellido;
     }
 
-    public void setNuevoUsuario(Usuario nuevoUsuario) {
-        this.nuevoUsuario = nuevoUsuario;
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
     }
 
-    public Usuario getUsuarioSeleccionado() {
-        return usuarioSeleccionado;
+    public String getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
+
+    public Date getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    public void setFechaNacimiento(Date fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public String getSeguroMedico() {
+        return seguroMedico;
+    }
+
+    public void setSeguroMedico(String seguroMedico) {
+        this.seguroMedico = seguroMedico;
+    }
+
+    public String getRh() {
+        return rh;
+    }
+
+    public void setRh(String rh) {
+        this.rh = rh;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public String getClave() {
+        return clave;
+    }
+
+    public void setClave(String clave) {
+        this.clave = clave;
+    }
+
+    public Short getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Short estado) {
+        this.estado = estado;
+    }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
+
+    public TipoDocumento getTiposDocumento() {
+        return tiposDocumento;
+    }
+
+    public void setTiposDocumento(TipoDocumento tiposDocumento) {
+        this.tiposDocumento = tiposDocumento;
+    }
+
+    public Rol getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Rol roles) {
+        this.roles = roles;
     }
     
-    public List<Usuario> getUsuario() {
 
+    public Usuario getUsuarioSeleccionado() {
+        System.out.println("usuarioSeleccionado");
+        return usuarioSeleccionado;
+    }
+
+    public List<Usuario> getUsuario() {
         if (usuario == null || usuario.isEmpty()) {
             usuario = ufl.findAll();
         }
@@ -103,40 +218,72 @@ public class UsuarioController implements Serializable {
         if (entrenador == null || entrenador.isEmpty()) {
             entrenador = ufl.findByIdRol(1);
         }
-        
         return entrenador;
-    }    
-    
-    public List<TipoDocumento> getDocumento() {
-        tipoDocumento = tdfl.findAll();
-        return tipoDocumento;
     }
 
+    
     public void seleccionarUsuario(Usuario u) {
+        System.out.println("seleccionarUsuario");
         usuarioSeleccionado = u;
     }
 
-    public String registrarUsuario() {
+    public String registrarDeportista() {
+        System.out.println("documento: " +documento);
+        System.out.println("clave: " +documento);
+        System.out.println("direccion; " +direccion);
+        System.out.println("fecha" +fechaNacimiento);
+        System.out.println("rol" +roles);
+        System.out.println("foto: " +foto);
+        System.out.println("mail: " +mail);
+        System.out.println("nombr: " +nombre);
+        System.out.println("rh: " +rh);
+        System.out.println("seguro: " +seguroMedico);
+        System.out.println("sexo: " +sexo);
+        System.out.println("telefono: " +telefono);
+        System.out.println("estado: " +estado);
+        System.out.println("Tipo documento weon" +tiposDocumento);
+        
+        
         try {
-            ufl.create(nuevoUsuario);
+            Usuario u = new Usuario();
+            
+            roles = rfl.find(0);
+            
+            u.setIdUsuarios(documento);
+            u.setNombre(nombre);
+            u.setApellido(apellido);
+            u.setSexo(sexo);
+            u.setFechaNacimiento(fechaNacimiento);
+            u.setSeguroMedico(seguroMedico);
+            u.setRh(rh);
+            u.setMail(mail);
+            u.setTelefono(telefono);
+            u.setDireccion(direccion);
+            u.setClave(documento.toString());
+            u.setEstado(Short.valueOf("0"));
+            u.setFoto(null);
+            u.setIdRol(roles);
+            u.setIdTipoDocumento(tiposDocumento);
+            
+            ufl.create(u);
+            System.out.println("ESTE PUTO SE CREÓ :e");
             MessagesUtil.info(null, "Registro exitoso", "Se ha registrado correctamente el nuevo usuario.", true);
-            return "/usuarios/Principal.entrenador.xhtml?faces-redirect=true";
         } catch (Exception e) {
+            e.printStackTrace();
             MessagesUtil.error(null, "Error al registrar el Deportista.", e.getMessage(), false);
         }
         return "";
     }
-
-    public String eliminarUsuario() {
+    
+    public void eliminarUsuario() {
         try {
             ufl.remove(usuarioSeleccionado);
             usuario = null;
-            MessagesUtil.info(null, "Eliminación exitosa", "Se ha eliminado correctamente el Deportista.", false);
+            MessagesUtil.info(null, "Eliminación exitosa", "Se ha eliminado correctamente al usuario.", false);
         } catch (Exception e) {
             MessagesUtil.error(null, "Error al eliminar el usuario.", e.getMessage(), false);
         }
         usuarioSeleccionado = null;
-        return "/usuarios/Principal.entrenador.xhtml?faces-redirect=true";
     }
 
     public void editarUsuario() {
@@ -146,30 +293,26 @@ public class UsuarioController implements Serializable {
         } catch (Exception e) {
             MessagesUtil.error(null, "Error al editar el usuario.", e.getMessage(), false);
         }
+        usuarioSeleccionado = null;
     }
 
-    public String bloquearODesbloquear() {
+    public void cambiarEstado(Usuario u) {
         try {
-            if (usuarioSeleccionado.getEstado() != null) {
-                usuarioSeleccionado.setEstado(
-                        (usuarioSeleccionado.getEstado() == 0) ? Short.valueOf("1") : (usuarioSeleccionado.getEstado() == 1 ? Short.valueOf("0") : usuarioSeleccionado.getEstado()));
-
-            } else {
+            usuarioSeleccionado = u;
+            if (usuarioSeleccionado.getEstado() == null
+                    || usuarioSeleccionado.getEstado() == 0) {
+                usuarioSeleccionado.setEstado(Short.valueOf("1"));
+            } else if (usuarioSeleccionado.getEstado() == 1) {
                 usuarioSeleccionado.setEstado(Short.valueOf("0"));
             }
             ufl.edit(usuarioSeleccionado);
             usuario = null;
-            MessagesUtil.info(null, "Se ha cambiado el destado del usaurio.", "", false);
         } catch (Exception e) {
             e.printStackTrace();
-            MessagesUtil.error(null, "Error al cambiar el estado el usuario.", e.getMessage(), false);
         }
-        usuarioSeleccionado = null;
-        return "listar.xhtml?faces-redirect=true";
     }
 
-    public String getClassBloqueUsuario(Usuario u){
-        return ((u.getEstado() == null) ? "fa-hotel": ((u.getEstado() == 1) ? "fa-lock": "fa-unlock"));
+    public String getClassBloqueUsuarioIcon(Usuario u) {
+        return ((u.getEstado() == null) ? "icon-lock8" : ((u.getEstado() == 1) ? "icon-unlock2" : "icon-lock8"));
     }
-    
 }

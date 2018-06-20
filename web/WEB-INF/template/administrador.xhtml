@@ -5,7 +5,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
     <f:metadata>
-        <f:event type="preRenderView" listener="#{sessionController.validarRol(2)}"></f:event>
+        <f:event type="preRenderView" listener="{sessionController.validarRol(2)}"></f:event>
     </f:metadata>
     <h:head>
         <link rel="stylesheet" href="#{request.contextPath}/resources/css/jquery-ui.theme.css"/>|
@@ -24,8 +24,8 @@
         <title><ui:insert name="title"></ui:insert></title>
     </h:head>
     <h:body class="fixed-nav" id="page-top">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-danger fixed-top" id="mainNav">
-            <h:form prependId="false">
+        <h:form prependId="false">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-danger fixed-top" id="mainNav">
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" 
                         data-target="#navbarResponsive" aria-controls="navbarResponsive" 
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -35,13 +35,13 @@
                     <ul class="navbar-nav navbar-sidenav" id="menu">
                         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Perfil">
                             <a class="nav-link" href="#{request.contextPath}/usuarios/Perfil.administrador.xhtml">
-                                <i class="fa fa- fa-id-badge"></i>
+                                <i class="fa icon- icon-id-badge"></i>
                                 <span class="nav-link-text">Perfil</span>
                             </a>
                         </li>
                         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Torneos">
                             <a class="nav-link nav-link-collapse " data-toggle="collapse" href="#MenuTorneo" data-parent="">
-                                <i class="fa fa-fw icon-award4"></i>
+                                <i class="fa icon-fw icon-award4"></i>
                                 <span class="nav-link-text">Torneos</span>
                             </a>
                             <ul class=" collapse" id="MenuTorneo">
@@ -51,7 +51,7 @@
                         </li>
                         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Salir">
                             <h:commandLink class="nav-link" action="#{sessionController.cerrarSesion()}">
-                                <i class="fa fa-fw fa-power-off"></i>
+                                <i class="fa icon-fw icon-power-off"></i>
                                 <span class="nav-link-text">Salir</span>
                             </h:commandLink>
                         </li>         
@@ -59,13 +59,13 @@
                     <ul class="navbar-nav sidenav-toggler">
                         <li class="nav-item">
                             <a class="nav-link text-center" id="sidenavToggler">
-                                <i class="fa fa-superpowers fa-spin"></i>
+                                <i class="fa icon-superpowers icon-spin"></i>
                             </a>
                         </li>
                     </ul>
                 </div>
-            </h:form>
-        </nav>
+            </nav>
+        </h:form>
         <div class="content-wrapper">
             <div class="container-fluid">     
                 <div class="row">
