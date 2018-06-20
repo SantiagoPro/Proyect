@@ -43,85 +43,149 @@
                                     </div>
                                 </div>
                                 <div class="form-row">
-                                    <h:outputLabel class="control-label col-md-6 col-sm-3 col-xs-12" for="pesoArranque">Peso Arranque</h:outputLabel>
-                                    <div class="col-md-10 col-sm-8 col-xs-12">
-                                        <h:inputText id="pesoArranque" a:type="text" value="#{resultadosController.pesoArranque}" a:required="required" class="form-control col-md-7 col-xs-12"/>
-                                    </div>
+                                    <!--Arranque-->
                                     <div class="form-group">
-                                        <h:outputLabel class="control-label col-md-3 col-sm-3 col-xs-12" for="validoA1" value="Arranque Valido"></h:outputLabel>
-                                        <div class="col-md-10 col-sm-8 col-xs-12">
-                                            <h:selectOneRadio id="validoA1" value="">
-                                                <f:selectItem itemLabel="Sí" itemValue="0"/>
-                                                <f:selectItem itemLabel="No" itemValue="1"/>
-                                            </h:selectOneRadio>
+                                        <div class="form-row">
+                                            <div class="control-label col-md-12 col-sm-3 col-xs-12" >
+                                                <h:outputLabel for="pesoArranque">Peso Arranque</h:outputLabel>
+                                            </div>
+                                            <!--<div class="form-group mx-sm-3 mb-2">
+                                                <div class="col-md-10 col-sm-8 col-xs-12">
+                                                    <h:outputLabel for="peso1">Intento 1</h:outputLabel>
+                                                    <h:inputText id="peso1" a:type="text" value="" a:required="required" class="form-control col-md-7 col-xs-12"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group mx-sm-3 mb-2">
+                                                <h:outputLabel for="validoA1">Valido</h:outputLabel>
+                                                <div class="col-md-10 col-sm-8 col-xs-12">
+                                                    <h:selectOneRadio id="validoA1" value="">
+                                                        <f:selectItem itemLabel="Sí" itemValue="false"/>
+                                                        <f:selectItem itemLabel="No" itemValue="true"/>
+                                                    </h:selectOneRadio>
+                                                </div>
+                                            </div>
+                                            -->
                                         </div>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <h:outputLabel class="control-label col-md-3 col-sm-3 col-xs-12" for="validoA2" value="Arranque Valido"></h:outputLabel>
-                                    <div class="col-md-10 col-sm-8 col-xs-12">
-                                        <h:selectOneRadio id="validoA2" value="">
-                                            <f:selectItem itemLabel="Sí" itemValue="0"/>
-                                            <f:selectItem itemLabel="No" itemValue="1"/>
-                                        </h:selectOneRadio>
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <h:outputLabel class="control-label col-md-3 col-sm-3 col-xs-12" for="validoA3" value="Arranque Valido"></h:outputLabel>
-                                    <div class="col-md-10 col-sm-8 col-xs-12">
-                                        <h:selectOneRadio id="validoA3" value="#{resultadosController.validoArranque}">
-                                            <f:selectItem itemLabel="Sí" itemValue="0"/>
-                                            <f:selectItem itemLabel="No" itemValue="1"/>
-                                        </h:selectOneRadio>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <h:outputLabel class="control-label col-md-3 col-sm-3 col-xs-12" for="pesoEnvion">Peso Envion</h:outputLabel>
-                                    <div class="col-md-10 col-sm-8 col-xs-12">
-                                        <h:inputText id="pesoEnvion" value="#{resultadosController.pesoEnvion}" a:type="text" a:required="required" class="form-control col-md-7 col-xs-12"/>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <h:outputLabel class="control-label col-md-3 col-sm-3 col-xs-12" for="valido">Valido?</h:outputLabel>
+                                    <!--
                                     <div class="form-group">
-                                        <h:outputLabel class="control-label col-md-3 col-sm-3 col-xs-12" for="validoE1" ></h:outputLabel>
-                                        <div class="col-md-10 col-sm-8 col-xs-12">
-                                            <h:selectOneRadio id="validoE1" value="">
-                                                <f:selectItem itemLabel="Sí" itemValue="0"/>
-                                                <f:selectItem itemLabel="No" itemValue="1"/>
-                                            </h:selectOneRadio>
+                                        <div class="form-row">
+                                            <div class="form-group mx-sm-3 mb-2">
+                                                <div class="col-md-10 col-sm-8 col-xs-12">
+                                                    <h:outputLabel for="Peso2">Intento 2</h:outputLabel>
+                                                    <h:inputText id="peso2" a:type="text" value="" a:required="required" class="form-control col-md-7 col-xs-12"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group mx-sm-3 mb-2">
+                                                <h:outputLabel for="validoA2">Valido</h:outputLabel>
+                                                <div class="col-md-10 col-sm-8 col-xs-12">
+                                                    <h:selectOneRadio id="validoA2" value="">
+                                                        <f:selectItem itemLabel="Sí" itemValue="false"/>
+                                                        <f:selectItem itemLabel="No" itemValue="true"/>
+                                                    </h:selectOneRadio>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <h:outputLabel class="control-label col-md-3 col-sm-3 col-xs-12" for="validoE2"></h:outputLabel>
-                                        <div class="col-md-10 col-sm-8 col-xs-12">
-                                            <h:selectOneRadio id="validoE2" value="">
-                                                <f:selectItem itemLabel="Sí" itemValue="0"/>
-                                                <f:selectItem itemLabel="No" itemValue="1"/>
-                                            </h:selectOneRadio>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <h:outputLabel class="control-label col-md-3 col-sm-3 col-xs-12" for="validoE3"></h:outputLabel>
-                                        <div class="col-md-10 col-sm-8 col-xs-12">
-                                            <h:selectOneRadio id="validoE3" value="#{resultadosController.validoEnvion}">
-                                                <f:selectItem itemLabel="Sí" itemValue="0"/>
-                                                <f:selectItem itemLabel="No" itemValue="1"/>
-                                            </h:selectOneRadio>
-                                        </div>
-                                    </div>
-                                </div>
+                                    </div>-->
 
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger alert-light" data-dismiss="modal">Cancelar</button>
-                                    <h:commandButton id="registrar" type="submit" value="Registrar" class="btn btn-success" action="#{resultadosController.registrarResultado()}"/>
+                                    <div class="form-group">
+                                        <div class="form-row">
+                                            <div class="form-group mx-sm-3 mb-2">
+                                                <div class="col-md-10 col-sm-8 col-xs-12">
+                                                    <h:outputLabel for="Peso3">Intento 3</h:outputLabel>
+                                                    <h:inputText id="peso3" a:type="text" value="#{resultadosController.pesoArranque}" a:required="required" class="form-control col-md-7 col-xs-12"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group mx-sm-3 mb-2">
+                                                <h:outputLabel for="validoA3">Valido</h:outputLabel>
+                                                <div class="col-md-10 col-sm-8 col-xs-12">
+                                                    <h:selectOneRadio id="validoA3" value="#{resultadosController.validoArranque}">
+                                                        <f:selectItem itemLabel="Sí" itemValue="false"/>
+                                                        <f:selectItem itemLabel="No" itemValue="true"/>
+                                                    </h:selectOneRadio>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!--Envion-->
+                                    <div class="form-group">
+                                        <div class="form-row">
+                                            <div class="control-label col-md-12 col-sm-3 col-xs-12" >
+                                                <h:outputLabel for="pesoEnvion">Peso Envion</h:outputLabel>
+                                            </div>
+                                            <!--
+                                            <div class="form-group mx-sm-3 mb-2">
+                                                <div class="col-md-10 col-sm-8 col-xs-12">
+                                                    <h:outputLabel for="pesoE1">Intento 1</h:outputLabel>
+                                                    <h:inputText id="pesoE1" a:type="text" value="" a:required="required" class="form-control col-md-7 col-xs-12"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group mx-sm-3 mb-2">
+                                                <h:outputLabel for="validoE1">Valido</h:outputLabel>
+                                                <div class="col-md-10 col-sm-8 col-xs-12">
+                                                    <h:selectOneRadio id="validoE1" value="">
+                                                        <f:selectItem itemLabel="Sí" itemValue="false"/>
+                                                        <f:selectItem itemLabel="No" itemValue="true"/>
+                                                    </h:selectOneRadio>
+                                                </div>
+                                            </div> -->
+                                        </div> 
+                                    </div>
+                                        <!--
+                                    <div class="form-group">
+                                        <div class="form-row">
+                                            <div class="form-group mx-sm-3 mb-2">
+                                                <div class="col-md-10 col-sm-8 col-xs-12">
+                                                    <h:outputLabel for="PesoE2">Intento 2</h:outputLabel>
+                                                    <h:inputText id="pesoE2" a:type="text" value="" a:required="required" class="form-control col-md-7 col-xs-12"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group mx-sm-3 mb-2">
+                                                <h:outputLabel for="validoE2">Valido</h:outputLabel>
+                                                <div class="col-md-10 col-sm-8 col-xs-12">
+                                                    <h:selectOneRadio id="validoE2" value="">
+                                                        <f:selectItem itemLabel="Sí" itemValue="false"/>
+                                                        <f:selectItem itemLabel="No" itemValue="true"/>
+                                                    </h:selectOneRadio>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> -->
+
+                                    <div class="form-group">
+                                        <div class="form-row">
+                                            <div class="form-group mx-sm-3 mb-2">
+                                                <div class="col-md-10 col-sm-8 col-xs-12">
+                                                    <h:outputLabel for="PesoE3">Intento 3</h:outputLabel>
+                                                    <h:inputText id="pesoE3" a:type="text" value="#{resultadosController.pesoEnvion}" a:required="required" class="form-control col-md-7 col-xs-12"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group mx-sm-3 mb-2">
+                                                <h:outputLabel for="validoE3">Valido</h:outputLabel>
+                                                <div class="col-md-10 col-sm-8 col-xs-12">
+                                                    <h:selectOneRadio id="validoE3" value="#{resultadosController.validoEnvion}">
+                                                        <f:selectItem itemLabel="Sí" itemValue="false"/>
+                                                        <f:selectItem itemLabel="No" itemValue="true"/>
+                                                    </h:selectOneRadio>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger alert-light" data-dismiss="modal">Cancelar</button>
+                                <h:commandButton id="registrar" type="submit" value="Registrar" class="btn btn-success" action="#{resultadosController.registrarResultado()}"/>
                             </div>
                         </div>
                     </h:panelGroup>
                 </h:form>
             </div>
         </div>
+        
+        <!--Botón Modal-->
         <div class="form-control col-md-2">
             <h:form>
                 <h:outputLabel> <strong> Nuevo Resultado </strong> </h:outputLabel>
@@ -134,9 +198,12 @@
                 </h:commandLink>
             </h:form>
         </div>
-        <br></br>
+        
+        <br/>
+        <!--Tabla-->
         <h:dataTable class="table table-sm table-light table-hover" 
                      value="#{resultadosController.resultado}" var="r">
+
             <h:column>
                 <f:facet name="header">
                     <i class="fa fa-fw fa-address-card"/>
@@ -160,11 +227,26 @@
             </h:column>
             <h:column>
                 <f:facet name="header">
+                    <i class="fa fa-fw fa-user-o"/>
+                    Peso Valido
+                </f:facet>
+                <h:outputText value="#{r.validoArranque}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
                     <i class="fa fa-fw fa-user"/>
                     Peso Envion
                 </f:facet>
                 <h:outputText value="#{r.pesoEnvion}"/>
             </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <i class="fa fa-fw fa-user-o"/>
+                    Peso Valido
+                </f:facet>
+                <h:outputText value="#{r.validoEnvion}"/>
+            </h:column>
+
         </h:dataTable>
     </ui:define>
 </ui:composition>

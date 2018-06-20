@@ -33,7 +33,6 @@ public class ParticipacionController implements Serializable{
     
     private List<Participacion> listaParticipacion;
     
-    private Integer idParticipacion;
     private String puesto;
     private CategoriaDeportista categoriaDeportista;
     private Torneo torneo;
@@ -54,14 +53,6 @@ public class ParticipacionController implements Serializable{
 
     public void setListaParticipacion(List<Participacion> listaParticipacion) {
         this.listaParticipacion = listaParticipacion;
-    }
-
-    public Integer getIdParticipacion() {
-        return idParticipacion;
-    }
-
-    public void setIdParticipacion(Integer idParticipacion) {
-        this.idParticipacion = idParticipacion;
     }
 
     public String getPuesto() {
@@ -90,12 +81,16 @@ public class ParticipacionController implements Serializable{
     
     public String registrarParticipacion(){
         try {
-            
+            Participacion p = new Participacion(null);
+            p.setPuesto(puesto);
+            p.setIdCategoriaDeportista(categoriaDeportista);
+            p.setIdTorneo(torneo);
+            pfl.create(p);
+            p = null;
+            return "participacion.xhtml";
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
-        
         return "";
     }
 }
