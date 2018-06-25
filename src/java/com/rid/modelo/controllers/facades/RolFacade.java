@@ -27,7 +27,7 @@ public class RolFacade extends AbstractFacade<Rol> implements RolFacadeLocal {
      * @return
      */
     @Override
-    public Rol findByIdRol(Integer idRol) {
+    public Rol idRol(Integer idRol) {
         try {
             TypedQuery<Rol> q = getEntityManager().createQuery("SELECT r FROM Rol r WHERE r.idRol = :idR", Rol.class);
             q.setParameter("idR", idRol);

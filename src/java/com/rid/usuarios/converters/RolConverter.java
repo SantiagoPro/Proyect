@@ -6,7 +6,6 @@
 package com.rid.usuarios.converters;
 
 import com.rid.modelo.controllers.facades.RolFacadeLocal;
-import com.rid.modelo.entities.Participacion;
 import com.rid.modelo.entities.Rol;
 import javax.enterprise.inject.spi.CDI;
 import javax.faces.component.UIComponent;
@@ -18,7 +17,7 @@ import javax.faces.convert.FacesConverter;
  *
  * @author karen
  */
-@FacesConverter(forClass = Participacion.class)
+@FacesConverter(forClass = Rol.class)
 public class RolConverter implements Converter<Rol>{
 
     private RolFacadeLocal rfl;

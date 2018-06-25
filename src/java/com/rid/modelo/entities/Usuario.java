@@ -53,7 +53,7 @@ public class Usuario implements Serializable {
     private String apellido;
     @Basic(optional = false)
     @Column(name = "sexo")
-    private String sexo;
+    private Boolean sexo;
     @Basic(optional = false)
     @Column(name = "fecha_nacimiento")
     @Temporal(TemporalType.DATE)
@@ -101,7 +101,7 @@ public class Usuario implements Serializable {
         this.idUsuarios = idUsuarios;
     }
 
-    public Usuario(Long idUsuarios, String nombre, String apellido, String sexo, Date fechaNacimiento, String seguroMedico, String rh, String mail, String telefono, String direccion, String clave, Short estado) {
+    public Usuario(Long idUsuarios, String nombre, String apellido, Boolean sexo, Date fechaNacimiento, String seguroMedico, String rh, String mail, String telefono, String direccion, String clave, Short estado) {
         this.idUsuarios = idUsuarios;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -140,11 +140,11 @@ public class Usuario implements Serializable {
         this.apellido = apellido;
     }
 
-    public String getSexo() {
+    public Boolean getSexo() {
         return sexo;
     }
 
-    public void setSexo(String sexo) {
+    public void setSexo(Boolean sexo) {
         this.sexo = sexo;
     }
 
