@@ -1,58 +1,89 @@
+<?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
-    <link rel="stylesheet" href="#{request.contextPath}/resources/css/index.css"/>
-    <link rel="stylesheet" href="#{request.contextPath}/resources/css/bootstrap.css"/>
-    <link rel="stylesheet" href="#{request.contextPath}/resources/css/formValidation.min.css"/>
-    <link rel="icon" href="#{request.contextPath}/resources/images/LOGO.png"/>
-    <h:body class="login">
-        <div class="container">
-            <div class="row mt-5">
-                <div class="col">
-                    <h2 class="text-center titulo"> Bienvenido al sistema </h2>
-                    <hr/>
+    <h:head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Log In</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cinzel" />
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/index.css"/>
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/bootstrap.css"/>
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/formValidation.min.css"/>
+        <link rel="icon" href="#{request.contextPath}/resources/images/LOGO.png"/>
+    </h:head>
+    <h:body>
+        <div class="login-clean" style="background-image:url(resources/images/709.jpg);">
+            <h4 class="text-uppercase text-center text-white d-flex flex-row 
+                justify-content-center align-items-center align-content-center 
+                align-self-center" style="background-color:rgba(10,10,10,0.81);
+                background-position:top;background-size:auto;background-repeat:round;
+                font-family:Cinzel;font-size:31px;">
+                BIENVENIDO AL SISTEMA R.I.D
+            </h4>
+            <h:form prependId="false" class="d-block d-flex flex-column justify-content-center
+                    align-content-center align-self-center flex-nowrap my-auto" 
+                    style="background-position:center;background-size:cover;">
+                <div class="illustration"><img src="resources/images/LOGO.png" class="img-fluid" /></div>
+                <div class="form-group">
+                    <h:inputText a:type="number" a:placeholder="Usuario" a:autocomplete="off" a:required="true"
+                                 a:maxlength="13" a:minlength="10" class="form-control" 
+                                 value="#{sessionController.idUsuario}" />
                 </div>
+                <div class="form-group">
+                    <h:inputText a:type="password" a:placeholder="Contraseña" a:required="true"
+                                 a:maxlength="50" a:minlength="10" class="form-control" 
+                                 value="#{sessionController.clave}"/>
+                </div>
+                    <h:messages showDetail="true" style="color: #E00F0F;"></h:messages>
+                <div class="form-group">
+                    <h:commandButton class="btn btn-success alert-light btn-block"
+                                     action="#{sessionController.iniciarSesion()}"
+                                     value="Ingresar">
+                    </h:commandButton>
+                    <h:commandLink class="btn btn-info alert-light btn-block"
+                                   a:data-toggle="modal" a:data-target="#contraseña"
+                                   value="Cambiar Contraseña">
+                        <f:ajax render=":contentContraseña"/>
+                    </h:commandLink>
+                </div>
+            </h:form>
+        </div>
+        <div id="contraseña" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <h:form prependId="false">
+                    <h:panelGroup id="contentContraseña" layout="block">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3 class="modal-title">Cambio de contrañeña</h3>
+                            </div>
+                            <div class="modal-body">
+                                <h6 class="modal-title">Se enviara a su correo los pasos para el cambio de contraseña.</h6>
+                                <br/>
+                                <div class="form-group">
+                                    <label for="mail"><strong> Correo: </strong> </label>
+                                    <h:inputText  id="mail" a:type="email"
+                                                  required="true" class="form-control"
+                                                  value="#{sendMail.destinatarios}"/>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger alert-light" data-dismiss="modal">Cancelar</button>
+                                <h:commandButton class="btn btn-success alert-light" value="Enviar" actionListener="#{sendMail.sendMailRecuperacion()}"/>
+                            </div>
+                        </div>
+                    </h:panelGroup>
+                </h:form>
             </div>
         </div>
-        <div class="container login-box">
-            <div class="row mt-3 justify-content-md-center">
-                <div class="col-md-6 shadow well">
-                    <h:form prependId="false">
-                        <div class="form-group">
-                            <label for="user"><strong> Usuario </strong> </label>
-                            <h:inputText a:type="number"  class="form-control" maxlength="15"
-                                         id="usuario" value="#{sessionController.idUsuario}"
-                                         a:required="required"/>
-                        </div>
-                        <div class="form-group">
-                            <label for="pass"><strong> Contraseña </strong> </label>
-                            <h:inputSecret id="pass" maxlength="50"
-                                           required="true" class="form-control"
-                                           value="#{sessionController.clave}"/>
-                        </div>
-                        <br/>
-                        <div>
-                            <h:commandButton class="btn btn-custom btn-block"
-                                             action="#{sessionController.iniciarSesion()}"
-                                             value="Ingresar"/>
-                        </div>
-                        <hr/>
-                        <div class="text-center">
-                            <strong> Olvido la <a href="recuperarClave.xhtml"> Contraseña? </a> </strong>
-                        </div>
-                    </h:form>
-                </div>
-            </div>
-        </div>
+
+        <script src="#{request.contextPath}/resources/js/jquery.js"></script>
+        <script src="#{request.contextPath}/resources/js/popper.min.js"></script>
+        <script src="#{request.contextPath}/resources/js/tether.min.js"></script>
+        <script src="#{request.contextPath}/resources/js/bootstrap.min.js"></script>
+        <script src="#{request.contextPath}/resources/js/bootstrap.bundle.min.js"></script>
     </h:body>
-    <script src="#{request.contextPath}/resources/js/jquery.js"></script>
-    <script src="#{request.contextPath}/resources/js/popper.min.js"></script>
-    <script src="#{request.contextPath}/resources/js/tether.min.js"></script>
-    <script src="#{request.contextPath}/resources/js/bootstrap.min.js"></script>
-    <script src="#{request.contextPath}/resources/js/bootstrap.bundle.min.js"></script>
-    <script src="#{request.contextPath}/resources/js/jquery-ui.js"></script>
-    <script src="#{request.contextPath}/resources/js/formValidation.min.js"></script>
-    <script src="#{request.contextPath}/resources/js/jquery.easing.js"></script>
-    <script src="#{request.contextPath}/resources/js/sweetalert.min.js" ></script>
+
 </html>

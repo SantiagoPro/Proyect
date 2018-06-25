@@ -1,69 +1,67 @@
-<?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-    <link rel="stylesheet" href="#{request.contextPath}/resources/css/index.css"/>
-    <link rel="stylesheet" href="#{request.contextPath}/resources/css/bootstrap.css"/>
-    <link rel="stylesheet" href="#{request.contextPath}/resources/css/formValidation.min.css"/>
-    <link rel="icon" href="#{request.contextPath}/resources/images/LOGO.png"/>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
-    <title>Recuperar contraseña</title>
-    <h:body class="login">
-        <div class="container">
-            <div class="row mt-5">
-                <div class="col">
-                    <h1 class="text-center page-header titulo">Cambio de clave</h1>
-                    <hr/>	
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Cambio de contraseña</title>
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/index.css"/>
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/bootstrap.css"/>
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/formValidation.min.css"/>
+        <link rel="icon" href="#{request.contextPath}/resources/images/LOGO.png"/>
+    </head>
+    <h:body>
+        <div class="login-clean" style="background-image:url(resources/images/709.jpg);
+             background-position:center;background-size:cover;background-repeat:no-repeat;">
+            <h4 class="text-uppercase text-center text-white d-flex flex-row 
+                justify-content-center align-items-center align-content-center 
+                align-self-center" style="background-color:rgba(10,10,10,0.81);
+                background-position:top;background-size:auto;background-repeat:round;
+                font-family:Cinzel, serif;font-size:31px;">
+                Bienvenido al sistema R.i.d
+            </h4>
+            <h:form class="d-block d-flex flex-column justify-content-center 
+                    align-content-center align-self-center flex-nowrap my-auto" 
+                    style="width:615px;height:615px;background-position:center;background-size:cover;">
+                <div class="illustration d-block d-flex flex-column justify-content-center 
+                    align-content-center align-self-center flex-nowrap my-auto"><img src="resources/images/LOGO.png"
+                            style="width:200px;height:250px; position: relative ;" class="img-fluid" /></div>
+                <div class="form-group">
+                    <h:inputText a:type="number" a:placeholder="Usuario *" autocomplete="off" 
+                                 a:maxlength="13" a:minlength="10" a:required="true"
+                                 class="form-control" value="#{sendMail.documento}" />
                 </div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="row mt-3 justify-content-md-center">
-                <div class="col-md-6 shadow well">
-                    <h:form prependId="false">
-                        <div class="form-group">
-                            <label for="documento"><strong> Documento </strong> </label>
-                            <h:inputText id="documento" class="form-control" a:placeholder="Ingrese su documento"
-                                         value="#{sendMail.documento}"
-                                         />
-                        </div>
-                        <div class="form-group">
-                            <label for="clave"><strong> Contraseña Nueva </strong> </label>
-                            <h:inputText class="form-control" id="clave" a:placeholder="Cree su nueva contraseña"
-                                         
-                                         value="#{sendMail.clave}"
-                                         />
-                        </div>
-                        <div class="form-group">
-                            <label for="clave2"><strong> Repetir Contraseña </strong> </label>
-                            <h:inputSecret id="clave2" class="form-control" a:placeholder="Repita la contraseña"
-                                           value="#{sendMail.clave2}"
-                                           />
-                        </div>
-                        <br/>
-                        <div>
-                            <h:commandButton class="btn btn-success " value="Cambiar"
-                                             action="#{sendMail.validarContraseña()}"
-                                             />
-                            <br/>
-                            <br/>
-                            <h:commandButton class="btn btn-info" 
-                                             action="/index.xhtml?faces-redirect=true"
-                                             value="Regresar"/>
-                        </div>
-                    </h:form>
+                <div class="form-group">
+                    <h:inputText a:type="number" a:placeholder="Nueva Contraseña *" autocomplete="off" 
+                                 a:maxlength="50" a:minlength="10" a:required="true"
+                                 class="form-control" value="#{sendMail.clave}" />
                 </div>
-            </div>
+                <div class="form-group">
+                    <h:inputText a:type="number" a:placeholder="Nueva Contraseña *" autocomplete="off" 
+                                 a:maxlength="50" a:minlength="10" a:required="true"
+                                 class="form-control" value="#{sendMail.clave2}"/>
+                </div>
+                <div class="form-group">
+                    <h:commandButton class="btn btn-success alert-light btn-block"
+                                     action="#{sendMail.validarContraseña()}"
+                                     value="Cambiar"/>
+                    <h:commandButton class="btn btn-danger alert-light btn-block" 
+                                     action="/index.xhtml?faces-redirect=true"
+                                     value="Regresar"/>
+                </div>
+
+            </h:form>
         </div>
-        <script src="#{request.contextPath}/resources/js/jquery.min.js"></script>
+        <script src="#{request.contextPath}/resources/js/jquery.js"></script>
         <script src="#{request.contextPath}/resources/js/popper.min.js"></script>
         <script src="#{request.contextPath}/resources/js/tether.min.js"></script>
         <script src="#{request.contextPath}/resources/js/bootstrap.min.js"></script>
-        <script src="#{request.contextPath}/resources/js/contraseña.js"></script>
+        <script src="#{request.contextPath}/resources/js/bootstrap.bundle.min.js"></script>
+        <script src="#{request.contextPath}/resources/js/jquery-ui.js"></script>
+        <script src="#{request.contextPath}/resources/js/formValidation.min.js"></script>
+        <script src="#{request.contextPath}/resources/js/jquery.easing.js"></script>
         <script src="#{request.contextPath}/resources/js/sweetalert.min.js" ></script>
     </h:body>
+
 </html>
