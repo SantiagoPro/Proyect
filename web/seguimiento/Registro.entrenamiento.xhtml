@@ -73,16 +73,16 @@
                     </div>
                     <div class="form-group col-md-3 col-xs-12">
                         <h:outputLabel  for="fechaInicio"> Fecha Inico</h:outputLabel>
-                        <h:inputText id="FechaInicio" a:type="date" converter="fechaConverter" class="form-control"/>
+                        <h:inputText id="FechaInicio" a:type="date" converter="fechaConverter" value="#{entrenamientoController.fechaInicio}" class="form-control"/>
                     </div>
                     <div class="form-group col-md-3 col-xs-12">
                         <h:outputLabel  for="fechaFin"> Fecha Fin</h:outputLabel>
-                        <h:inputText id="FechaFin" a:type="date" converter="fechaConverter" class="form-control"/>
+                        <h:inputText id="FechaFin" a:type="date" converter="fechaConverter" class="form-control" value="#{entrenamientoController.fechaFin}"/>
                     </div>
 
                     <div class="col-12">
                         <div class="form-group d-flex justify-content-center">
-                            <button type="submit" id="registro" class="mt-4 mr-2 btn btn-success"> Registrar </button>
+                            <h:commandButton type="submit" id="registro" class="mt-4 mr-2 btn btn-success" value="#{entrenamientoController.registrarEntrenamiento()}"> Registrar</h:commandButton>
                             <button type="submit" class="mt-4 ml-2 btn btn-danger"> Cancelar </button>
                         </div>
                     </div>
