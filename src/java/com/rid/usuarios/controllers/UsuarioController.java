@@ -5,6 +5,7 @@
  */
 package com.rid.usuarios.controllers;
 
+import com.rid.controller.mail.Mail;
 import com.rid.modelo.controllers.facades.RolFacadeLocal;
 import com.rid.modelo.entities.Usuario;
 import com.rid.modelo.entities.TipoDocumento;
@@ -42,11 +43,11 @@ public class UsuarioController implements Serializable {
     private List<Usuario> entrenador;
 
     private Usuario usuarioSeleccionado;
-    
+
     private Long documento;
     private String nombre;
     private String apellido;
-    private String sexo;
+    private Boolean sexo;
     private Date fechaNacimiento;
     private String seguroMedico;
     private String rh;
@@ -57,7 +58,7 @@ public class UsuarioController implements Serializable {
     private Short estado;
     private String foto;
     private TipoDocumento tiposDocumento;
-    private Rol roles;
+    private Rol rol;
 
     public UsuarioController() {
     }
@@ -98,11 +99,24 @@ public class UsuarioController implements Serializable {
         this.apellido = apellido;
     }
 
-    public String getSexo() {
-        return sexo;
+    public Boolean getSexo() {
+        String F = "Femenino";
+        String M = "Masculino";
+        try {
+            if (sexo.equals(0)) {
+                sexo = Boolean.valueOf(F);
+                return sexo;
+            } else {
+                sexo = Boolean.valueOf(M);
+                return sexo;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
-    public void setSexo(String sexo) {
+    public void setSexo(Boolean sexo) {
         this.sexo = sexo;
     }
 
@@ -186,14 +200,13 @@ public class UsuarioController implements Serializable {
         this.tiposDocumento = tiposDocumento;
     }
 
-    public Rol getRoles() {
-        return roles;
+    public Rol getRol() {
+        return rol;
     }
 
-    public void setRoles(Rol roles) {
-        this.roles = roles;
+    public void setRol(Rol rol) {
+        this.rol = rol;
     }
-    
 
     public Usuario getUsuarioSeleccionado() {
         System.out.println("usuarioSeleccionado");
@@ -221,34 +234,14 @@ public class UsuarioController implements Serializable {
         return entrenador;
     }
 
-    
     public void seleccionarUsuario(Usuario u) {
         System.out.println("seleccionarUsuario");
         usuarioSeleccionado = u;
     }
 
     public String registrarDeportista() {
-        System.out.println("documento: " +documento);
-        System.out.println("clave: " +documento);
-        System.out.println("direccion; " +direccion);
-        System.out.println("fecha" +fechaNacimiento);
-        System.out.println("rol" +roles);
-        System.out.println("foto: " +foto);
-        System.out.println("mail: " +mail);
-        System.out.println("nombr: " +nombre);
-        System.out.println("rh: " +rh);
-        System.out.println("seguro: " +seguroMedico);
-        System.out.println("sexo: " +sexo);
-        System.out.println("telefono: " +telefono);
-        System.out.println("estado: " +estado);
-        System.out.println("Tipo documento weon" +tiposDocumento);
-        
-        
         try {
             Usuario u = new Usuario();
-            
-            roles = rfl.find(0);
-            
             u.setIdUsuarios(documento);
             u.setNombre(nombre);
             u.setApellido(apellido);
@@ -262,11 +255,12 @@ public class UsuarioController implements Serializable {
             u.setClave(documento.toString());
             u.setEstado(Short.valueOf("0"));
             u.setFoto(null);
-            u.setIdRol(roles);
+            u.setIdRol(rfl.find(0));
             u.setIdTipoDocumento(tiposDocumento);
-            
             ufl.create(u);
-            System.out.println("ESTE PUTO SE CREÓ :e");
+            Mail.sendMail(mail, "Registro en el sistema", "Se realizado el registro de usuario en el Sistema R.I.D. Puede ingresar con el usuario "
+                    + documento + " y la contraseña " + documento + ".");
+            u = null;
             MessagesUtil.info(null, "Registro exitoso", "Se ha registrado correctamente el nuevo usuario.", true);
         } catch (Exception e) {
             e.printStackTrace();
@@ -274,7 +268,37 @@ public class UsuarioController implements Serializable {
         }
         return "";
     }
-    
+
+    public String registrarEntrenador() {
+        try {
+            Usuario u = new Usuario();
+            u.setIdUsuarios(documento);
+            u.setNombre(nombre);
+            u.setApellido(apellido);
+            u.setSexo(sexo);
+            u.setFechaNacimiento(fechaNacimiento);
+            u.setSeguroMedico(seguroMedico);
+            u.setRh(rh);
+            u.setMail(mail);
+            u.setTelefono(telefono);
+            u.setDireccion(direccion);
+            u.setClave(documento.toString());
+            u.setEstado(Short.valueOf("0"));
+            u.setFoto(null);
+            u.setIdRol(rfl.find(1));
+            u.setIdTipoDocumento(tiposDocumento);
+            ufl.create(u);
+            Mail.sendMail(mail, "Registro en el sistema", "Se realizado el registro de usuario en el Sistema R.I.D. Puede ingresar con el usuario "
+                    + documento + " y la contraseña " + documento + ".");
+            u = null;
+            MessagesUtil.info(null, "Registro exitoso", "Se ha registrado correctamente el nuevo usuario.", true);
+        } catch (Exception e) {
+            e.printStackTrace();
+            MessagesUtil.error(null, "Error al registrar el Deportista.", e.getMessage(), false);
+        }
+        return "";
+    }
+
     public void eliminarUsuario() {
         try {
             ufl.remove(usuarioSeleccionado);
@@ -313,6 +337,6 @@ public class UsuarioController implements Serializable {
     }
 
     public String getClassBloqueUsuarioIcon(Usuario u) {
-        return ((u.getEstado() == null) ? "icon-lock8" : ((u.getEstado() == 1) ? "icon-unlock2" : "icon-lock8"));
+        return ((u.getEstado() == null || u.getEstado() == 0) ? "fa-eye-slash" : ((u.getEstado() == 1) ? "fa-eye" : "fa-eye-slash"));
     }
 }

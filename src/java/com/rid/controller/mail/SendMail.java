@@ -7,6 +7,7 @@ package com.rid.controller.mail;
 
 import com.rid.modelo.entities.Usuario;
 import com.rid.modelo.controllers.facades.UsuarioFacadeLocal;
+import com.rid.utils.MessagesUtil;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -23,16 +24,15 @@ public class SendMail implements Serializable {
 
     @EJB
     private UsuarioFacadeLocal ufl;
-    
+
     private Usuario user;
     private String cuerpo;
     private String asunto;
     private String destinatarios;
-    private Long   documento;
-    
+    private Long documento;
+
     private String clave;
     private String clave2;
-    
 
     public SendMail() {
     }
@@ -89,34 +89,37 @@ public class SendMail implements Serializable {
     public void setDocumento(Long documento) {
         this.documento = documento;
     }
-    
-        
-    public void sendMail(){
+
+    public void sendMail() {
         Mail.sendMailHTML(destinatarios, asunto, cuerpo);
     }
-    
-    public void sendMailRecuperacion(){
+
+    public void sendMailRecuperacion() {
         Mail.sendMailHTML(destinatarios, "Cambio de Contraseña", "<p>Se ha notificado un cambio de contraseña, para confirmar ingrese al siguiente link</p>"
-                + "http://10.1.17.104:8080//recuperarClave.xhtml");
+                + "http://localhost:8080//recuperarClave.xhtml");
     }
-    
-    public String validarContraseña(){
+
+    public String validarContraseña() {
         user = ufl.cambioClave(documento);
         try {
-            if (user != null) {
-                if (clave.equals(clave2)) {
-                user.setClave(clave);
-                ufl.edit(user);
-                System.out.println("contraseña Cambiada");
-                return "/index.xhtml?faces-redirect=true";
+            if (clave != "" && clave2 != "" && clave2 == clave) {
+                if (user != null) {
+                    if (clave.equals(clave2)) {
+                        user.setClave(clave);
+                        ufl.edit(user);
+                        MessagesUtil.info("", "Exito", "Contraseña cambiada exitosamente", false);
+                        return "/index.xhtml?faces-redirect=true";
+                    }
+                } else {
+                    System.out.println("Usuario no existe");
                 }
             } else {
-                System.out.println("Usuario no existe");
+
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
         return "";
     }
-    
-    }
+
+}
