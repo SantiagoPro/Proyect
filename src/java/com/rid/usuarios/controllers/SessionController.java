@@ -78,35 +78,39 @@ public class SessionController implements Serializable {
 
     public String iniciarSesion() {
         user = ufl.findByIduClv(idUsuario, clave);
-        if (user != null) {
-            System.out.println("pasa usuario");
-            if (user.getEstado() == 1) {
-                System.out.println("pasa estado");
-                if (user.getIdRol() != null) {
-                    System.out.println("pasa rol");
-                    if (user.getIdRol().getIdRol() != null) {
-                        switch (user.getIdRol().getIdRol()) {
-                            case 0:
-                                System.out.println("pasa" + user.getIdRol().getIdRol() );
-                                return "/usuarios/Principal.deportista.xhtml?faces-redirect=true";
-                            case 1:
-                                System.out.println("pasa" + user.getIdRol().getIdRol() );
-                                return "/usuarios/Principal.entrenador.xhtml?faces-redirect=true";
-                            case 2:
-                                System.out.println("pasa" + user.getIdRol().getIdRol() );
-                                return "/usuarios/Principal.administrador.xhtml?faces-redirect=true";
-                            default:
-                                break;
+        if (idUsuario != user.getIdUsuarios() || clave != user.getClave()) {
+            if (user != null) {
+                System.out.println("pasa usuario");
+                if (user.getEstado() == 1) {
+                    System.out.println("pasa estado");
+                    if (user.getIdRol() != null) {
+                        System.out.println("pasa rol");
+                        if (user.getIdRol().getIdRol() != null) {
+                            switch (user.getIdRol().getIdRol()) {
+                                case 0:
+                                    System.out.println("pasa" + user.getIdRol().getIdRol());
+                                    return "/usuarios/Principal.deportista.xhtml?faces-redirect=true";
+                                case 1:
+                                    System.out.println("pasa" + user.getIdRol().getIdRol());
+                                    return "/usuarios/Principal.entrenador.xhtml?faces-redirect=true";
+                                case 2:
+                                    System.out.println("pasa" + user.getIdRol().getIdRol());
+                                    return "/usuarios/Principal.administrador.xhtml?faces-redirect=true";
+                                default:
+                                    break;
+                            }
                         }
+                    } else {
+                        MessagesUtil.error(null, "No se pudo iniciar sesion. El usuario no tiene rol definido", "", false);
                     }
                 } else {
-                    MessagesUtil.info(null, "No se pudo iniciar sesion. El usuario no tiene rol definido", "", false);
+                    MessagesUtil.error(null, "No se pudo iniciar sesion. El usuario no esta habilitado en el sistema", "", false);
                 }
             } else {
-                MessagesUtil.info(null, "No se pudo iniciar sesion. El usuario no esta habilitado en el sistema", "", false);
+                MessagesUtil.error(null, "No se pudo iniciar sesion. El usuario no existe en la base de datos", "", false);
             }
         } else {
-            MessagesUtil.error(null, "No se pudo iniciar sesion. El usuario no existe en la base de datos", "", false);
+            MessagesUtil.error(null, "No se pudo iniciar sesion. Los datos son incorrectos", "", false);
         }
         return "/index.xhtml";
     }
@@ -142,7 +146,7 @@ public class SessionController implements Serializable {
             case 2:
                 return "/usuarios/Principal.administrador.xhtml?faces-redirect=true";
             default:
-                return "";
+                return "index.html?faces-redirect=true";
         }
     }
 
