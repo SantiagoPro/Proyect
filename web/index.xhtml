@@ -7,83 +7,91 @@
     <h:head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Log In</title>
+        <title>#{msjLogin.title}</title>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cinzel" />
         <link rel="stylesheet" href="#{request.contextPath}/resources/css/index.css"/>
         <link rel="stylesheet" href="#{request.contextPath}/resources/css/bootstrap.css"/>
         <link rel="stylesheet" href="#{request.contextPath}/resources/css/formValidation.min.css"/>
         <link rel="icon" href="#{request.contextPath}/resources/images/LOGO.png"/>
     </h:head>
-    <h:body>
-        <div class="login-clean" style="background-image:url(resources/images/709.jpg);">
-            <h4 class="text-uppercase text-center text-white d-flex flex-row 
-                justify-content-center align-items-center align-content-center 
-                align-self-center" style="background-color:rgba(10,10,10,0.81);
-                background-position:top;background-size:auto;background-repeat:round;
-                font-family:Cinzel;font-size:31px;">
-                BIENVENIDO AL SISTEMA R.I.D
-            </h4>
-            <h:form prependId="false" class="d-block d-flex flex-column justify-content-center
-                    align-content-center align-self-center flex-nowrap my-auto" 
-                    style="background-position:center;background-size:cover;">
-                <div class="illustration"><img src="resources/images/LOGO.png" class="img-fluid" /></div>
-                <div class="form-group">
-                    <h:inputText a:type="number" a:placeholder="Usuario" a:autocomplete="off" a:required="true"
-                                 a:maxlength="13" a:minlength="10" class="form-control" 
-                                 value="#{sessionController.idUsuario}" />
-                </div>
-                <div class="form-group">
-                    <h:inputText a:type="password" a:placeholder="Contraseña" a:required="true"
-                                 a:maxlength="50" a:minlength="10" class="form-control" 
-                                 value="#{sessionController.clave}"/>
-                </div>
+    <f:view locale="es">
+        <h:body>
+            <div class="login-clean" style="background-image:url(resources/images/709.jpg);">
+                <h4 class="text-uppercase text-center text-white d-flex flex-row 
+                    justify-content-center align-items-center align-content-center 
+                    align-self-center" style="background-color:rgba(10,10,10,0.81);
+                    background-position:top;background-size:auto;background-repeat:round;
+                    font-family:ANDERS;font-size:31px;">
+                    #{msjLogin.header}
+                </h4>
+                <h:form prependId="false" class="d-block d-flex flex-column justify-content-center
+                        align-content-center align-self-center flex-nowrap my-auto m" 
+                        style="background-position:center;background-size:cover;">
+                    <div class="illustration"><img src="resources/images/LOGO.png" class="img-fluid" /></div>
+                    <div class="form-group">
+                        <h:inputText a:type="number" a:placeholder="#{msjLogin.placeholderUser}" a:autocomplete="off" a:required="true"
+                                     a:maxlength="13" a:minlength="10" class="form-control" 
+                                     value="#{sessionController.idUsuario}"/>
+                    </div>
+                    <div class="form-group">
+                        <h:inputText a:type="password" a:placeholder="#{msjLogin.placeholderPass}" a:required="true"
+                                     a:maxlength="50" a:minlength="10" class="form-control" 
+                                     value="#{sessionController.clave}"/>
+                    </div>
                     <h:messages showDetail="true" style="color: #E00F0F;"></h:messages>
-                <div class="form-group">
-                    <h:commandButton class="btn btn-success alert-light btn-block"
-                                     action="#{sessionController.iniciarSesion()}"
-                                     value="Ingresar">
-                    </h:commandButton>
-                    <h:commandLink class="btn btn-info alert-light btn-block"
-                                   a:data-toggle="modal" a:data-target="#contraseña"
-                                   value="Cambiar Contraseña">
-                        <f:ajax render=":contentContraseña"/>
-                    </h:commandLink>
-                </div>
-            </h:form>
-        </div>
-        <div id="contraseña" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-                <h:form prependId="false">
-                    <h:panelGroup id="contentContraseña" layout="block">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h3 class="modal-title">Cambio de contrañeña</h3>
-                            </div>
-                            <div class="modal-body">
-                                <h6 class="modal-title">Se enviara a su correo los pasos para el cambio de contraseña.</h6>
-                                <br/>
-                                <div class="form-group">
-                                    <label for="mail"><strong> Correo: </strong> </label>
-                                    <h:inputText  id="mail" a:type="email"
-                                                  required="true" class="form-control"
-                                                  value="#{sendMail.destinatarios}"/>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-danger alert-light" data-dismiss="modal">Cancelar</button>
-                                <h:commandButton class="btn btn-success alert-light" value="Enviar" actionListener="#{sendMail.sendMailRecuperacion()}"/>
-                            </div>
-                        </div>
-                    </h:panelGroup>
+                    <div class="form-group">
+                        <h:commandButton class="btn btn-success alert-light btn-block"
+                                         action="#{sessionController.iniciarSesion()}"
+                                         value="#{msjLogin.btnSend}">
+                        </h:commandButton>
+                        <h:commandLink class="btn btn-info alert-light btn-block"
+                                       a:data-toggle="modal" a:data-target="#contraseña"
+                                       value="#{msjLogin.btnChangePass}">
+                            <f:ajax render=":contentContraseña"/>
+                        </h:commandLink>
+<!--                    <br/>
+                        <h:selectOneMenu value="#{languageController.locale}" class="btn btn-info alert-light">
+                            <f:selectItems value="#{languageController.locales}"
+                                           var="lang" itemLabel="#{lang.language}"
+                                           />
+                        </h:selectOneMenu>-->
+                    </div>
                 </h:form>
             </div>
-        </div>
+            <div id="contraseña" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <h:form prependId="false">
+                        <h:panelGroup id="contentContraseña" layout="block">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h3 class="modal-title">#{msjLogin.changePassTitle}</h3>
+                                </div>
+                                <div class="modal-body">
+                                    <h6 class="modal-title">#{msjLogin.changePassLable}</h6>
+                                    <br/>
+                                    <div class="form-group">
+                                        <label for="mail"><strong> #{msjLogin.changePassLableInput} </strong> </label>
+                                        <h:inputText  id="mail" a:type="email"
+                                                      required="true" class="form-control" a:autocomplete="off"
+                                                      value="#{sendMail.destinatarios}"/>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger alert-light" data-dismiss="modal">#{msjLogin.btnCancel}</button>
+                                    <h:commandButton class="btn btn-success alert-light" value="#{msjLogin.btnSend}" actionListener="#{sendMail.sendMailRecuperacion()}"/>
+                                </div>
+                            </div>
+                        </h:panelGroup>
+                    </h:form>
+                </div>
+            </div>
 
-        <script src="#{request.contextPath}/resources/js/jquery.js"></script>
-        <script src="#{request.contextPath}/resources/js/popper.min.js"></script>
-        <script src="#{request.contextPath}/resources/js/tether.min.js"></script>
-        <script src="#{request.contextPath}/resources/js/bootstrap.min.js"></script>
-        <script src="#{request.contextPath}/resources/js/bootstrap.bundle.min.js"></script>
-    </h:body>
+            <script src="#{request.contextPath}/resources/js/jquery.js"></script>
+            <script src="#{request.contextPath}/resources/js/popper.min.js"></script>
+            <script src="#{request.contextPath}/resources/js/tether.min.js"></script>
+            <script src="#{request.contextPath}/resources/js/bootstrap.min.js"></script>
+            <script src="#{request.contextPath}/resources/js/bootstrap.bundle.min.js"></script>
+        </h:body>
+    </f:view>
 
 </html>

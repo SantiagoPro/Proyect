@@ -89,13 +89,13 @@ public class SessionController implements Serializable {
                             switch (user.getIdRol().getIdRol()) {
                                 case 0:
                                     System.out.println("pasa" + user.getIdRol().getIdRol());
-                                    return "/usuarios/Principal.deportista.xhtml?faces-redirect=true";
+                                    return urlPrincipalRol(0);
                                 case 1:
                                     System.out.println("pasa" + user.getIdRol().getIdRol());
-                                    return "/usuarios/Principal.entrenador.xhtml?faces-redirect=true";
+                                    return urlPrincipalRol(1);
                                 case 2:
                                     System.out.println("pasa" + user.getIdRol().getIdRol());
-                                    return "/usuarios/Principal.administrador.xhtml?faces-redirect=true";
+                                    return urlPrincipalRol(2);
                                 default:
                                     break;
                             }
@@ -129,7 +129,7 @@ public class SessionController implements Serializable {
     public void validarRol(Integer idRol) throws IOException {
         ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
         if (isSessionStart()) {
-            if (user.getIdRol().getIdRol() == idRol.intValue()) {
+            if (user.getIdRol().getIdRol() != idRol.intValue()) {
                 ec.redirect(ec.getRequestContextPath() + urlPrincipalRol(idRol));
             }
         } else {

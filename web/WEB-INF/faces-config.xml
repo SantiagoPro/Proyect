@@ -5,8 +5,8 @@
               xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
     <application>
         <resource-bundle>
-            <base-name>/Bundle</base-name>
-            <var>bundle</var>
+            <base-name>com.rid.controller.language.Login.Login</base-name>
+            <var>msjLogin</var>
         </resource-bundle>
         <resource-bundle>
             <base-name>/language</base-name>
