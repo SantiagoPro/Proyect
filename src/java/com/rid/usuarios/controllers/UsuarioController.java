@@ -41,6 +41,7 @@ public class UsuarioController implements Serializable {
     private List<Usuario> usuario;
     private List<Usuario> deportista;
     private List<Usuario> entrenador;
+    private List<Usuario> administrador;
 
     private Usuario usuarioSeleccionado;
 
@@ -234,6 +235,14 @@ public class UsuarioController implements Serializable {
         return entrenador;
     }
 
+    public List<Usuario> getAdministrador() {
+        if (administrador == null || entrenador.isEmpty()) {
+            administrador = ufl.findByIdRol(2);
+        }
+        return administrador;
+    }
+
+    
     public void seleccionarUsuario(Usuario u) {
         System.out.println("seleccionarUsuario");
         usuarioSeleccionado = u;
