@@ -1357,7 +1357,8 @@
   content: "\f19e";
 }
 .fa-google:before {
-  content: "\f1a0";
+  content: "\f647";
+  color: #4285f4;
 }
 .fa-reddit:before {
   content: "\f1a1";

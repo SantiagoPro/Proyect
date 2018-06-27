@@ -58,4 +58,17 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
         }
         return null;
     }
+
+    @Override
+    public List<Usuario> findByIdRoles(int idD, int idE) {
+        try {
+            TypedQuery<Usuario> q = getEntityManager().createQuery("SELECT u FROM Usuario u WHERE u.idRol.idRol=:idD AND u.idRol.idRol=:idE", Usuario.class);
+            q.setParameter("idD", idD);
+            q.setParameter("idE", idE);
+            return q.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

@@ -28,6 +28,8 @@ public interface UsuarioFacadeLocal {
 
     List<Usuario> findByIdRol(int idRol);
     
+    List<Usuario> findByIdRoles(int idD, int idE);
+    
     List<Usuario> findRange(int[] range);
     
     Usuario findByIduClv(Long idUsuario, String clave);    
