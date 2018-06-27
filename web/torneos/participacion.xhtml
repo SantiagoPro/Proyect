@@ -38,7 +38,7 @@
                                         <h:selectOneMenu id="dep" value="#{participacionController.categoriaDeportista}"
                                                          required="required" class="form-control col-md-7 col-xs-12">
                                             <f:selectItems itemLabel="Seleccione el Deportista" itemValue=""></f:selectItems>
-                                            <f:selectItems value="#{categoriaDeportistaController.categoriasDeportista}" var="cd" itemLabel="#{cd.idDeportista}"></f:selectItems>
+                                            <f:selectItems value="#{categoriaDeportistaController.categoriasDeportista}" var="cd" itemLabel="#{cd.idDeportista.idDeportista}"></f:selectItems>
                                         </h:selectOneMenu>
                                     </div>
                                 </div>

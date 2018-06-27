@@ -6,7 +6,9 @@
 package com.rid.modelo.controllers.facades;
 
 import com.rid.modelo.entities.Resultado;
+import java.util.List;
 import javax.ejb.Stateless;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -18,6 +20,17 @@ public class ResultadoFacade extends AbstractFacade<Resultado> implements Result
 
     public ResultadoFacade() {
         super(Resultado.class);
+    }
+
+    @Override
+    public List<Resultado> resultados() {
+        try {
+            TypedQuery<Resultado> q = getEntityManager().createQuery("SELECT r.idParticipacion.puesto, r.idParticipacion.idCategoriaDeportista.idDeportista.usuario.idUsuarios, r.idParticipacion.idCategoriaDeportista.idDeportista.usuario.apellido, r.idParticipacion.idCategoriaDeportista.idDeportista.usuario.nombre FROM Resultado r", Resultado.class);
+            return q.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
     
 }

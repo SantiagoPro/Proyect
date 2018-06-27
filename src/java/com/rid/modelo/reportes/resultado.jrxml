@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="resultado" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e70dd0e5-4af0-4d4d-93d4-833bc7a55364">
+	<property name="ireport.zoom" value="1.2100000000000006"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="TodaPag" style="SubTitle"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="Table Dataset 1" uuid="1727c4b6-c4b5-4df4-8e41-8dc7c1fcadda"/>
+	<parameter name="sumaPeso" class="java.lang.Integer"/>
+	<parameter name="nombreTorneo" class="java.lang.String"/>
+	<field name="puesto" class="java.lang.String"/>
+	<field name="nombre" class="java.lang.String"/>
+	<field name="apellido" class="java.lang.String"/>
+	<field name="idUsuarios" class="java.lang.Long"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="92" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" x="83" y="19" width="275" height="51" uuid="b86f1918-5117-4398-90a8-5441f22ac82c"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Anders"/>
+				</textElement>
+				<text><![CDATA[SISTEMA R.I.D]]></text>
+			</staticText>
+			<image>
+				<reportElement x="0" y="0" width="83" height="70" uuid="d5dfa868-8cc3-4c0a-accd-bf1aef2c3f83"/>
+				<imageExpression><![CDATA["C:\\Users\\karen\\OneDrive - misena.edu.co\\Documentos\\RID\\LOGOPNG.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="253" height="20" uuid="dca2638e-0c7e-419b-ad50-b7b5e14fae5e"/>
+				<textElement>
+					<font fontName="PMingLiU-ExtB" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Resultados del Torneo: "+$P{nombreTorneo}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="35" width="555" height="1" uuid="33fb3815-c2bf-48bd-ac5e-6ea646488400"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement mode="Opaque" x="26" y="0" width="100" height="20" forecolor="#FFFFFF" backcolor="#0F0C29" uuid="a7552bf4-3264-4002-8889-49e2524c76b4"/>
+				<textElement textAlignment="Center">
+					<font fontName="PMingLiU-ExtB" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PUESTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="126" y="0" width="100" height="20" forecolor="#FFFFFF" backcolor="#0F0C29" uuid="85a7db17-9a78-402f-a61a-e61fcc4cde93"/>
+				<textElement textAlignment="Center">
+					<font fontName="PMingLiU-ExtB" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DOCUMENTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="226" y="0" width="100" height="20" forecolor="#FFFFFF" backcolor="#0F0C29" uuid="08c3c528-68c2-42d8-a3f5-8afb45392263"/>
+				<textElement textAlignment="Center">
+					<font fontName="PMingLiU-ExtB" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[APELLIDO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="326" y="0" width="100" height="20" forecolor="#FFFFFF" backcolor="#0F0C29" uuid="9d83bd91-aef1-4626-9dcb-39c51e818e58"/>
+				<textElement textAlignment="Center">
+					<font fontName="PMingLiU-ExtB" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOMBRE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="426" y="0" width="100" height="20" forecolor="#FFFFFF" backcolor="#0F0C29" uuid="a0803a0a-8a71-4161-b4c6-bcee29ef206d"/>
+				<textElement textAlignment="Center">
+					<font fontName="PMingLiU-ExtB" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PESO]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="e767861a-3a55-425e-a1be-ee802b57f116"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="26" y="0" width="100" height="20" uuid="ec0955a4-d6d3-4c0e-9b66-adc3bde05b54"/>
+				<textElement textAlignment="Center">
+					<font fontName="PMingLiU-ExtB" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{puesto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="126" y="0" width="100" height="20" uuid="d2b919cd-f8ad-4daf-baf2-b2a76913f6e6"/>
+				<textElement textAlignment="Center">
+					<font fontName="PMingLiU-ExtB" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{idUsuarios}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="226" y="0" width="100" height="20" uuid="1be694ca-f14e-4db6-b6a0-7863afaee303"/>
+				<textElement textAlignment="Center">
+					<font fontName="PMingLiU-ExtB" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{apellido}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="326" y="0" width="100" height="20" uuid="009871d8-518e-4206-a513-23fd6746f9c1"/>
+				<textElement textAlignment="Center">
+					<font fontName="PMingLiU-ExtB" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="426" y="0" width="100" height="20" uuid="a2a94d50-5d00-47d6-b19b-0723675dada1"/>
+				<textElement textAlignment="Center">
+					<font fontName="PMingLiU-ExtB" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{sumaPeso}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="43" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="505eabcd-2fd6-4bbb-a639-358574b9782c"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement style="Column header" x="433" y="0" width="80" height="20" uuid="23ebd00e-75bf-45e9-af6d-f650db5fd5f1"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement style="Column header" x="513" y="0" width="40" height="20" uuid="97deb525-fba2-45e9-a662-d0f78f64b5ba"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="0" y="0" width="197" height="20" uuid="5c256aec-726f-4907-a873-2d5d24081cd5"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

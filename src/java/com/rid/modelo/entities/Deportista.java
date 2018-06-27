@@ -49,10 +49,10 @@ public class Deportista implements Serializable {
     private Long idDeportista;
     @Basic(optional = false)
     @Column(name = "peso")
-    private double peso;
+    private Double peso;
     @Basic(optional = false)
     @Column(name = "estatura")
-    private double estatura;
+    private Integer estatura;
     @Column(name = "fuerza")
     private Integer fuerza;
     @Column(name = "velocidad")
@@ -80,7 +80,7 @@ public class Deportista implements Serializable {
         this.idDeportista = idDeportista;
     }
 
-    public Deportista(Long idDeportista, double peso, double estatura, Integer fuerza, Integer velocidad, Integer salto, Integer flexibilidad, Integer resistencia) {
+    public Deportista(Long idDeportista, double peso, Integer estatura, Integer fuerza, Integer velocidad, Integer salto, Integer flexibilidad, Integer resistencia) {
         this.idDeportista = idDeportista;
         this.peso = peso;
         this.estatura = estatura;
@@ -107,11 +107,11 @@ public class Deportista implements Serializable {
         this.peso = peso;
     }
 
-    public double getEstatura() {
+    public Integer getEstatura() {
         return estatura;
     }
 
-    public void setEstatura(double estatura) {
+    public void setEstatura(Integer estatura) {
         this.estatura = estatura;
     }
 
