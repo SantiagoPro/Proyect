@@ -96,7 +96,7 @@ public class SendMail implements Serializable {
 
     public void sendMailRecuperacion() {
         Mail.sendMailHTML(destinatarios, "Cambio de Contraseña", "<p>Se ha notificado un cambio de contraseña, para confirmar ingrese al siguiente link</p>"
-                + "http://localhost:8080//recuperarClave.xhtml");
+                + "http://localhost:8080/RID/recuperarClave.xhtml");
     }
 
     public String validarContraseña() {
