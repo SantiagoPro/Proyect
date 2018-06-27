@@ -27,6 +27,8 @@ public interface ResultadoFacadeLocal {
     List<Resultado> findAll();
 
     List<Resultado> findRange(int[] range);
+    
+    List<Resultado> resultados(); 
 
     int count();
     
