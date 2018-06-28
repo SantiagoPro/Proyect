@@ -13,7 +13,7 @@ import com.rid.modelo.controllers.facades.TipoDocumentoFacadeLocal;
 import com.rid.modelo.controllers.facades.UsuarioFacadeLocal;
 import com.rid.modelo.entities.Rol;
 import com.rid.utils.FileUpload;
-import java.nio.file.Files;
+import java.io.File;
 import com.rid.utils.MessagesUtil;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -228,10 +228,15 @@ public class UsuarioController implements Serializable {
     }
 
     public String getImagenPerfil() {
-        //File f = new File(ca.getCarpeta(),user.getIdUsuarios() + ".jpg");
+        File f = new File(ca.getCarpeta(),user.getIdUsuarios() + ".jpg");
         if (!ca.getCarpeta().exists() && imagenPerfil == null) {
             imagenPerfil = "resouerces/images/perfiles/LOGO.jpg";
+        }else if (f.exists()) {
+            imagenPerfil = "imgPerfil/" + f.getName();
         }
+//        else if () {
+//            
+//        }
         return imagenPerfil;
     }
 
