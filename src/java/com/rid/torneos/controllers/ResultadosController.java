@@ -16,6 +16,7 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
@@ -47,8 +48,10 @@ public class ResultadosController implements Serializable{
     @EJB
     private ResultadoFacadeLocal rfl;
     private Resultado resultado;
+    private Resultado seleccionado;
     
     private List<Resultado> res;   
+    private List<Resultado> consulta;
     
     private Integer idResultado;
     private Integer pesoArranque;
@@ -62,7 +65,10 @@ public class ResultadosController implements Serializable{
     @Inject
     private TorneoController tc;
     
+    private ReporteResultado rr;
+    
     public ResultadosController() {
+        
     }
     
     @PostConstruct
@@ -132,6 +138,18 @@ public class ResultadosController implements Serializable{
         }
         return res;
     }    
+
+    public Resultado getSeleccionado() {
+        return seleccionado;
+    }
+
+    public void setSeleccionado(Resultado seleccionado) {
+        this.seleccionado = seleccionado;
+    }
+    
+    public void seleccionarResultado(Resultado r){
+        seleccionado = r;
+    }
     
     public String registrarResultado(){
         System.out.println("Id: " +idResultado);
@@ -156,35 +174,111 @@ public class ResultadosController implements Serializable{
         }
         return "";
     }
+
+    public List<Resultado> getConsulta() {
+        //if (consulta == null || consulta.isEmpty()) {
+        System.out.println("sele: " +idResultado);
+            consulta = rfl.resultados(idResultado);
+            try {
+                FacesContext fc = FacesContext.getCurrentInstance();
+                ExternalContext ec = fc.getExternalContext();
+                //Lista
+                //List<ReporteResultado> repr = ReporteResultado.reportesResultado(res);
+
+                Map<String, Object> p = new HashMap<>();
+                p.put("nombreTorneo", null);
+                p.put("sumaPeso", null);
+
+                File f = new File(ec.getRealPath("/WEB-INF/classes/com/rid/modelo/reportes/resultado.jasper"));
+                JasperPrint jp = JasperFillManager.fillReport(f.getPath(), p, new JRBeanCollectionDataSource(rfl.resultados(idResultado)));
+
+                HttpServletResponse hsr = (HttpServletResponse) ec.getResponse();
+                hsr.addHeader("Content-disposition", "attachment; filename=resultado.pdf");
+                OutputStream os = hsr.getOutputStream();
+
+                JasperExportManager.exportReportToPdfStream(jp, os);
+
+                os.flush();
+                os.close();
+
+                fc.responseComplete();
+            } catch (JRException ex) {
+                Logger.getLogger(ResultadosController.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(ResultadosController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        //}
+        return consulta;
+    }
+
+    public void setConsulta(List<Resultado> consulta) {
+        this.consulta = consulta;
+    }
     
     public void exportarResultados(){
-        try {
-            FacesContext fc = FacesContext.getCurrentInstance();
-            ExternalContext ec = fc.getExternalContext();
-            //Lista
-            List<ReporteResultado> repr = ReporteResultado.reportesResultado(res);
+            try {
+                FacesContext fc = FacesContext.getCurrentInstance();
+                ExternalContext ec = fc.getExternalContext();
+                //Lista
+                List<ReporteResultado> repr = ReporteResultado.reportesResultado(res);
 
-            Map<String, Object> p = new HashMap<>();
-            p.put("nombreTorneo", tc.getNombre());
-            p.put("sumaPeso", getSumaPeso());
+                Map<String, Object> p = new HashMap<>();
+                p.put("nombreTorneo", "Torneo 1");
+                p.put("sumaPeso", sumaPeso);
 
-            File f = new File(ec.getRealPath("/WEB-INF/classes/com/rid/modelo/reportes/resultado.jasper"));
-            JasperPrint jp = JasperFillManager.fillReport(f.getPath(), p, new JRBeanCollectionDataSource(repr));
-            
-            HttpServletResponse hsr = (HttpServletResponse) ec.getResponse();
-            hsr.addHeader("Content-disposition", "attachment; filename=resultado.pdf");
-            OutputStream os = hsr.getOutputStream();
-        
-            JasperExportManager.exportReportToPdfStream(jp, os);
-            
-            os.flush();
-            os.close();
-            
-            fc.responseComplete();
-        } catch (JRException ex) {
-            Logger.getLogger(ResultadosController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(ResultadosController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+                File f = new File(ec.getRealPath("/WEB-INF/classes/com/rid/modelo/reportes/resultado.jasper"));
+                JasperPrint jp = JasperFillManager.fillReport(f.getPath(), p, new JRBeanCollectionDataSource(repr));
+
+                HttpServletResponse hsr = (HttpServletResponse) ec.getResponse();
+                hsr.addHeader("Content-disposition", "attachment; filename=resultado.pdf");
+                OutputStream os = hsr.getOutputStream();
+
+                JasperExportManager.exportReportToPdfStream(jp, os);
+
+                os.flush();
+                os.close();
+
+                fc.responseComplete();
+            } catch (JRException ex) {
+                Logger.getLogger(ResultadosController.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(ResultadosController.class.getName()).log(Level.SEVERE, null, ex);
+            }
     }
+    
+//    public File correoResultados(){
+//        try {
+//            ResourceBundle rb = ResourceReader.read("com.rid.config.Config");
+//            FacesContext fc = FacesContext.getCurrentInstance();
+//            ExternalContext ec = fc.getExternalContext();
+//            //Lista
+//            List<ReporteResultado> repr = ReporteResultado.reportesResultado(res);
+//
+//            Map<String, Object> p = new HashMap<>();
+//            p.put("nombreTorneo", ReporteResultado.getTorneo());
+//            p.put("sumaPeso", ReporteResultado.getSumaPeso());
+//
+//            File f = new File(ec.getRealPath("/WEB-INF/classes/com/rid/modelo/reportes/resultado.jasper"));
+//            File folder = new File(ec.getRealPath("")+rb.getString("pathTemporalFiles"));
+//            folder.mkdirs();
+//            File output = new File(folder,"factura.pdf");
+//            
+//            JasperPrint jp = JasperFillManager.fillReport(f.getPath(), p, new JRBeanCollectionDataSource(repr));
+//            
+////            HttpServletResponse hsr = (HttpServletResponse) ec.getResponse();
+////            hsr.addHeader("Content-disposition", "attachment; filename=resultado.pdf");
+////            OutputStream os = hsr.getOutputStream();
+//        
+//            JasperExportManager.exportReportToPdfFile(jp, output.getPath());
+//            
+////            os.flush();
+////            os.close();
+////            
+////            fc.responseComplete();
+//            return output;
+//        } catch (JRException ex) {
+//            Logger.getLogger(ResultadosController.class.getName()).log(Level.SEVERE, null, ex);
+//        } 
+//        return null;
+//    }
 }

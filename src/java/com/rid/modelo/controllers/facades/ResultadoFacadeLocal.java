@@ -28,7 +28,7 @@ public interface ResultadoFacadeLocal {
 
     List<Resultado> findRange(int[] range);
     
-    List<Resultado> resultados(); 
+    List<Resultado> resultados(int id); 
 
     int count();
     
