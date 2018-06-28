@@ -80,21 +80,21 @@ public class SessionController implements Serializable {
         user = ufl.findByIduClv(idUsuario, clave);
         if (idUsuario != user.getIdUsuarios() || clave != user.getClave()) {
             if (user != null) {
-                System.out.println("pasa usuario");
+                System.out.println("pasa usuario ");
                 if (user.getEstado() == 1) {
-                    System.out.println("pasa estado");
+                    System.out.println("pasa estado ");
                     if (user.getIdRol() != null) {
-                        System.out.println("pasa rol");
+                        System.out.println("pasa rol ");
                         if (user.getIdRol().getIdRol() != null) {
                             switch (user.getIdRol().getIdRol()) {
                                 case 0:
-                                    System.out.println("pasa" + user.getIdRol().getIdRol());
+                                    System.out.println("pasa " + user.getIdRol().getIdRol());
                                     return urlPrincipalRol(0);
                                 case 1:
-                                    System.out.println("pasa" + user.getIdRol().getIdRol());
+                                    System.out.println("pasa " + user.getIdRol().getIdRol());
                                     return urlPrincipalRol(1);
                                 case 2:
-                                    System.out.println("pasa" + user.getIdRol().getIdRol());
+                                    System.out.println("pasa " + user.getIdRol().getIdRol());
                                     return urlPrincipalRol(2);
                                 default:
                                     break;
