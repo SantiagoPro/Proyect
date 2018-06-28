@@ -43,6 +43,7 @@ public class LanguageController implements Serializable {
 
     public void setLang(String lang) {
         this.lang = lang;
+        locale = new Locale(lang);
     }
 
     public Locale getLocale() {

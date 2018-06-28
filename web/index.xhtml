@@ -14,7 +14,7 @@
         <link rel="stylesheet" href="#{request.contextPath}/resources/css/formValidation.min.css"/>
         <link rel="icon" href="#{request.contextPath}/resources/images/LOGO.png"/>
     </h:head>
-    <f:view locale="es">
+    <f:view locale="#{languageController.locale}">
         <h:body>
             <div class="login-clean" style="background-image:url(resources/images/709.jpg);">
                 <h4 class="text-uppercase text-center text-white d-flex flex-row 
@@ -49,12 +49,12 @@
                                        value="#{msjLogin.btnChangePass}">
                             <f:ajax render=":contentContraseña"/>
                         </h:commandLink>
-<!--                    <br/>
-                        <h:selectOneMenu value="#{languageController.locale}" class="btn btn-info alert-light">
+                        <br/>
+                        <h:selectOneMenu value="#{languageController.lang}" class="btn btn-info alert-light" onchange="submit();">
                             <f:selectItems value="#{languageController.locales}"
-                                           var="lang" itemLabel="#{lang.language}"
+                                           var="lang" itemLabel="#{lang.displayLanguage}"
                                            />
-                        </h:selectOneMenu>-->
+                        </h:selectOneMenu>
                     </div>
                 </h:form>
             </div>
