@@ -8,21 +8,20 @@
             <base-name>com.rid.controller.language.Login.Login</base-name>
             <var>msjLogin</var>
         </resource-bundle>
+        
         <resource-bundle>
-            <base-name>/language</base-name>
-            <var>language</var>
+            <base-name>com.rid.controller.language.mainAd.Admin</base-name>
+            <var>msjAdmin</var>
         </resource-bundle>
         <resource-bundle>
-            <base-name>/Bundle</base-name>
-            <var>bundle</var>
+            <base-name>com.rid.controller.language.mainEnt.Ent</base-name>
+            <var>msjEnt</var>
         </resource-bundle>
+<!--    
         <resource-bundle>
-            <base-name>/Language</base-name>
-            <var>language</var>
-        </resource-bundle>
-        <resource-bundle>
-            <base-name>/Language</base-name>
-            <var>language</var>
-        </resource-bundle>
+            <base-name>com.rid.controller.language.mainDe.Dep</base-name>
+            <var>msjDep</var>
+        </resource-bundle>-->
+        
     </application>
 </faces-config>

@@ -130,7 +130,7 @@ public class SessionController implements Serializable {
         ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
         if (isSessionStart()) {
             if (user.getIdRol().getIdRol() != idRol.intValue()) {
-                ec.redirect(ec.getRequestContextPath() + urlPrincipalRol(idRol));
+                ec.redirect(ec.getRequestContextPath() + urlPrincipalRol(user.getIdRol().getIdRol()));
             }
         } else {
             ec.redirect(ec.getRequestContextPath());

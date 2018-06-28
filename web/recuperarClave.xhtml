@@ -28,17 +28,17 @@
                     align-content-center align-self-center flex-nowrap my-auto"><img src="resources/images/LOGO.png"
                             style="width:200px;height:250px; position: relative ;" class="img-fluid" /></div>
                 <div class="form-group">
-                    <h:inputText a:type="number" a:placeholder="Usuario *" autocomplete="off" 
+                    <h:inputText a:type="number" a:placeholder="Usuario *" a:autocomplete="off" 
                                  a:maxlength="13" a:minlength="10" a:required="true"
                                  class="form-control" value="#{sendMail.documento}" />
                 </div>
                 <div class="form-group">
-                    <h:inputText a:type="number" a:placeholder="Nueva Contraseña *" autocomplete="off" 
+                    <h:inputText a:type="secret" a:placeholder="Nueva Contraseña *" a:autocomplete="off" 
                                  a:maxlength="50" a:minlength="10" a:required="true"
                                  class="form-control" value="#{sendMail.clave}" />
                 </div>
                 <div class="form-group">
-                    <h:inputText a:type="number" a:placeholder="Nueva Contraseña *" autocomplete="off" 
+                    <h:inputText a:type="secret" a:placeholder="Nueva Contraseña *" a:autocomplete="off" 
                                  a:maxlength="50" a:minlength="10" a:required="true"
                                  class="form-control" value="#{sendMail.clave2}"/>
                 </div>
