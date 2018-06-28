@@ -11,6 +11,7 @@ import com.rid.modelo.entities.Torneo;
 import com.rid.modelo.entities.Usuario;
 import com.rid.usuarios.controllers.UsuarioController;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -30,6 +31,8 @@ public class TorneoController implements Serializable {
     /**
      * Creates a new instance of TorneoController
      */
+    private static final String FORMAT = "yyyy-MM-dd";
+    
     @EJB
     private TorneoFacadeLocal tdl;
     private Torneo torneo;
@@ -39,6 +42,8 @@ public class TorneoController implements Serializable {
     private String nombre;
     private Date fecha;
     private String lugar;
+    
+    private String fechaHoy;
     
     @Inject
     private UsuarioController uc;
@@ -80,8 +85,23 @@ public class TorneoController implements Serializable {
         }
         return listaTorneo;
     }
+    
+    public String formatoFecha(){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date now = new Date();
+        fechaHoy = sdf.format(now);
+
+        return fechaHoy;
+    }
+
+    public void setFechaHoy(String fechaHoy) {
+        this.fechaHoy = fechaHoy;
+    }
+    
+    
     public String registrarTorneo(){
-       
+        SimpleDateFormat sdf = new SimpleDateFormat(FORMAT);
+        Date resultado = null;
         System.out.println("nombre : " + nombre);
         System.out.println("fecha : " + fecha);
         System.out.println("lugar : " + lugar);
@@ -92,7 +112,8 @@ public class TorneoController implements Serializable {
             tdl.create(t);
             for (Usuario usuario : u) {
                 Mail.sendMailHTML(usuario.getMail(), "Se ha registrado un nuevo torneo", 
-                        "Señor(a) " +usuario.getNombre()+ "." +"<br> <h3>Se realizado el registro de un nuevo Torneo en el Sistema R.I.D.</h3>" + "<h5 style='color:#0f0C29;'>Nombre: " +nombre + "<br> Lugar: " +lugar + "<br>Fecha: </h5>" +fecha);                
+                        "Señor(a) " +usuario.getNombre()+ "." +"<br> <h3>Se realizado el registro de un nuevo Torneo en el Sistema R.I.D.</h3>" + "<h5 style='color:#0f0C29;'>Nombre: " +nombre + "<br> Lugar: " +lugar 
+                                + "<br>Fecha: </h5>" +fecha);                
             }
             t = null;
             return "Nuevo.torneo.xhtml";

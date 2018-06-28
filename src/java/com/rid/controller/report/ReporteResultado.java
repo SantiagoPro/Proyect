@@ -6,9 +6,11 @@
 package com.rid.controller.report;
 
 import com.rid.modelo.entities.Resultado;
+import com.rid.torneos.controllers.ResultadosController;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.inject.Inject;
 
 /**
  *
@@ -16,21 +18,26 @@ import java.util.List;
  */
 public class ReporteResultado implements Serializable{
     
+    private static String torneo;
     private String puesto;
     private Long idUsuarios;
     private String apellido;
     private String nombre;
-    private Integer sumaPeso;
+    private static Integer sumaPeso;
+    
+    @Inject
+    private ResultadosController rc;
 
     public ReporteResultado() {
     }
     
     public ReporteResultado(Resultado r) {
+        this.torneo = r.getIdParticipacion().getIdTorneo().getNombre();
         this.puesto = r.getIdParticipacion().getPuesto();
         this.idUsuarios = r.getIdParticipacion().getIdCategoriaDeportista().getIdDeportista().getIdDeportista();
         this.apellido = r.getIdParticipacion().getIdCategoriaDeportista().getIdDeportista().getUsuario().getApellido();
         this.nombre = r.getIdParticipacion().getIdCategoriaDeportista().getIdDeportista().getUsuario().getNombre();
-        this.sumaPeso = r.getPesoEnvion() + r.getPesoArranque();
+        this.sumaPeso = r.getPesoArranque() + r.getPesoEnvion();
     }
 
     public String getPuesto() {
@@ -65,15 +72,25 @@ public class ReporteResultado implements Serializable{
         this.nombre = nombre;
     }
 
-    public Integer getSumaPeso() {
+    public static Integer getSumaPeso() {
         return sumaPeso;
     }
 
-    public void setSumaPeso(Integer sumaPeso) {
-        this.sumaPeso = sumaPeso;
+    public static void setSumaPeso(Integer sumaPeso) {
+        ReporteResultado.sumaPeso = sumaPeso;
     }
+
+    public static String getTorneo() {
+        return torneo;
+    }
+
+    public static void setTorneo(String torneo) {
+        ReporteResultado.torneo = torneo;
+    }
+
     
     public static List<ReporteResultado> reportesResultado(List<Resultado> rs){
+        
         List<ReporteResultado> repr = new ArrayList<>();
         for (Resultado res : rs) {
             repr.add(new ReporteResultado(res));

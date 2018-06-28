@@ -23,9 +23,10 @@ public class ResultadoFacade extends AbstractFacade<Resultado> implements Result
     }
 
     @Override
-    public List<Resultado> resultados() {
+    public List<Resultado> resultados(int id) {
         try {
-            TypedQuery<Resultado> q = getEntityManager().createQuery("SELECT r.idParticipacion.puesto, r.idParticipacion.idCategoriaDeportista.idDeportista.usuario.idUsuarios, r.idParticipacion.idCategoriaDeportista.idDeportista.usuario.apellido, r.idParticipacion.idCategoriaDeportista.idDeportista.usuario.nombre FROM Resultado r", Resultado.class);
+            TypedQuery<Resultado> q = getEntityManager().createQuery("SELECT r.idParticipacion.puesto, r.idParticipacion.idCategoriaDeportista.idDeportista.usuario.idUsuarios, r.idParticipacion.idCategoriaDeportista.idDeportista.usuario.apellido, r.idParticipacion.idCategoriaDeportista.idDeportista.usuario.nombre FROM Resultado r WHERE r.idResultado=:id", Resultado.class);
+            q.setParameter("id", id);
             return q.getResultList();
         } catch (Exception e) {
             e.printStackTrace();
