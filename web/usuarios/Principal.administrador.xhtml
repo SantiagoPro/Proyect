@@ -16,10 +16,7 @@
         <script src="#{request.contextPath}/resources/js/tabla.js"></script>
     </ui:define>
     <ui:define name="title">
-        Pagina principal
-    </ui:define>
-    <ui:define name="pag">
-        Principal
+        #{msjAdmin.title}
     </ui:define>
     <ui:define name="Contenido" >   
         <div class="row " style="margin-left: 3px"  >
@@ -30,12 +27,12 @@
                     <h:commandLink class="btn btn-primary alert-light"
                                    a:data-toggle="modal" a:data-target="#Correo">
                         <f:ajax render=":contentCorreo"/>
-                        <i class="fa fa-envelope"></i> Enviar Correo
+                        <i class="fa fa-envelope"></i> #{msjAdmin.correoSend}
                     </h:commandLink>
                     <h:commandLink  class="btn btn-success alert-light"
                                     style="margin: 1px"
                                     a:data-toggle="modal" a:data-target="#Registrar"
-                                    >   <i class="fa fa-user-plus"> </i> Registrar Entrenador
+                                    >   <i class="fa fa-user-plus"> </i> #{msjAdmin.registroEnt}
                         <f:ajax render=":contentModalRegistrar"/>
                     </h:commandLink>
                 </h:form>
@@ -51,23 +48,23 @@
                                  table-responsive-sm table-responsive-xl table-hover"
                                  value="#{usuarioController.entrenador}" var="u">
                         <h:column>
-                            <f:facet name="header"> <i class="fa fa-address-card"></i> Documento </f:facet>
+                            <f:facet name="header"> <i class="fa fa-address-card"></i> #{msjAdmin.documento} </f:facet>
                             <h:outputText value="#{u.idUsuarios} #{u.idTipoDocumento.sigla} "/>
                         </h:column>
                         <h:column>
-                            <f:facet name="header"> <i class="fa fa-fw fa-user-o"></i> Nombre </f:facet>
+                            <f:facet name="header"> <i class="fa fa-fw fa-user-o"></i> #{msjAdmin.nombre} </f:facet>
                             <h:outputText value=" #{u.nombre} #{u.apellido}"/>
                         </h:column>
                         <h:column>
-                            <f:facet name="header"> <i class="fa fa-fw fa-tint"></i> RH </f:facet>
+                            <f:facet name="header"> <i class="fa fa-fw fa-tint"></i> #{msjAdmin.rh} </f:facet>
                             <h:outputText value="#{u.rh}"/>
                         </h:column>
                         <h:column>
-                            <f:facet name="header"> <i class="fa fa-fw fa-phone"></i> Seguro Medico </f:facet>
+                            <f:facet name="header"> <i class="fa fa-fw fa-heart"></i> #{msjAdmin.seguro} </f:facet>
                             <h:outputText value=" #{u.seguroMedico} "/>
                         </h:column>
                         <h:column>
-                            <f:facet name="header"><i class="fa fa-cog"></i> Editar </f:facet>
+                            <f:facet name="header"><i class="fa fa-cog"></i> #{msjAdmin.btnEdit} </f:facet>
                             <h:commandLink class="btn btn-warning alert-secondary" style="margin: 1px"
                                            actionListener="#{usuarioController.seleccionarUsuario(u)}" 
                                            a:data-toggle="modal" a:data-target="#modalEditar">
@@ -148,22 +145,22 @@
                     <h:panelGroup id="informacionCompleta" layout="block">
                         <div class="modal-content modal-lg modal-sm">
                             <div class="modal-header alert-primary">
-                                <h6 class="modal-title">Informcaion completa de: <strong> #{usuarioController.usuarioSeleccionado.nombre} #{usuarioController.usuarioSeleccionado.apellido} </strong> </h6>
+                                <h6 class="modal-title"> #{msjAdmin.informacionCom} <strong> #{usuarioController.usuarioSeleccionado.nombre} #{usuarioController.usuarioSeleccionado.apellido} </strong> </h6>
                             </div>
                             <div class="modal-body">
-                                <h:outputText class="list-group-item" value="Documento: #{usuarioController.usuarioSeleccionado.idUsuarios} #{usuarioController.usuarioSeleccionado.idTipoDocumento.sigla}"></h:outputText>
-                                <h:outputText class="list-group-item" value="Nombres: #{usuarioController.usuarioSeleccionado.nombre}"></h:outputText>
-                                <h:outputText class="list-group-item" value="Apellidos: #{usuarioController.usuarioSeleccionado.apellido}"></h:outputText>
-                                <h:outputText class="list-group-item" value="Genero: #{usuarioController.usuarioSeleccionado.sexo}"></h:outputText>
+                                <h:outputText class="list-group-item" value="#{msjAdmin.documento}: #{usuarioController.usuarioSeleccionado.idUsuarios} #{usuarioController.usuarioSeleccionado.idTipoDocumento.sigla}"></h:outputText>
+                                <h:outputText class="list-group-item" value="#{msjAdmin.nombre}: #{usuarioController.usuarioSeleccionado.nombre}"></h:outputText>
+                                <h:outputText class="list-group-item" value="#{msjAdmin.apellido}: #{usuarioController.usuarioSeleccionado.apellido}"></h:outputText>
+                                <h:outputText class="list-group-item" value="#{msjAdmin.genero}: #{usuarioController.usuarioSeleccionado.sexo}"></h:outputText>
                                 <!--                            <h:outputText converter="fechaConverter" class="list-group-item" value="Fecha: de nacimiento: {usuarioController.usuarioSeleccionado.fechaNacimiento}"/>-->
-                                <h:outputText class="list-group-item" value="RH: #{usuarioController.usuarioSeleccionado.rh}"></h:outputText>
-                                <h:outputText class="list-group-item" value="Seguro Medico: #{usuarioController.usuarioSeleccionado.seguroMedico}"></h:outputText>
-                                <h:outputText class="list-group-item" value="Correo: #{usuarioController.usuarioSeleccionado.mail}"></h:outputText>
-                                <h:outputText class="list-group-item" value="Telefono: #{usuarioController.usuarioSeleccionado.telefono}"></h:outputText>
-                                <h:outputText class="list-group-item" value="Direccion: #{usuarioController.usuarioSeleccionado.direccion}"></h:outputText>
+                                <h:outputText class="list-group-item" value="#{msjAdmin.rh}: #{usuarioController.usuarioSeleccionado.rh}"></h:outputText>
+                                <h:outputText class="list-group-item" value="#{msjAdmin.seguro}: #{usuarioController.usuarioSeleccionado.seguroMedico}"></h:outputText>
+                                <h:outputText class="list-group-item" value="#{msjAdmin.correo}: #{usuarioController.usuarioSeleccionado.mail}"></h:outputText>
+                                <h:outputText class="list-group-item" value="#{msjAdmin.telefono}: #{usuarioController.usuarioSeleccionado.telefono}"></h:outputText>
+                                <h:outputText class="list-group-item" value="#{msjAdmin.direccion}: #{usuarioController.usuarioSeleccionado.direccion}"></h:outputText>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-success alert-light" data-dismiss="modal">Cerrar</button>
+                                <button type="button" class="btn btn-success alert-light" data-dismiss="modal">#{msjAdmin.btnCerrar}</button>
                             </div>
                         </div>
                     </h:panelGroup>
@@ -179,10 +176,10 @@
                     <h:panelGroup id="contentModalEditar" layout="block">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title">Editar usuario:</h5>
+                                <h5 class="modal-title">#{msjAdmin.editarTitle}</h5>
                             </div>
                             <div class="modal-body">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tipoDoc">Tipo documento <span class="required" >*</span> </label>
+                                <label class="control-label col-md-12 col-md-12 col-xs-12" for="tipoDoc"> #{msjAdmin.tipoDoc} <span class="required" >*</span> </label>
                                 <div class="col-md-10 col-sm-8 col-xs-12">
                                     <h:selectOneMenu id="tipoDoc" value="#{usuarioController.usuarioSeleccionado.idTipoDocumento}"
                                                      class="form-control col-md-7 col-xs-12" required="true" >
@@ -190,7 +187,7 @@
                                     </h:selectOneMenu>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="documento">Documento <span class="required">*</span>
+                                    <label class="control-label col-md-12 col-sm-12 col-xs-12" for="documento"> #{msjAdmin.documento} <span class="required">*</span>
                                     </label>
                                     <div class="col-md-12 col-md-12 col-xs-12">
                                         <h:inputText id="documento" a:type="text" value="#{usuarioController.usuarioSeleccionado.idUsuarios}"
@@ -198,7 +195,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nombres">Nombres <span class="required">*</span>
+                                    <label class="control-label col-md-12 col-md-12 col-xs-12" for="nombres">#{msjAdmin.nombre} <span class="required">*</span>
                                     </label>
                                     <div class="col-md-12 col-md-12 col-xs-12">
                                         <h:inputText id="nombres" value="#{usuarioController.usuarioSeleccionado.nombre}"
@@ -206,7 +203,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="apellidos"> Apellidos <span class="required">*</span>
+                                    <label class="control-label col-md-12 col-md-12 col-xs-12" for="apellidos"> #{msjAdmin.apellido} <span class="required">*</span>
                                     </label>
                                     <div class="col-md-12 col-md-12 col-xs-12">
                                         <h:inputText id="apellidoa" value="#{usuarioController.usuarioSeleccionado.apellido}"
@@ -214,7 +211,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-10 col-sm-10 col-xs-12" for="genero"> Genero <span class="required">*</span>
+                                    <label class="control-label col-md-10 col-sm-10 col-xs-12" for="genero"> #{msjAdmin.genero} <span class="required">*</span>
                                     </label>
                                     <div class="col-md-12 col-sm-12 col-xs-12">
                                         <h:selectOneMenu id="genero" value="#{usuarioController.usuarioSeleccionado.sexo}"
@@ -226,7 +223,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-10 col-sm-10 col-xs-12" for="rh"> Rh <span class="required">*</span>
+                                    <label class="control-label col-md-10 col-sm-10 col-xs-12" for="rh"> #{msjAdmin.rh} <span class="required">*</span>
                                     </label>
                                     <div class="col-md-12 col-sm-12 col-xs-12">
                                         <h:selectOneRadio id="rh" value="#{usuarioController.usuarioSeleccionado.rh}" layout="pageDirection"
@@ -241,7 +238,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="seguro"> Seguro Medico <span class="required">*</span>
+                                    <label class="control-label col-md-12 col-md-12 col-xs-12" for="seguro"> #{msjAdmin.seguro} <span class="required">*</span>
                                     </label>
                                     <div class="col-md-12 col-md-12 col-xs-12">
                                         <h:inputText id="seguro" value="#{usuarioController.usuarioSeleccionado.seguroMedico}"
@@ -249,7 +246,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="correo"> Correo <span class="required">*</span>
+                                    <label class="control-label col-md-12 col-md-12 col-xs-12" for="correo"> #{msjAdmin.correo} <span class="required">*</span>
                                     </label> 
                                     <div class="col-md-12 col-md-12 col-xs-12">
                                         <h:inputText id="correo" a:type="email" value="#{usuarioController.usuarioSeleccionado.mail}"
@@ -257,7 +254,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="telefono"> Telefono <span class="required">*</span>
+                                    <label class="control-label col-md-12 col-md-12 col-xs-12" for="telefono"> #{msjAdmin.telefono} <span class="required">*</span>
                                     </label>
                                     <div class="col-md-12 col-md-12 col-xs-12">
                                         <h:inputText id="telefono" value="#{usuarioController.usuarioSeleccionado.telefono}"
@@ -265,7 +262,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="direccion"> Direccion <span class="required">*</span>
+                                    <label class="control-label col-md-12 col-md-12 col-xs-12" for="direccion"> #{msjAdmin.direccion} <span class="required">*</span>
                                     </label>
                                     <div class="col-md-12 col-md-12 col-xs-12">
                                         <h:inputText id="direccion" value="#{usuarioController.usuarioSeleccionado.direccion}"
@@ -273,9 +270,9 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger alert-light" data-dismiss="modal">Cancelar</button>
+                                    <button type="button" class="btn btn-danger alert-light" data-dismiss="modal">#{msjAdmin.cancelar}</button>
                                     <h:commandButton actionListener="#{usuarioController.editarUsuario()}" 
-                                                     class="btn btn-success alert-light" value="Editar"/>
+                                                     class="btn btn-success alert-light" value="#{msjAdmin.btnEdit}"/>
                                 </div>
                             </div>
                         </div>
@@ -295,14 +292,14 @@
                             </div>
                             <div class="modal-body col-md-12">
                                 <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="documentoR">Documento <span class="required">*</span>
+                                    <label class="control-label col-md-12 col-md-12 col-xs-12" for="documentoR">#{msjAdmin.documento} <span class="required">*</span>
                                     </label>
                                     <div class="col-md-12 col-md-12 col-xs-12"> 
                                         <h:inputText id="documentoR" value="#{usuarioController.documento}" autocomplete="off"
                                                      a:type="number" class="form-control col-md-7 col-xs-12"/>
                                     </div>
                                 </div>
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tipoDocumentoR">Tipo documento <span class="required" >*</span> </label>
+                                <label class="control-label col-md-12 col-md-12 col-xs-12" for="tipoDocumentoR"> #{msjAdmin.tipoDoc} <span class="required" >*</span> </label>
                                 <div class="col-md-10 col-sm-8 col-xs-12">
                                     <h:selectOneMenu id="tipoDocumentoR" value="#{usuarioController.tiposDocumento}"
                                                      a:required="true" class="form-control col-md-7 col-xs-12">
@@ -310,7 +307,7 @@
                                     </h:selectOneMenu>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nombresR">Nombres <span class="required">*</span>
+                                    <label class="control-label col-md-12 col-md-12 col-xs-12" for="nombresR"> #{msjAdmin.nombre} <span class="required">*</span>
                                     </label>
                                     <div class="col-md-12 col-md-12 col-xs-12">
                                         <h:inputText id="nombresR" a:type="text" value="#{usuarioController.nombre}" autocomplete="off"
@@ -318,7 +315,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="apellidoR"> Apellidos <span class="required">*</span>
+                                    <label class="control-label col-md-12 col-md-12 col-xs-12" for="apellidoR"> #{msjAdmin.apellido} <span class="required">*</span>
                                     </label>
                                     <div class="col-md-12 col-md-12 col-xs-12">
                                         <h:inputText id="apellidoR" value="#{usuarioController.apellido}" autocomplete="off"
@@ -326,7 +323,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-10 col-sm-10 col-xs-12" for="generoR"> Genero <span class="required">*</span>
+                                    <label class="control-label col-md-10 col-sm-10 col-xs-12" for="generoR"> #{msjAdmin.genero} <span class="required">*</span>
                                     </label>
                                     <div class="col-md-12 col-sm-12 col-xs-12">
                                         <h:selectOneMenu id="generoR" value="#{usuarioController.sexo}"
@@ -338,7 +335,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="fechaNecR"> Fecha de nacimiento <span class="required">*</span>
+                                    <label class="control-label col-md-12 col-md-12 col-xs-12" for="fechaNecR"> #{msjAdmin.fechaNac} <span class="required">*</span>
                                     </label>
                                     <div class="col-md-12 col-md-12 col-xs-12">
                                         <h:inputText id="fechaNacR" value="#{usuarioController.fechaNacimiento}" converter="fechaConverter"
@@ -346,7 +343,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="seguroR"> Seguro Medico <span class="required">*</span>
+                                    <label class="control-label col-md-12 col-md-12 col-xs-12" for="seguroR"> #{msjAdmin.seguro} <span class="required">*</span>
                                     </label>
                                     <div class="col-md-12 col-md-12 col-xs-12">
                                         <h:inputText id="seguroR" value="#{usuarioController.seguroMedico}" autocomplete="off"
@@ -354,7 +351,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-10 col-sm-10 col-xs-12" for="rhR"> Rh <span class="required">*</span>
+                                    <label class="control-label col-md-10 col-sm-10 col-xs-12" for="rhR"> #{msjAdmin.rh} <span class="required">*</span>
                                     </label>
                                     <div class="col-md-12 col-sm-12 col-xs-12">
                                         <h:selectOneRadio id="rhR" value="#{usuarioController.rh}" layout="pageDirection"
@@ -369,7 +366,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="correoR"> Correo <span class="required">*</span>
+                                    <label class="control-label col-md-12 col-md-12 col-xs-12" for="correoR"> #{msjAdmin.correo} <span class="required">*</span>
                                     </label>
                                     <div class="col-md-12 col-md-12 col-xs-12">
                                         <h:inputText id="correoR" a:type="email" value="#{usuarioController.mail}" autocomplete="off"
@@ -377,7 +374,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="telefonoR"> Telefono <span class="required">*</span>
+                                    <label class="control-label col-md-12 col-md-12 col-xs-12" for="telefonoR"> #{msjAdmin.telefono} <span class="required">*</span>
                                     </label>
                                     <div class="col-md-12 col-md-12 col-xs-12">
                                         <h:inputText id="telefonoR" a:type="number" value="#{usuarioController.telefono}" autocomplete="off"
@@ -385,7 +382,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="direccionR"> Direccion <span class="required">*</span>
+                                    <label class="control-label col-md-12 col-md-12 col-xs-12" for="direccionR"> #{msjAdmin.direccion} <span class="required">*</span>
                                     </label>
                                     <div class="col-md-12 col-md-12 col-xs-12">
                                         <h:inputText id="direccionR" a:type="text" value="#{usuarioController.direccion}" autocomplete="off"
@@ -393,9 +390,9 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger alert-light" data-dismiss="modal">Cancelar</button>
+                                    <button type="button" class="btn btn-danger alert-light" data-dismiss="modal">#{msjAdmin.cancelar}</button>
                                     <h:commandButton actionListener="#{usuarioController.registrarEntrenador()}" 
-                                                     class="btn btn-success alert-light" value="Registrar"/>
+                                                     class="btn btn-success alert-light" value="#{msjAdmin.btnRegistrar}"/>
                                 </div>
                             </div>
                         </div>
@@ -410,11 +407,11 @@
                     <h:panelGroup id="contentCorreo" layout="block">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title">Enviar correo a:</h5>
+                                <h5 class="modal-title"> #{msjAdmin.correoTitle} </h5>
                             </div>
                             <div class="modal-body">
                                 <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="destinatarioMail">Correo <span class="required">*</span>
+                                    <label class="control-label col-md-12 col-md-12 col-xs-12" for="destinatarioMail"> #{msjAdmin.correo} <span class="required">*</span>
                                     </label>
                                     <div class="col-md-12 col-md-12 col-xs-12">
                                         <h:inputText id="destinatarioMail" a:type="email" value="#{sendMail.destinatarios}"
@@ -423,7 +420,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="asuntoMail">Asunto del Correo<span class="required">*</span>
+                                    <label class="control-label col-md-12 col-md-12 col-xs-12" for="asuntoMail"> #{msjAdmin.asuntoCorreo}<span class="required">*</span>
                                     </label>
                                     <div class="col-md-12 col-md-12 col-xs-12">
                                         <h:inputText id="asuntoMail" a:type="text" value="#{sendMail.asunto}"
@@ -432,7 +429,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-12 col-sm-3 col-xs-12" for="cuerpoMail">Cuerpo de correo <span class="required">*</span>
+                                    <label class="control-label col-md-12 col-sm-3 col-xs-12" for="cuerpoMail"> #{msjAdmin.cuerpoCorreo} <span class="required">*</span>
                                     </label>
                                     <div class="col-md-12 col-md-12 col-xs-12">
                                         <h:inputTextarea id="cuerpoMail" a:type="text" value="#{sendMail.cuerpo}"
@@ -441,8 +438,8 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-danger alert-light" data-dismiss="modal">Cancelar</button>
-                                <h:commandButton class="btn btn-success alert-light"  value="Enviar" actionListener="#{sendMail.sendMail()}"/>
+                                <button type="button" class="btn btn-danger alert-light" data-dismiss="modal"> #{msjAdmin.cancelar} </button>
+                                <h:commandButton class="btn btn-success alert-light"  value="#{msjAdmin.correoSend}" actionListener="#{sendMail.sendMail()}"/>
                             </div>
                         </div>
                     </h:panelGroup>

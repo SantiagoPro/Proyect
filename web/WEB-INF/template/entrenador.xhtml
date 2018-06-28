@@ -8,10 +8,10 @@
         <f:event type="preRenderView" listener="#{sessionController.validarRol(1)}"></f:event>
     </f:metadata>
     <h:head>
-        <link rel="stylesheet" href="#{request.contextPath}/resources/css/jquery-ui.theme.css"/>|
-        <link rel="stylesheet" href="#{request.contextPath}/resources/css/jquery-ui.css"/>|
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/jquery-ui.theme.css"/>
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/jquery-ui.css"/>
         <link rel="stylesheet" href="#{request.contextPath}/resources/css/bootstrap.css"/>
-        <link rel="icon"       href="#{request.contextPath}/resources/images/LOGO.png"/>
+        <link rel="icon" href="#{request.contextPath}/resources/images/LOGO.png"/>
         <link rel="stylesheet" href="#{request.contextPath}/resources/css/paginas.css"/>
         <link rel="stylesheet" href="#{request.contextPath}/resources/css/font-awesome.css" />
         <link rel="stylesheet" href="#{request.contextPath}/resources/css/style.css"/>
@@ -23,84 +23,86 @@
         <ui:insert name="link"></ui:insert>
         <title><ui:insert name="title"></ui:insert></title>
     </h:head>
-    <h:body class="fixed-nav" id="page-top">
-        <h:form prependId="false">
-            <nav class="navbar navbar-expand-lg navbar-dark bg-danger fixed-top" id="mainNav">
-                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" 
-                        data-target="#navbarResponsive" aria-controls="navbarResponsive" 
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav navbar-sidenav" id="menu">
-                        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Perfil">
-                            <a class="nav-link" href="#{request.contextPath}/usuarios/Perfil.entrenador.xhtml">
-                                <i class="fa fa- fa-id-badge"></i>
-                                <span class="nav-link-text">Perfil</span>
-                            </a>
-                        </li>
-                        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Chequeo">
-                            <a class="nav-link" href="#{request.contextPath}/seguimiento/Registro.chequeo.xhtml">
-                                <i class="fa fa-fw fa-heartbeat"></i>
-                                <span class="nav-link-text">Chequeo</span>
-                            </a>
-                        </li>
-                        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Entrenamientos">
-                            <a class="nav-link" href="#{request.contextPath}/seguimiento/Registro.entrenamiento.xhtml">
-                                <i class="fa fa-fw fa-shield"></i>
-                                <span class="nav-link-text">Entrenamientos</span>
-                            </a>
-                        </li>
-                        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Horario">
-                            <a class="nav-link" href="#{request.contextPath}/seguimiento/Horario.entrenador.xhtml">
-                                <i class="fa fa-fw fa-hourglass-2"></i>
-                                <span class="nav-link-text">Horario</span>
-                            </a>
-                        </li>
-                        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Salir">
-                            <h:commandLink class="nav-link" action="#{sessionController.cerrarSesion()}">
-                                <i class="fa fa-fw fa-power-off"></i>
-                                <span class="nav-link-text">Salir</span>
-                            </h:commandLink>
-                        </li>
-                    </ul> 
-                    <ul class="navbar-nav sidenav-toggler">
-                        <li class="nav-item">
-                            <a class="nav-link text-center" id="sidenavToggler">
-                                <i class="fa fa-superpowers fa-spin"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </h:form>
-        <div class="content-wrapper">
-            <div class="container-fluid">     
-                <div class="row">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item">
-                            <a href="#{request.contextPath}/usuarios/Principal.entrenador.xhtml">Inicio</a>
-                        </li>
-                        <li class="breadcrumb-item active">
-                            <ui:insert name="pag"></ui:insert>
-                        </li>
-                    </ol>
-                    <div class="container-fluid">
-                        <ui:insert name="Contenido"></ui:insert>                    
+    <f:view locale="#{languageController.locale}">
+        <h:body class="fixed-nav" id="page-top">
+            <h:form prependId="false">
+                <nav class="navbar navbar-expand-lg navbar-dark bg-danger fixed-top" id="mainNav">
+                    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" 
+                            data-target="#navbar" aria-controls="navbar" 
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbar">
+                        <ul class="navbar-nav navbar-sidenav" id="menu">
+                            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="#{msjEnt.perfil}">
+                                <a class="nav-link" href="#{request.contextPath}/usuarios/Perfil.entrenador.xhtml">
+                                    <i class="fa fa- fa-id-badge"></i>
+                                    <span class="nav-link-text">#{msjEnt.perfil}</span>
+                                </a>
+                            </li>
+                            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="#{msjEnt.chequeo}">
+                                <a class="nav-link" href="#{request.contextPath}/seguimiento/Registro.chequeo.xhtml">
+                                    <i class="fa fa-fw fa-heartbeat"></i>
+                                    <span class="nav-link-text">#{msjEnt.chequeo}</span>
+                                </a>
+                            </li>
+                            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="#{msjEnt.entrenamiento}">
+                                <a class="nav-link" href="#{request.contextPath}/seguimiento/Registro.entrenamiento.xhtml">
+                                    <i class="fa fa-fw fa-shield"></i>
+                                    <span class="nav-link-text">#{msjEnt.entrenamiento}</span>
+                                </a>
+                            </li>
+                            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="#{msjEnt.horarios}">
+                                <a class="nav-link" href="#{request.contextPath}/seguimiento/Horario.entrenador.xhtml">
+                                    <i class="fa fa-fw fa-hourglass-2"></i>
+                                    <span class="nav-link-text">#{msjEnt.horarios}</span>
+                                </a>
+                            </li>
+                            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="#{msjEnt.salir}">
+                                <h:commandLink class="nav-link" action="#{sessionController.cerrarSesion()}">
+                                    <i class="fa fa-fw fa-power-off"></i>
+                                    <span class="nav-link-text">#{msjEnt.salir}</span>
+                                </h:commandLink>
+                            </li>
+                        </ul> 
+                        <ul class="navbar-nav sidenav-toggler">
+                            <li class="nav-item">
+                                <a class="nav-link text-center" id="sidenavToggler">
+                                    <i class="fa fa-superpowers fa-spin"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </h:form>
+            <div class="content-wrapper">
+                <div class="container-fluid">     
+                    <div class="row">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="#{request.contextPath}/usuarios/Principal.entrenador.xhtml">#{msjEnt.inicioBread}</a>
+                            </li>
+                            <li class="breadcrumb-item active">
+                                <ui:insert name="pag"></ui:insert>
+                            </li>
+                        </ol>
+                        <div class="container-fluid">
+                            <ui:insert name="Contenido"></ui:insert>                    
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <script src="#{request.contextPath}/resources/js/jquery.js"></script>
-        <script src="#{request.contextPath}/resources/js/popper.min.js"></script>
-        <script src="#{request.contextPath}/resources/js/tether.min.js"></script>
-        <script src="#{request.contextPath}/resources/js/bootstrap.min.js"></script>
-        <script src="#{request.contextPath}/resources/js/bootstrap.bundle.min.js"></script>
-        <script src="#{request.contextPath}/resources/js/jquery-ui.js"></script>
-        <script src="#{request.contextPath}/resources/js/jquery.easing.js"></script>
-        <script src="#{request.contextPath}/resources/js/scripts.js"></script>
-        <script src="#{request.contextPath}/resources/js/sweetalert.min.js" ></script>
-        <script src="#{request.contextPath}/resources/js/custom-file-input.js" ></script>
-        <ui:insert name="script"></ui:insert>
-    </h:body>
+            <script src="#{request.contextPath}/resources/js/jquery.js"></script>
+            <script src="#{request.contextPath}/resources/js/popper.min.js"></script>
+            <script src="#{request.contextPath}/resources/js/tether.min.js"></script>
+            <script src="#{request.contextPath}/resources/js/bootstrap.min.js"></script>
+            <script src="#{request.contextPath}/resources/js/bootstrap.bundle.min.js"></script>
+            <script src="#{request.contextPath}/resources/js/jquery-ui.js"></script>
+            <script src="#{request.contextPath}/resources/js/jquery.easing.js"></script>
+            <script src="#{request.contextPath}/resources/js/scripts.js"></script>
+            <script src="#{request.contextPath}/resources/js/sweetalert.min.js" ></script>
+            <script src="#{request.contextPath}/resources/js/custom-file-input.js" ></script>
+            <ui:insert name="script"></ui:insert>
+        </h:body>
+    </f:view>
 </html>
