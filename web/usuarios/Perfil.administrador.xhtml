@@ -13,10 +13,10 @@
         <script src="#{request.contextPath}/resources/js/custom-file-input.js"></script>
     </ui:define>
     <ui:define name="title">
-        Perfil
+        #{msjAdmin.perfil}
     </ui:define>
     <ui:define name="pag">
-        Perfil
+        #{msjAdmin.perfil}
     </ui:define>
     <ui:define name="Contenido">
         <h:form prependId="false">
@@ -24,24 +24,26 @@
                  align-items-center align-content-center align-self-center">
                 <div class="row">
                     <div class="ih-item square effect11 top_to_bottom colored" style="height: 500px;width: 400px;">
-                        <div class="img">
-                            <img src="#{request.contextPath}/resources/images/perfiles/#{sessionController.user.foto}.jpg" alt="img"/>
-                        </div>
-                        <div class="info">
-                            <div class="info-back">
-                                <h3>Informacion personal</h3>
-                                <ul class="list-group list-group-flush">
-                                    <h:outputText class="list-group-item" id="Documento" value="#{sessionController.user.idUsuarios}"/>
-                                    <h:outputText class="list-group-item" id="Sexo" value="#{sessionController.user.sexo}"/>
-                                    <h:outputText class="list-group-item" id="FechaNacimiento" converter="fechaConverter" value="#{sessionController.user.fechaNacimiento}"/>
-                                    <h:outputText class="list-group-item" id="Seguro" value="#{sessionController.user.seguroMedico}"/>
-                                    <h:outputText class="list-group-item" id="Rh" value="#{sessionController.user.rh}"/>
-                                    <h:outputText class="list-group-item" id="Correo" value="#{sessionController.user.mail}"/>
-                                    <h:outputText class="list-group-item" id="Telefono" value="#{sessionController.user.telefono}"/>
-                                    <h:outputText class="list-group-item" id="Direccion" value="#{sessionController.user.direccion}"/>
-                                </ul>
+                        <a href="#">
+                            <div class="img">
+                                <img src="#{request.contextPath}/resources/images/perfiles/#{sessionController.user.foto}.jpg" alt="img"/>
                             </div>
-                        </div>
+                            <div class="info">
+                                <div class="info-back">
+                                    <h3>#{msjLogin.informacionPersonal}</h3>
+                                    <ul class="list-group list-group-flush">
+                                        <h:outputText class="list-group-item" id="Documento" value="#{sessionController.user.idUsuarios}"/>
+                                        <h:outputText class="list-group-item" id="Sexo" value="#{sessionController.user.sexo}"/>
+                                        <h:outputText class="list-group-item" id="FechaNacimiento" converter="fechaConverter" value="#{sessionController.user.fechaNacimiento}"/>
+                                        <h:outputText class="list-group-item" id="Seguro" value="#{sessionController.user.seguroMedico}"/>
+                                        <h:outputText class="list-group-item" id="Rh" value="#{sessionController.user.rh}"/>
+                                        <h:outputText class="list-group-item" id="Correo" value="#{sessionController.user.mail}"/>
+                                        <h:outputText class="list-group-item" id="Telefono" value="#{sessionController.user.telefono}"/>
+                                        <h:outputText class="list-group-item" id="Direccion" value="#{sessionController.user.direccion}"/>
+                                    </ul>
+                                </div>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>

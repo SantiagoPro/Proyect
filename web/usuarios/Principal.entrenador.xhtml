@@ -45,7 +45,7 @@
                 <h:panelGroup>
                     <h:dataTable class="table table-sm table-responsive-lg table-responsive-md 
                                  table-responsive-sm table-responsive-xl table-hover"
-                                 value="#{usuarioController.entrenador}" var="u">
+                                 value="#{usuarioController.deportista}" var="u">
                         <h:column>
                             <f:facet name="header"> <i class="fa fa-address-card"></i> #{msjEnt.documento} </f:facet>
                             <h:outputText value="#{u.idUsuarios} #{u.idTipoDocumento.sigla} "/>
@@ -245,7 +245,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-danger alert-light" data-dismiss="modal">#{msjEnt.cancelar}</button>
-                                    <h:commandButton actionListener="#{usuarioController.editarUsuario()}" 
+                                    <h:commandButton actionListener="#{usuarioController.editarDep()}" 
                                                      class="btn btn-success alert-light" value="#{msjEnt.btnEdit}"/>
                                 </div>
                             </div>
@@ -262,7 +262,7 @@
                     <h:panelGroup id="contentModalRegistrar" layout="block">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title">Registrar usuario:</h5>
+                                <h5 class="modal-title">#{msjENt.registroDep}</h5>
                             </div>
                             <div class="modal-body col-md-12">
                                 <div class="form-group">
@@ -365,7 +365,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-danger alert-light" data-dismiss="modal">#{msjEnt.cancelar}</button>
-                                    <h:commandButton actionListener="#{usuarioController.registrarEntrenador()}" 
+                                    <h:commandButton actionListener="#{usuarioController.registrarDep()}" 
                                                      class="btn btn-success alert-light" value="#{msjEnt.btnRegistrar}"/>
                                 </div>
                             </div>

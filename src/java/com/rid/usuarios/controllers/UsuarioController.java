@@ -12,6 +12,8 @@ import com.rid.modelo.entities.TipoDocumento;
 import com.rid.modelo.controllers.facades.TipoDocumentoFacadeLocal;
 import com.rid.modelo.controllers.facades.UsuarioFacadeLocal;
 import com.rid.modelo.entities.Rol;
+import com.rid.utils.FileUpload;
+import java.nio.file.Files;
 import com.rid.utils.MessagesUtil;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -20,6 +22,7 @@ import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.inject.Inject;
 
 /**
  *
@@ -29,6 +32,10 @@ import javax.ejb.EJB;
 @SessionScoped
 public class UsuarioController implements Serializable {
 
+    @Inject
+    private FileUpload ca;
+    
+    
     @EJB
     private UsuarioFacadeLocal ufl;
 
@@ -38,10 +45,13 @@ public class UsuarioController implements Serializable {
     @EJB
     private TipoDocumentoFacadeLocal tdfl;
 
+    private Usuario user;
     private List<Usuario> usuario;
     private List<Usuario> deportista;
     private List<Usuario> entrenador;
     private List<Usuario> administrador;
+    
+    private String imagenPerfil;
 
     private Usuario usuarioSeleccionado;
 
@@ -209,6 +219,26 @@ public class UsuarioController implements Serializable {
         this.rol = rol;
     }
 
+    public Usuario getUser() {
+        return user;
+    }
+
+    public void setUser(Usuario user) {
+        this.user = user;
+    }
+
+    public String getImagenPerfil() {
+        //File f = new File(ca.getCarpeta(),user.getIdUsuarios() + ".jpg");
+        if (!ca.getCarpeta().exists() && imagenPerfil == null) {
+            imagenPerfil = "resouerces/images/perfiles/LOGO.jpg";
+        }
+        return imagenPerfil;
+    }
+
+    public void setImagenPerfil(String imagenPerfil) {
+        this.imagenPerfil = imagenPerfil;
+    }
+
     public Usuario getUsuarioSeleccionado() {
         System.out.println("usuarioSeleccionado");
         return usuarioSeleccionado;
@@ -275,7 +305,7 @@ public class UsuarioController implements Serializable {
             e.printStackTrace();
             MessagesUtil.error(null, "Error al registrar el Deportista.", e.getMessage(), false);
         }
-        return "";
+        return "/usuarios/Principal.entrenador.xhtml";
     }
 
     public String registrarEntrenador() {
@@ -305,10 +335,10 @@ public class UsuarioController implements Serializable {
             e.printStackTrace();
             MessagesUtil.error(null, "Error al registrar el Deportista.", e.getMessage(), false);
         }
-        return "";
+       return "/usuarios/Principal.administrador.xhtml";
     }
 
-    public void eliminarUsuario() {
+    public String eliminarDep() {
         try {
             ufl.remove(usuarioSeleccionado);
             usuario = null;
@@ -317,9 +347,22 @@ public class UsuarioController implements Serializable {
             MessagesUtil.error(null, "Error al eliminar el usuario.", e.getMessage(), false);
         }
         usuarioSeleccionado = null;
+        return "/usuarios/Principal.administrador.xhtml";
+    }
+    
+    public String eliminarEnt() {
+        try {
+            ufl.remove(usuarioSeleccionado);
+            usuario = null;
+            MessagesUtil.info(null, "Eliminación exitosa", "Se ha eliminado correctamente al usuario.", false);
+        } catch (Exception e) {
+            MessagesUtil.error(null, "Error al eliminar el usuario.", e.getMessage(), false);
+        }
+        usuarioSeleccionado = null;
+        return "/usuarios/Principal.entrenador.xhtml";
     }
 
-    public void editarUsuario() {
+    public String editarEnt() {
         try {
             ufl.edit(usuarioSeleccionado);
             usuario = null;
@@ -327,6 +370,18 @@ public class UsuarioController implements Serializable {
             MessagesUtil.error(null, "Error al editar el usuario.", e.getMessage(), false);
         }
         usuarioSeleccionado = null;
+        return "/usuarios/Principal.administrador.xhtml";
+    }
+    
+    public String editarDep() {
+        try {
+            ufl.edit(usuarioSeleccionado);
+            usuario = null;
+        } catch (Exception e) {
+            MessagesUtil.error(null, "Error al editar el usuario.", e.getMessage(), false);
+        }
+        usuarioSeleccionado = null;
+        return "/usuarios/Principal.entrenador.xhtml";
     }
 
     public void cambiarEstado(Usuario u) {

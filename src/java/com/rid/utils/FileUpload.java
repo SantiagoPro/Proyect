@@ -6,20 +6,16 @@
 package com.rid.utils;
 
 import java.io.File;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
 
 /**
@@ -30,8 +26,9 @@ import javax.servlet.http.Part;
 @ViewScoped
 public class FileUpload implements Serializable {
 
-    private List<Part> filesParts;
-    private Part filePart;
+    private Part archivo;
+    private String ruta = "";
+    private File carpeta;
 
     /**
      * Creates a new instance of FileUpload
@@ -39,70 +36,44 @@ public class FileUpload implements Serializable {
     public FileUpload() {
     }
 
-    private List<Part> getParts(){
-        try {
-            if (filePart != null) {
-                HttpServletRequest rq = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-                return rq.getParts().stream().filter(p -> filePart.getName().equals(p.getName())).collect(Collectors.toList());
-            } else {
-                return new ArrayList<>();
+    @PostConstruct
+    public void init() {
+        carpeta = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath("") + "resources/images/perfiles");
+    }
+
+    public Part getArchivo() {
+        return archivo;
+    }
+
+    public void setArchivo(Part archivo) {
+        this.archivo = archivo;
+    }
+
+    public File getCarpeta() {
+        return carpeta;
+    }
+
+    public void setCarpeta(File carpeta) {
+        this.carpeta = carpeta;
+    }
+
+    public String cargarArchivo(Integer nombreArchivo) {
+        if (archivo != null) {
+            File carp = carpeta;
+            if (!carpeta.exists()) {
+                carpeta.mkdir();
             }
-        } catch (IOException | ServletException e) {
-            e.printStackTrace();
-            return new ArrayList<>();
-        }
-    }
-
-    public Part getFilePart() {
-        return filePart;
-    }
-
-    public void setFilePart(Part filePart) {
-        this.filePart = filePart;
-    }
-
-    public List<Part> getFilesParts() {
-        if (filesParts == null) {
-            filesParts = getParts();
-        }
-        return filesParts;
-    }
-    
-    public String accion() throws Exception {
-        if (!getFilesParts().isEmpty()) {
-            System.out.println("Se esta subiendo el archivo");
-            try {
-                for (Part part : filesParts) {
-                    saveFileTemp(part);
-                }
-                filesParts = null;
-                //sendMessageInfo(null, "Debe agregar por lo menos un archivo.", "");
+            try (InputStream is = archivo.getInputStream()) {
+                File f = new File(carpeta, archivo.getSubmittedFileName());
+                File f2 = new File(carpeta, nombreArchivo + "." + archivo.getContentType().substring(6,9));
+                Files.copy(is, f2.toPath(),StandardCopyOption.REPLACE_EXISTING);
+                ruta = carpeta.getAbsolutePath() + "/" + f2.getName();
+                return f2.getName();
             } catch (Exception e) {
                 e.printStackTrace();
-                for (Part part : filesParts) {
-                    deleteFileTemp(part);
-                }
-                sendMessageInfo(null, e.getMessage(), "");
             }
-            return "/usuarios/Principal.administrador.xhtml";
-        } else {
-            sendMessageInfo(null, "Debe agregar por lo menos un archivo.", "");
         }
         return "";
-    }
-
-    private void saveFileTemp(Part part) throws Exception {;
-        File folder = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath("") + "/resources/images/perfiles/");
-        if (!folder.exists()) {
-            folder.mkdirs();
-        }
-        try (InputStream is = part.getInputStream()) {
-            Files.copy(is, (new File(folder, part.getSubmittedFileName())).toPath(), StandardCopyOption.REPLACE_EXISTING);
-            sendMessageInfo(null, "Se cargó correctamente el archivo " + part.getSubmittedFileName(), "");
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new Exception("Error al guardar el archivo " + part.getSubmittedFileName(), e);
-        }
     }
 
     private void deleteFileTemp(Part part) throws Exception {

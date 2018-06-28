@@ -131,7 +131,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-danger alert-light" data-dismiss="modal">Cancelar</button>
-                                        <h:commandButton class="btn btn-success alert-light" value="Eliminar" actionListener="{usuarioController.eliminarUsuario()}"/>
+                                        <h:commandButton class="btn btn-success alert-light" value="Eliminar" actionListener="#{usuarioController.eliminarEnt()}"/>
                                     </div>
                                 </div>
                             </h:panelGroup>
@@ -271,7 +271,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-danger alert-light" data-dismiss="modal">#{msjAdmin.cancelar}</button>
-                                    <h:commandButton actionListener="#{usuarioController.editarUsuario()}" 
+                                    <h:commandButton actionListener="#{usuarioController.editarEnt}" 
                                                      class="btn btn-success alert-light" value="#{msjAdmin.btnEdit}"/>
                                 </div>
                             </div>
@@ -288,7 +288,7 @@
                     <h:panelGroup id="contentModalRegistrar" layout="block">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title">Registrar usuario:</h5>
+                                <h5 class="modal-title"> #{msjAdmin.registroEnt} </h5>
                             </div>
                             <div class="modal-body col-md-12">
                                 <div class="form-group">
