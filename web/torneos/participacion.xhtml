@@ -45,7 +45,7 @@
                                 <div class="form-group">
                                     <h:outputLabel class="control-label col-md-3 col-sm-3 col-xs-12" for="puesto">Puesto</h:outputLabel>
                                     <div class="col-md-10 col-sm-8 col-xs-12">
-                                        <h:inputText id="puesto" value="#{participacionController.puesto}" a:type="text" a:required="required" class="form-control col-md-7 col-xs-12"/>
+                                        <h:inputText id="puesto" value="#{participacionController.puesto}" a:placeholder="Primero" a:type="text" a:required="required" class="form-control col-md-7 col-xs-12"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -68,18 +68,28 @@
                 </h:form>
             </div>
         </div>
-        <div class="form-control col-md-2">
-            <h:form>
-                <h:outputLabel> <strong> Nuevo Resultado </strong> </h:outputLabel>
-                <br/>
-                <h:commandLink actionListener="#{usuarioController.seleccionarUsuario(u)}" 
-                               class="btn btn-success alert-primary"
-                               a:data-toggle="modal" a:data-target="#modalRegistrar">
-                    <f:ajax render=":contentModalRegistrar"/>
-                    <i class="fa fa-plus"></i>
-                </h:commandLink>
-            </h:form>
+        
+        
+        <div class="row " style="margin-left: 3px;"  >
+            <div class="form-control col-md-4" >
+                <h:form prependId="false" class="form-check">
+                    <br/>
+                    <h:commandLink class="btn btn-success alert-light"
+                                   a:data-toggle="modal" a:data-target="#modalRegistrar"
+                                   style="margin-righ: 10px">
+                        <f:ajax render=":contentModalRegistrar"/>
+                        <i class="fa fa-plus"></i> Nueva Participación
+                    </h:commandLink>
+                </h:form>
+            </div>
         </div>
+        <!--<div class="row">
+            <div class="col-xs-12">
+                <div class="alert alert-info">
+                    <h:messages globalOnly="true" showDetail="true" style="padding: 5px; background: #009fe8;color:#FFF" infoStyle="color:#FFFFFF;" warnStyle="background: #FFFF00;" errorStyle="background: #FF0000;"/>
+                </div>
+            </div>
+        </div>-->
         <br></br>
         <h:dataTable class="table table-sm table-light table-hover" 
                      value="#{participacionController.participacion}" var="p">
