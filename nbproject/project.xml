@@ -15,7 +15,6 @@
                 </library>
                 <library dirs="200">
                     <file>${file.reference.primefaces-6.0.jar}</file>
-                    <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
                     <file>${file.reference.commons-collections-3.2.2.jar}</file>
@@ -55,6 +54,10 @@
                 </library>
                 <library dirs="200">
                     <file>${file.reference.validation-api-1.0.0.GA.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.jxl-2.6.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
             </web-module-libraries>
