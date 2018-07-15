@@ -9,7 +9,7 @@
         Entrenamientos
     </ui:define>
     <ui:define name="Contenido">
-        <h2  class="text-center alert-danger" style="background-color: #f22; color: black">
+<!--        <h2  class="text-center alert-danger" style="background-color: #f22; color: black">
             PAGINA EN DESARROLLO
         </h2>
         <div class="row d-flex justify-content-center">
@@ -19,7 +19,7 @@
                         <h:outputLabel value="Deportista" for="nombre" />
                         <h:selectOneMenu id="deportistas" class="form-control" required="true"
                                          value="#{usuarioController.usuario}">
-                            <f:selectItem itemValue="" itemLabel="---------------"/>
+                            <f:selectItem itemValue="" itemLabel=""/>
                             <f:selectItems value="#{usuarioController.usuario}" var="u" itemLabel="#{u.nombre } #{u.apellido}"/>
                             <f:ajax execute="@this" render="trabajo" immediate="true"/>
                         </h:selectOneMenu>
@@ -32,7 +32,7 @@
                         <label  for="type">Entrenamiento por</label>
                         <h:selectOneMenu id="tipoTrabajo" class="form-control" required="true"
                                          value="#{entrenamientoController.tipoTrabajo}">
-                            <f:selectItem itemValue="" itemLabel="---------------"/>
+                            <f:selectItem itemValue="" itemLabel=""/>
                             <f:selectItems value="#{tipoTrabajoController.tiposTrabajo}"  var="tt" itemLabel="#{tt.nombre}"/>
                             <f:ajax execute="@this" render="trabajo" immediate="true"/>
                         </h:selectOneMenu>
@@ -41,7 +41,7 @@
                         <label  for="type">Numero de series</label>
                         <h:selectOneMenu id="series" class="form-control" required="true"
                                          value="#{entrenamientoController.tipoTrabajo}">
-                            <f:selectItem itemValue="" itemLabel="---------------"/>
+                            <f:selectItem itemValue="" itemLabel=""/>
                             <f:selectItems value="#{tipoTrabajoController.tiposTrabajo}"  var="tt" itemLabel="#{tt.nombre}"/>
                             <f:ajax execute="@this" render="trabajo" immediate="true"/>
                         </h:selectOneMenu>
@@ -50,7 +50,7 @@
                         <label  for="type">Numero de repeticiones</label>
                         <h:selectOneMenu id="repeticiones" class="form-control" required="true"
                                          value="#{entrenamientoController.tipoTrabajo}">
-                            <f:selectItem itemValue="" itemLabel="---------------"/>
+                            <f:selectItem itemValue="" itemLabel=""/>
                             <f:selectItems value="#{tipoTrabajoController.tiposTrabajo}"  var="tt" itemLabel="#{tt.nombre}"/>
                             <f:ajax execute="@this" render="trabajo" immediate="true"/>
                         </h:selectOneMenu>
@@ -59,7 +59,7 @@
                         <label  for="type">Entrenamiento para</label>
                         <h:selectOneMenu id="trabajo" class="form-control" required="true"
                                          value="#{entrenamientoController.trabajo}">
-                            <f:selectItem itemValue="" itemLabel="---------------"/>
+                            <f:selectItem itemValue="" itemLabel=""/>
                             <f:selectItems value="#{entrenamientoController.tipoTrabajo.trabajoList}"  var="t" itemLabel="#{t.nombre}"/>
                         </h:selectOneMenu>
                     </div>
@@ -67,7 +67,7 @@
                         <label  for="type">Tipo de Entrenamiento</label>
                         <h:selectOneMenu id="entrenamiento" class="form-control" required="true"
                                          value="#{tipoEntrenamientoController.tiposEntrenamiento}">
-                            <f:selectItem itemValue="" itemLabel="---------------"/>
+                            <f:selectItem itemValue="" itemLabel=""/>
                             <f:selectItems value="#{tipoEntrenamientoController.tiposEntrenamiento}"  var="te" itemLabel="#{te.nombre}"/>
                         </h:selectOneMenu>
                     </div>
@@ -88,6 +88,6 @@
                     </div>
                 </h:form>
             </div>
-        </div>
+        </div>-->
     </ui:define>
 </ui:composition>

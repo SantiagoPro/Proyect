@@ -49,13 +49,14 @@
                                        value="#{msjLogin.btnChangePass}">
                             <f:ajax render=":contentContraseña"/>
                         </h:commandLink>
-                        <br/>
-                        <h:selectOneMenu value="#{languageController.lang}" class="btn btn-info alert-light" onchange="submit();">
-                            <f:selectItems value="#{languageController.locales}"
-                                           var="lang" itemLabel="#{lang.displayLanguage}"
-                                           />
-                        </h:selectOneMenu>
                     </div>
+                </h:form>
+                <h:form prependId="false">
+                    <h:selectOneMenu value="#{languageController.lang}" class="btn btn-info alert-light" onchange="submit();">
+                        <f:selectItems value="#{languageController.locales}"
+                                       var="lang" itemLabel="#{lang.language}"
+                                       />
+                    </h:selectOneMenu>
                 </h:form>
             </div>
             <div id="contraseña" class="modal fade" role="dialog">

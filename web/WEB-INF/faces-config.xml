@@ -5,16 +5,16 @@
               xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
     <application>
         <resource-bundle>
-            <base-name>com.rid.controller.language.Login.Login</base-name>
+            <base-name>com.rid.controllers.language.Login.Login</base-name>
             <var>msjLogin</var>
         </resource-bundle>
         
         <resource-bundle>
-            <base-name>com.rid.controller.language.mainAd.Admin</base-name>
+            <base-name>com.rid.controllers.language.mainAd.Admin</base-name>
             <var>msjAdmin</var>
         </resource-bundle>
         <resource-bundle>
-            <base-name>com.rid.controller.language.mainEnt.Ent</base-name>
+            <base-name>com.rid.controllers.language.mainEnt.Ent</base-name>
             <var>msjEnt</var>
         </resource-bundle>
 <!--    

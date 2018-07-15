@@ -16,10 +16,10 @@
     </ui:define>
 
     <ui:define name="title">
-        Resultados de Torneos
+        #{msjAdmin.resultados}
     </ui:define>
     <ui:define name="pag">
-        Resultados
+        #{msjAdmin.resultados}
     </ui:define>
     <ui:define name="Contenido">
         <div id="modalRegistrar" class="modal fade" role="dialog">
@@ -29,11 +29,11 @@
                     <h:panelGroup id="contentModalEditar" layout="block">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title">Registrar Resultado</h5>
+                                <h5 class="modal-title">#{msjAdmin.btnRegistrar}</h5>
                             </div>
                             <div class="modal-body">
                                 <div class="form-group">
-                                    <h:outputLabel class="control-label col-md-3 col-sm-3 col-xs-12" for="participacion">Participacion</h:outputLabel>
+                                    <h:outputLabel class="control-label col-md-3 col-sm-3 col-xs-12" for="participacion">#{msjAdmin.participacion}</h:outputLabel>
                                     <div class="col-md-10 col-sm-8 col-xs-12">
                                         <h:selectOneMenu id="participacion" value="#{resultadosController.idParticipacion}"
                                                          required="required" class="form-control col-md-7 col-xs-12">
@@ -90,18 +90,18 @@
                                     <div class="form-group">
                                         <div class="form-row">
                                             <div class="form-group mx-sm-3 mb-2">
-                                                <h:outputLabel class="control-label col-md-12 col-sm-3 col-xs-12" for="pesoArranque">Peso Arranque</h:outputLabel>
+                                                <h:outputLabel class="control-label col-md-12 col-sm-3 col-xs-12" for="pesoArranque">#{msjAdmin.pesoArranque}</h:outputLabel>
                                                 <div class="col-md-10 col-sm-8 col-xs-12">
                                                     <!--<h:outputLabel for="Peso3">Intento </h:outputLabel>-->
                                                     <h:inputText a:maxlength="3" id="peso3" a:type="number" value="#{resultadosController.pesoArranque}" a:required="required" class="form-control col-md-7 col-xs-12"/>
                                                 </div>
                                             </div>
                                             <div class="form-group mx-sm-3 mb-2">
-                                                <h:outputLabel for="validoA3">Valido</h:outputLabel>
+                                                <h:outputLabel for="validoA3">#{msjAdmin.intentoValido}</h:outputLabel>
                                                 <div class="col-md-10 col-sm-8 col-xs-12">
                                                     <h:selectOneRadio id="validoA3" value="#{resultadosController.validoArranque}">
-                                                        <f:selectItem itemLabel="Sí" itemValue="false"/>
-                                                        <f:selectItem itemLabel="No" itemValue="true"/>
+                                                        <f:selectItem itemLabel="#{msjAdmin.si}" itemValue="false"/>
+                                                        <f:selectItem itemLabel="#{msjAdmin.no}" itemValue="true"/>
                                                     </h:selectOneRadio>
                                                 </div>
                                             </div>
@@ -155,18 +155,17 @@
                                     <div class="form-group">
                                         <div class="form-row">
                                             <div class="form-group mx-sm-3 mb-2">
-                                                <h:outputLabel for="pesoEnvion">Peso Envion</h:outputLabel>
+                                                <h:outputLabel for="pesoEnvion">#{msjAdmin.pesoEnvion}</h:outputLabel>
                                                 <div class="col-md-10 col-sm-8 col-xs-12">
-                                                    <!--<h:outputLabel for="PesoE3">Intento </h:outputLabel>-->
                                                     <h:inputText a:maxlength="3" id="pesoE3" a:type="number" value="#{resultadosController.pesoEnvion}" a:required="required" class="form-control col-md-7 col-xs-12"/>
                                                 </div>
                                             </div>
                                             <div class="form-group mx-sm-3 mb-2">
-                                                <h:outputLabel for="validoE3">Valido</h:outputLabel>
+                                                <h:outputLabel for="validoE3">#{msjAdmin.intentoValido}</h:outputLabel>
                                                 <div class="col-md-10 col-sm-8 col-xs-12">
                                                     <h:selectOneRadio id="validoE3" value="#{resultadosController.validoEnvion}">
-                                                        <f:selectItem itemLabel="Sí" itemValue="false"/>
-                                                        <f:selectItem itemLabel="No" itemValue="true"/>
+                                                        <f:selectItem itemLabel="#{msjAdmin.si}" itemValue="false"/>
+                                                        <f:selectItem itemLabel="#{msjAdmin.no}" itemValue="true"/>
                                                     </h:selectOneRadio>
                                                 </div>
                                             </div>
@@ -176,8 +175,8 @@
                             </div>
 
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-danger alert-light" data-dismiss="modal">Cancelar</button>
-                                <h:commandButton id="registrar" type="submit" value="Registrar" class="btn btn-success" action="#{resultadosController.registrarResultado()}"/>
+                                <button type="button" class="btn btn-danger alert-light" data-dismiss="modal">#{msjAdmin.cancelar}</button>
+                                <h:commandButton id="registrar" type="submit" value="#{msjAdmin.btnRegistrar}" class="btn btn-success" action="#{resultadosController.registrarResultado()}"/>
                             </div>
                         </div>
                     </h:panelGroup>
@@ -185,7 +184,7 @@
             </div>
         </div>
 
-        <!--Modaaaal-->
+        <!--Modal-->
         <div id="modalConsultar" class="modal fade" role="dialog">
             <div class="modal-dialog">
                 <h:form id="demo-form" a:data-parsley-validate="true" class="form-horizontal form-control-success"
@@ -193,18 +192,18 @@
                     <h:panelGroup id="contentModalConsultar" layout="block">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title">Generar Resultado</h5>
+                                <h5 class="modal-title">#{msjAdmin.descargarResult}</h5>
                             </div>
                             <div class="modal-body">
                                 <div class="form-group">
-                                    <h:outputLabel class="control-label col-md-3 col-sm-3 col-xs-12" for="consulta">Id Resultado</h:outputLabel>
+                                    <h:outputLabel class="control-label col-md-3 col-sm-3 col-xs-12" for="consulta">#{msjAdmin.resultados}</h:outputLabel>
                                     <div class="col-md-10 col-sm-8 col-xs-12">
-                                        <h:inputText id="consulta" value="#{resultadosController.idResultado}" a:type="number" a:placeholder="5" a:required="required" class="form-control col-md-7 col-xs-12"/>
+                                        <h:inputText id="consulta" value="#{resultadosController.idResultado}" a:placeholder="Ej. 1" a:type="number" a:required="required" class="form-control col-md-7 col-xs-12"/>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger alert-light" data-dismiss="modal">Cancelar</button>
-                                    <h:commandButton id="consultar" type="submit" value="Generar" class="btn btn-success" action="#{resultadosController.exportarResultados()}"/>
+                                    <button type="button" class="btn btn-danger alert-light" data-dismiss="modal">#{msjAdmin.cancelar}</button>
+                                    <h:commandButton id="consultar" type="submit" value="#{msjAdmin.descargarResult}" class="btn btn-success" action="#{resultadosController.exportarResultados()}"/>
                                 </div>
                             </div>
                         </div>
@@ -216,20 +215,20 @@
 
         <!--Botón Modal-->
         <div class="row " style="margin-left: 3px;"  >
-            <div class="form-control col-md-4">
+            <div class="form-control col-md-3">
                 <h:form prependId="false" class="form-check">
                     <br/>
                     <h:commandLink class="btn btn-primary alert-light"
                                    a:data-toggle="modal" a:data-target="#modalRegistrar">
                         <f:ajax render=":contentModalRegistrar"/>
-                        <i class="fa fa-plus"></i> Nuevo Resultado
+                        <i class="fa fa-plus"></i> #{msjAdmin.titleNuevoTorneo}
                     </h:commandLink>
                     <h:commandLink  class="btn btn-success alert-light"
                                     style="margin: 1px"
                                     a:data-toggle="modal" a:data-target="#modalConsultar"
                                     >   
                         <f:ajax render="contentModalConsultar"/>
-                        <i class="fa fa-mail-reply"> </i> Descargar
+                        <i class="fa fa-mail-reply"> </i> #{msjAdmin.descargarResult}
                         
                     </h:commandLink>
                 </h:form>
@@ -249,36 +248,36 @@
             </h:column>
             <h:column>
                 <f:facet name="header">
-                    <i class="fa fa-fw fa-address-card-o"/>
-                    Id Participación
+                    <i class="fa fa-fw fa-trophy"/>
+                    #{msjAdmin.participacion}
                 </f:facet>
                 <h:outputText value="#{r.idParticipacion}"/>
             </h:column>
             <h:column>
                 <f:facet name="header">
-                    <i class="fa fa-fw fa-user-o"/>
-                    Peso Arranque
+                    <i class="fa fa-fw fa-user "/>
+                    #{msjAdmin.pesoArranque}
                 </f:facet>
                 <h:outputText value="#{r.pesoArranque}"/>
             </h:column>
             <h:column>
                 <f:facet name="header">
-                    <i class="fa fa-fw fa-user-o"/>
-                    Peso Valido
+                    <i class="fa fa-fw fa-thumbs-o-up"/>
+                    #{msjAdmin.intentoValido}
                 </f:facet>
                 <h:outputText value="#{r.validoArranque}"/>
             </h:column>
             <h:column>
                 <f:facet name="header">
                     <i class="fa fa-fw fa-user"/>
-                    Peso Envion
+                    #{msjAdmin.pesoEnvion}
                 </f:facet>
                 <h:outputText value="#{r.pesoEnvion}"/>
             </h:column>
             <h:column>
                 <f:facet name="header">
-                    <i class="fa fa-fw fa-user-o"/>
-                    Peso Valido
+                    <i class="fa fa-fw fa-thumbs-o-up"/>
+                    #{msjAdmin.intentoValido}
                 </f:facet>
                 <h:outputText value="#{r.validoEnvion}"/>
             </h:column>

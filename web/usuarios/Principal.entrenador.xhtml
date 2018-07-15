@@ -15,7 +15,7 @@
         <script src="#{request.contextPath}/resources/js/tabla.js"></script>
     </ui:define>
     <ui:define name="title">
-        Pagina principal
+        #{msjEnt.title}
     </ui:define>
     <ui:define name="Contenido">
         <div class="row " style="margin-left: 3px"  >
@@ -31,7 +31,7 @@
                     <h:commandLink  class="btn btn-success alert-light"
                                     style="margin: 1px"
                                     a:data-toggle="modal" a:data-target="#Registrar"
-                                    >   <i class="fa fa-user-plus"> </i> #{msjEnt.registroEnt}
+                                    >   <i class="fa fa-user-plus"> </i> #{msjEnt.registroDep}
                         <f:ajax render=":contentModalRegistrar"/>
                     </h:commandLink>
                 </h:form>
@@ -365,7 +365,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-danger alert-light" data-dismiss="modal">#{msjEnt.cancelar}</button>
-                                    <h:commandButton actionListener="#{usuarioController.registrarDep()}" 
+                                    <h:commandButton actionListener="#{usuarioController.registrarDeportista()}" 
                                                      class="btn btn-success alert-light" value="#{msjEnt.btnRegistrar}"/>
                                 </div>
                             </div>

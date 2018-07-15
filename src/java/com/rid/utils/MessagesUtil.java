@@ -10,7 +10,7 @@ import javax.faces.context.FacesContext;
 
 /**
  *
- * @author ismael
+ * @author Santiago
  */
 public class MessagesUtil {
     
