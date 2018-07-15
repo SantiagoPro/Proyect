@@ -16,10 +16,10 @@
     </ui:define>
 
     <ui:define name="title">
-        Resultados de Participación
+        #{msjAdmin.participacion}
     </ui:define>
     <ui:define name="pag">
-        Participación
+        #{msjAdmin.participacion}
     </ui:define>
     <ui:define name="Contenido">
         <div id="modalRegistrar" class="modal fade" role="dialog">
@@ -29,27 +29,27 @@
                     <h:panelGroup id="contentModalEditar" layout="block">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title">Registrar Participación</h5>
+                                <h5 class="modal-title">#{msjAdmin.btnRegistrar}</h5>
                             </div>
                             <div class="modal-body">
                                 <div class="form-group">
-                                    <h:outputLabel class="control-label col-md-3 col-sm-3 col-xs-12" for="dep">Deportista</h:outputLabel>
+                                    <h:outputLabel class="control-label col-md-3 col-sm-3 col-xs-12" for="dep">#{msjAdmin.deportista}</h:outputLabel>
                                     <div class="col-md-10 col-sm-8 col-xs-12">
                                         <h:selectOneMenu id="dep" value="#{participacionController.categoriaDeportista}"
                                                          required="required" class="form-control col-md-7 col-xs-12">
-                                            <f:selectItems itemLabel="Seleccione el Deportista" itemValue=""></f:selectItems>
+                                            <f:selectItems itemLabel="#{msjAdmin.deportista}" itemValue=""></f:selectItems>
                                             <f:selectItems value="#{categoriaDeportistaController.categoriasDeportista}" var="cd" itemLabel="#{cd.idDeportista.idDeportista}"></f:selectItems>
                                         </h:selectOneMenu>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <h:outputLabel class="control-label col-md-3 col-sm-3 col-xs-12" for="puesto">Puesto</h:outputLabel>
+                                    <h:outputLabel class="control-label col-md-3 col-sm-3 col-xs-12" for="puesto">#{msjAdmin.puestoDep}</h:outputLabel>
                                     <div class="col-md-10 col-sm-8 col-xs-12">
-                                        <h:inputText id="puesto" value="#{participacionController.puesto}" a:placeholder="Primero" a:type="text" a:required="required" class="form-control col-md-7 col-xs-12"/>
+                                        <h:inputText id="puesto" value="#{participacionController.puesto}" a:placeholder="Ej. Primer" a:type="text" a:required="required" class="form-control col-md-7 col-xs-12"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <h:outputLabel class="control-label col-md-3 col-sm-3 col-xs-12" for="torneo">Torneo</h:outputLabel>
+                                    <h:outputLabel class="control-label col-md-3 col-sm-3 col-xs-12" for="torneo">#{msjAdmin.torneos}</h:outputLabel>
                                     <div class="col-md-10 col-sm-8 col-xs-12">
                                         <h:selectOneMenu id="torneo" value="#{participacionController.torneo}"
                                                          required="required" class="form-control col-md-7 col-xs-12">
@@ -59,8 +59,8 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger alert-light" data-dismiss="modal">Cancelar</button>
-                                    <h:commandButton id="registrarP" type="submit" value="Registrar" class="btn btn-success" action="#{participacionController.registrarParticipacion()}"/>
+                                    <button type="button" class="btn btn-danger alert-light" data-dismiss="modal">#{msjAdmin.cancelar}</button>
+                                    <h:commandButton id="registrarP" type="submit" value="#{msjAdmin.btnRegistrar}" class="btn btn-success alert-light" action="#{participacionController.registrarParticipacion()}"/>
                                 </div>
                             </div>
                         </div>
@@ -78,7 +78,7 @@
                                    a:data-toggle="modal" a:data-target="#modalRegistrar"
                                    style="margin-righ: 10px">
                         <f:ajax render=":contentModalRegistrar"/>
-                        <i class="fa fa-plus"></i> Nueva Participación
+                        <i class="fa fa-plus"></i> #{msjAdmin.btnRegistrar}
                     </h:commandLink>
                 </h:form>
             </div>
@@ -102,22 +102,22 @@
             </h:column>
             <h:column>
                 <f:facet name="header">
-                    <i class="fa fa-fw fa-user-o"/>
-                    Categoria Deportista
+                    <i class="fa fa-fw fa-trophy"/>
+                    #{msjAdmin.categoriaDep}
                 </f:facet>
                 <h:outputText value="#{p.idCategoriaDeportista.idDeportista}"/>
             </h:column>
             <h:column>
                 <f:facet name="header">
                     <i class="fa fa-fw fa-address-card-o"/>
-                    Puesto
+                    #{msjAdmin.puestoDep}
                 </f:facet>
                 <h:outputText value="#{p.puesto}"/>
             </h:column>
             <h:column>
                 <f:facet name="header">
-                    <i class="fa fa-fw fa-user"/>
-                    Torneo
+                    <i class="fa fa-fw fa-trophy"/>
+                    #{msjAdmin.torneos}
                 </f:facet>
                 <h:outputText value="#{p.idTorneo.nombre}"/>
             </h:column>

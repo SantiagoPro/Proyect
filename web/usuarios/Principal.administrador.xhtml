@@ -9,11 +9,13 @@
         <link rel="stylesheet" href="#{request.contextPath}/resources/css/jquery.dataTables.css"/>
         <link rel="stylesheet" href="#{request.contextPath}/resources/css/dataTables.bootstrap4.css"/>
         <link rel="stylesheet" href="#{request.contextPath}/resources/fonts/Brands/style.css"/>
+        <link rel="stylesheet" href="#{request.contextPath}/resources/fonts/Brands/formValidation.min"/>
     </ui:define>
     <ui:define name="script">
         <script src="#{request.contextPath}/resources/js/jquery.dataTables.js"></script>
         <script src="#{request.contextPath}/resources/js/bootstrap.dataTables.js"></script>
         <script src="#{request.contextPath}/resources/js/tabla.js"></script>
+        <script src="#{request.contextPath}/resources/js/formValidation.min"></script>
     </ui:define>
     <ui:define name="title">
         #{msjAdmin.title}
@@ -49,7 +51,8 @@
                                  value="#{usuarioController.entrenador}" var="u">
                         <h:column>
                             <f:facet name="header"> <i class="fa fa-address-card"></i> #{msjAdmin.documento} </f:facet>
-                            <h:outputText value="#{u.idUsuarios} #{u.idTipoDocumento.sigla} "/>
+                            <h:outputText value="#{u.idUsuarios} #{u.idTipoDocumento.sigla}">
+                            </h:outputText>
                         </h:column>
                         <h:column>
                             <f:facet name="header"> <i class="fa fa-fw fa-user-o"></i> #{msjAdmin.nombre} </f:facet>
@@ -190,8 +193,9 @@
                                     <label class="control-label col-md-12 col-sm-12 col-xs-12" for="documento"> #{msjAdmin.documento} <span class="required">*</span>
                                     </label>
                                     <div class="col-md-12 col-md-12 col-xs-12">
-                                        <h:inputText id="documento" a:type="text" value="#{usuarioController.usuarioSeleccionado.idUsuarios}"
-                                                     class="form-control col-md-7 col-xs-12" autocomplete="off" required="true" />
+                                        <h:inputText a:type="number" id="documento" minlength="10" 
+                                                     maxlength="13" value="#{usuarioController.usuarioSeleccionado.idUsuarios}"
+                                                     class="form-control col-md-7 col-xs-12" autocomplete="off" required="true"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -222,6 +226,7 @@
                                         </h:selectOneMenu>
                                     </div>
                                 </div>
+                                
                                 <div class="form-group">
                                     <label class="control-label col-md-10 col-sm-10 col-xs-12" for="rh"> #{msjAdmin.rh} <span class="required">*</span>
                                     </label>
