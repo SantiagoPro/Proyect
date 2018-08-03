@@ -16,17 +16,14 @@
     </h:head>
     <f:view locale="#{languageController.locale}">
         <h:body>
-            <div class="login-clean" style="background-image:url(resources/images/709.jpg);">
-                <h4 class="text-uppercase text-center text-white d-flex flex-row 
+            <div class="login-clean form-control d-block d-flex flex-column justify-content-center
+                        align-content-center align-self-center flex-nowrap" >
+                <h4 class="text-uppercase text-center text-white d-flex flex-row
                     justify-content-center align-items-center align-content-center 
-                    align-self-center" style="background-color:rgba(10,10,10,0.81);
-                    background-position:top;background-size:auto;background-repeat:round;
-                    font-family:ANDERS;font-size:31px;">
+                    align-self-center">
                     #{msjLogin.header}
                 </h4>
-                <h:form prependId="false" class="d-block d-flex flex-column justify-content-center
-                        align-content-center align-self-center flex-nowrap my-auto m" 
-                        style="background-position:center;background-size:cover;">
+                <h:form prependId="false">
                     <div class="illustration"><img src="resources/images/LOGO.png" class="img-fluid" /></div>
                     <div class="form-group">
                         <h:inputText a:type="number" a:placeholder="#{msjLogin.placeholderUser}" a:autocomplete="off" a:required="true"

@@ -137,7 +137,7 @@ public class SessionController implements Serializable {
         }
     }
 
-    public static String urlPrincipalRol(Integer idRol) {
+    public String urlPrincipalRol(Integer idRol) {
         switch (idRol) {
             case 0:
                 return "/usuarios/Principal.deportista.xhtml?faces-redirect=true";

@@ -13,8 +13,8 @@ import com.rid.modelo.facades.TipoDocumentoFacadeLocal;
 import com.rid.modelo.facades.UsuarioFacadeLocal;
 import com.rid.modelo.entities.Rol;
 import com.rid.utils.FileUpload;
-import java.io.File;
 import com.rid.utils.MessagesUtil;
+import java.io.File;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
@@ -23,6 +23,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Inject;
+import org.primefaces.event.FileUploadEvent;
 
 /**
  *
@@ -32,12 +33,11 @@ import javax.inject.Inject;
 @SessionScoped
 public class UsuarioController implements Serializable {
 
-    @Inject
-    private FileUpload ca;
-    
-    
     @EJB
     private UsuarioFacadeLocal ufl;
+    
+    @Inject
+    private FileUpload fu;
 
     @EJB
     private RolFacadeLocal rfl;
@@ -51,8 +51,6 @@ public class UsuarioController implements Serializable {
     private List<Usuario> entrenador;
     private List<Usuario> administrador;
     
-    private String imagenPerfil;
-
     private Usuario usuarioSeleccionado;
 
     private Long documento;
@@ -68,6 +66,7 @@ public class UsuarioController implements Serializable {
     private String clave;
     private Short estado;
     private String foto;
+    private String imagenPerfil;
     private TipoDocumento tiposDocumento;
     private Rol rol;
 
@@ -114,11 +113,11 @@ public class UsuarioController implements Serializable {
         String F = "Femenino";
         String M = "Masculino";
         try {
-            if (sexo.equals(0)) {
-                sexo = Boolean.valueOf(F);
+            if (sexo.equals(false)) {
+                sexo = Boolean.valueOf(M) ;
                 return sexo;
             } else {
-                sexo = Boolean.valueOf(M);
+                sexo = Boolean.valueOf(F);
                 return sexo;
             }
         } catch (Exception e) {
@@ -203,6 +202,25 @@ public class UsuarioController implements Serializable {
         this.foto = foto;
     }
 
+    public String getImagenPerfil() {
+        
+        File f = new File(fu.getCarpeta(),user.getIdUsuarios() + ".jpg" );
+        if (!fu.getCarpeta().exists() && imagenPerfil == null) {
+            imagenPerfil = "resources/images/LOGO.png";
+        }
+        else if (f.exists()) {
+            imagenPerfil = "imgPerfil/" + f.getName();
+        }
+        else if (imagenPerfil == null) {
+            imagenPerfil = "resources/images/LOGO.png"; 
+        }
+        return imagenPerfil;
+    }
+
+    public void setImagenPerfil(String imagenPerfil) {
+        this.imagenPerfil = imagenPerfil;
+    }
+
     public TipoDocumento getTiposDocumento() {
         return tiposDocumento;
     }
@@ -227,22 +245,6 @@ public class UsuarioController implements Serializable {
         this.user = user;
     }
 
-    public String getImagenPerfil() {
-        File f = new File(ca.getCarpeta(),user.getIdUsuarios() + ".jpg");
-        if (!ca.getCarpeta().exists() && imagenPerfil == null) {
-            imagenPerfil = "resouerces/images/perfiles/LOGO.jpg";
-        }else if (f.exists()) {
-            imagenPerfil = "imgPerfil/" + f.getName();
-        }
-//        else if () {
-//            
-//        }
-        return imagenPerfil;
-    }
-
-    public void setImagenPerfil(String imagenPerfil) {
-        this.imagenPerfil = imagenPerfil;
-    }
 
     public Usuario getUsuarioSeleccionado() {
         return usuarioSeleccionado;
@@ -365,6 +367,17 @@ public class UsuarioController implements Serializable {
         return "/usuarios/Principal.entrenador.xhtml";
     }
 
+    public String editarUser() {
+        try {
+            ufl.edit(user);
+            usuario = null;
+        } catch (Exception e) {
+            MessagesUtil.error(null, "Error al editar el usuario.", e.getMessage(), false);
+        }
+        usuarioSeleccionado = null;
+        return "/usuarios/Principal.administrador.xhtml";
+    }
+    
     public String editarEnt() {
         try {
             ufl.edit(usuarioSeleccionado);
@@ -405,5 +418,19 @@ public class UsuarioController implements Serializable {
 
     public String getClassBloqueUsuarioIcon(Usuario u) {
         return ((u.getEstado() == null || u.getEstado() == 0) ? "fa-eye-slash" : ((u.getEstado() == 1) ? "fa-eye" : "fa-eye-slash"));
+    }
+    
+//    public void subirImg(FileUploadEvent event){
+//        try {
+//            user.setFoto(event.getFile().getContentType());
+//            imagenPerfil = FileUpload.savePicTemp(user.getFoto(), null , sc.getUser().getNombre() , sc.getUser().getApellido());
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
+        
+    public String cambiarFoto(){
+        imagenPerfil = "imgPerfil/" + fu.cargarArchivo(user.getIdUsuarios());
+        return "";
     }
 }

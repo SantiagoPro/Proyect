@@ -12,9 +12,7 @@ body {
     font-size:1rem;
     font-weight:400;
     line-height:1.5;
-    color:#212529;
     text-align:left;
-    background-color:#fff;
     background-image:url(../images/709.jpg);
 }
 
@@ -23,8 +21,15 @@ element.style {
     height:615px;
 }
 
+h4 {
+    font-family:ANDERS !important ;
+    font-size:31px;
+    background-color:rgba(10,10,10,0.81);
+    background-position:top;background-size:auto;background-repeat:round;
+}
+
 .login-clean {
-    background:#f1f7fc;
+    background-image:url(../images/709.jpg);
     padding:80px 0;
     background-position:center;
     background-size:cover;
@@ -37,22 +42,10 @@ element.style {
     width:90%;
     margin:0 auto;
     background-color:#fff;
-    padding:40px;
-    border-radius:4px;
-    color:#505e6c;
-    box-shadow:1px 1px 5px rgba(0,0,0,0.1);
+    padding:10px;
 }
-
 .visible {
     visibility:visible!important;
-}
-
-.mb-auto, .my-auto {
-    margin-bottom:auto!important;
-}
-
-.mt-auto, .my-auto {
-    margin-top:auto!important;
 }
 
 .align-self-center {
