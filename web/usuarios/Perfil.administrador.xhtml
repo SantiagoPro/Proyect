@@ -30,25 +30,29 @@
             <div class="modal-dialog">
                 <h:form a:data-parsley-validate="true" class="form-horizontal form-control-success"
                         prependId="false" enctype="multipart/form-data" >
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4>
-                                    Cambiar foto
-                                </h4>
-                            </div>
-                            <div class="modal-body">
-                                
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-danger alert-light" data-dismiss="modal">#{msjAdmin.cancelar}</button>
-                                <h:commandButton actionListener="{usuarioController.editarUser()}" value="#{msjAdmin.btnEdit}"
-                                                 class="btn btn-success alert-light"/>
-                            </div>
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4>
+                                Cambiar foto
+                            </h4>
                         </div>
+                        <div class="modal-body">
+                            <h:form>
+                                <h:inputFile value="#{fileUpload.archivo}" class="btn btn-info alert-light" />
+                                <h:
+
+                            </h:form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger alert-light" data-dismiss="modal">#{msjAdmin.cancelar}</button>
+                            <h:commandButton value="Editar" action="#{usuarioController.cambiarFoto()}"
+                                             class="btn btn-warning alert-light"/>
+                        </div>
+                    </div>
                 </h:form>
             </div>
         </div>
-
+        <!-- Modal para Editar -->
         <div id="modalEditar" class="modal fade" role="dialog">
             <div class="modal-dialog">
                 <h:form id="demo-form2" a:data-parsley-validate="true" class="form-horizontal form-control-success"
@@ -162,6 +166,8 @@
                 </h:form>
             </div>
         </div>
+
+        <!-- Datos Usuario -->
         <h:form prependId="false">
             <div class="row d-flex flex-row justify-content-center 
                  align-items-center align-content-center align-self-center">

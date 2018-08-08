@@ -203,7 +203,6 @@ public class UsuarioController implements Serializable {
     }
 
     public String getImagenPerfil() {
-        
         File f = new File(fu.getCarpeta(),user.getIdUsuarios() + ".jpg" );
         if (!fu.getCarpeta().exists() && imagenPerfil == null) {
             imagenPerfil = "resources/images/LOGO.png";
@@ -272,7 +271,7 @@ public class UsuarioController implements Serializable {
     }
 
     public List<Usuario> getAdministrador() {
-        if (administrador == null || entrenador.isEmpty()) {
+        if (administrador == null || administrador.isEmpty()) {
             administrador = ufl.findByIdRol(2);
         }
         return administrador;
@@ -431,6 +430,6 @@ public class UsuarioController implements Serializable {
         
     public String cambiarFoto(){
         imagenPerfil = "imgPerfil/" + fu.cargarArchivo(user.getIdUsuarios());
-        return "";
+        return "Perfil.administrador.xhtml?faces-redirect=true";
     }
 }
